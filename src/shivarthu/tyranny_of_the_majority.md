@@ -30,9 +30,6 @@ Suggestion:
 
 Some of the voting or feedback sytem.
 
-Here are the revised sentences with improved grammar and clarity:
-
-
 1. **Direct Voting by Local Citizens:** This method involves directly polling local citizens.
 2. **Schelling Game Decision by Users:** Users make decisions using the Schelling game.
 3. **Voting by Representatives Elected via Proportional Approval Voting**: Representatives are elected by the people through a proportional approval voting system ([Sequential Phragmén](https://wiki.polkadot.network/docs/learn-phragmen))
