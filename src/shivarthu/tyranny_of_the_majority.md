@@ -29,7 +29,7 @@ The tyranny of the minority occurs when a supermajority consensus is required fo
 **Example:** Creating an Ultra Low Emission Zone (ULEZ) area or controlling traffic where cars are not allowed, but a minority group of car owners opposes it. Though it is difficult to pass such a bill with a supermajority decision, the minority can create a blockage. Once the bill is passed, it becomes challenging to reverse.
 
 
-## How will Shivarthu's direct democracy solve the tyranny of the majority?
+## How will Shivarthu's direct democracy solve the tyranny of the majority/minority?
 [Shivarthu](https://github.com/amiyatulu/shivarthu/blob/main/docs/Shivarthu.md)
 
 Suggestion:
