@@ -23,6 +23,12 @@ Tyranny of the majority is a concept that highlights a potential flaw in democra
 
 In both scenarios, the key is to introduce checks and balances that prevent the majority from imposing its will in a way that harms minority rights or results in irrational or arbitrary decisions. These mechanisms aim to strike a balance between majority rule and the protection of minority interests and the principles of rationality and fairness.
 
+# Tyranny of the Minority
+The tyranny of the minority occurs when a supermajority consensus is required for a decision, and a minority, in pursuit of its own interests, oppresses or neglects the rights and interests of the majority groups. 
+
+**Example:** Creating an Ultra Low Emission Zone (ULEZ) area or controlling traffic where cars are not allowed, but a minority group of car owners opposes it. Though it is difficult to pass such a bill with a supermajority decision, the minority can create a blockage. Once the bill is passed, it becomes challenging to reverse.
+
+
 ## How will Shivarthu's direct democracy solve the tyranny of the majority?
 [Shivarthu](https://github.com/amiyatulu/shivarthu/blob/main/docs/Shivarthu.md)
 
