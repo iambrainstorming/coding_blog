@@ -21,7 +21,7 @@ Isomorphic: Leptos provides primitives to write isomorphic server functions, i.e
 
 [Actix in leptos](https://docs.rs/leptos_actix/latest/leptos_actix/)
 
-## One time otp
+## One time password
 ```
  https://docs.rs/libotp/latest/libotp/
 ```
