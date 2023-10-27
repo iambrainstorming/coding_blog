@@ -7,5 +7,5 @@
 - [One wallet for all your signing needs](./rust/one_wallet_app.md)
 
 # Shivarthu
-- [Tyranny of the Majority, Minority & Representatives](./shivarthu/tyranny_of_the_majority.md)
+- [Tyranny of the Majority, Minority & Representatives and Democratic trilemma](./shivarthu/tyranny_of_the_majority.md)
 - [Simple Majority vs Super Majority](./shivarthu/simple_majority_and_super_majority.md)

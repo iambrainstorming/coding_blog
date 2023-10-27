@@ -46,7 +46,7 @@ Several factors can contribute to this situation:
 
 4. Lack of Accountability: In some cases, representatives may face limited accountability due to factors like low voter turnout, lack of competition in elections (e.g., due to the use of terrible voting methods like FPTP), or insufficient checks and balances within the political system.
 
-5. Authoritarian Governance: In some instances, representatives may develop an insatiable hunger to remain in power, which can lead them to employ authoritarian methods to consolidate and maintain their control. This can involve tactics such as surveillance, disinformation campaigns, propaganda, controlling and manipulating the media to further their interests, eroding the independence of institutions and the use of laws to harass dissent and opposition. By manipulating information, stifling criticism, and undermining the democratic process, these representatives prioritize their own political longevity over the well-being and rights of their constituents.
+5. Authoritarian Governance: In some instances, representatives may develop an insatiable hunger to remain in power, which can lead them to employ authoritarian methods to consolidate and maintain their control. This can involve tactics such as surveillance, disinformation campaigns, propaganda, controlling and manipulating the media to further their interests, eroding the independence of institutions and the misuse of laws to harass dissent and opposition. By manipulating information, stifling criticism, and undermining the democratic process, these representatives prioritize their own political longevity over the well-being and rights of their constituents.
 
 
 When this tyranny of representatives occurs, it erodes the fundamental principles of democracy. The elected officials cease to be true representatives of the people and instead act in their own interests or those of a select few. To combat this, it is essential to implement measures such as redistricting reform, campaign finance regulations, and fostering a culture of political accountability to ensure that representatives genuinely serve the wishes of their constituents and maintain a healthy democratic system.
@@ -65,6 +65,12 @@ Here's how the pollution paradox can be connected to the tyranny of representati
 4. Disconnect from Constituent Interests: In the pollution paradox, representatives may no longer serve the best interests of their constituents, who may desire cleaner and more sustainable energy solutions to combat pollution and environmental degradation. Instead, these representatives may prioritize the interests of the fossil fuel industry and their campaign donors.
 
 The connection between the pollution paradox and the tyranny of representatives underscores the challenges that arise when powerful interest groups exert undue influence over elected officials and policy decisions.
+
+## Democratic reform trilemma or trade-offs
+> Trade-off: a balancing of factors all of which are not attainable at the same time.
+
+Democratic theorists have identified a trilemma due to the presence of three desirable characteristics of an ideal system of direct democracy, which are challenging to deliver all at once. These three characteristics are participation – widespread participation in the decision making process by the people affected; deliberation – a rational discussion where all major points of view are weighted according to evidence; and equality – all members of the population on whose behalf decisions are taken have an equal chance of having their views taken into account. Empirical evidence from dozens of studies suggests deliberation leads to better decision making.
+
 
 
 ## How will Shivarthu's direct democracy solve the tyranny of the majority/minority?
