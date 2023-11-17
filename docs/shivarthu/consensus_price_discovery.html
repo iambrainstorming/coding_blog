@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>One wallet for all your signing needs - Iambrainstorming Blog</title>
+        <title>Consensus Price Discovery - Iambrainstorming Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../home.html"><strong aria-hidden="true">1.</strong> Profile</a></li><li class="chapter-item expanded affix "><li class="part-title">Rust Programming</li><li class="chapter-item expanded "><a href="../parsing_xpath.html"><strong aria-hidden="true">2.</strong> Parsing with XPath in Rust</a></li><li class="chapter-item expanded "><a href="../rust/one_wallet_app.html" class="active"><strong aria-hidden="true">3.</strong> One wallet for all your signing needs</a></li><li class="chapter-item expanded affix "><li class="part-title">Shivarthu</li><li class="chapter-item expanded "><a href="../shivarthu/tyranny_of_the_majority.html"><strong aria-hidden="true">4.</strong> Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma</a></li><li class="chapter-item expanded "><a href="../shivarthu/simple_majority_and_super_majority.html"><strong aria-hidden="true">5.</strong> Simple Majority vs Super Majority</a></li><li class="chapter-item expanded "><a href="../shivarthu/consensus_price_discovery.html"><strong aria-hidden="true">6.</strong> Consensus Price Discovery</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../home.html"><strong aria-hidden="true">1.</strong> Profile</a></li><li class="chapter-item expanded affix "><li class="part-title">Rust Programming</li><li class="chapter-item expanded "><a href="../parsing_xpath.html"><strong aria-hidden="true">2.</strong> Parsing with XPath in Rust</a></li><li class="chapter-item expanded "><a href="../rust/one_wallet_app.html"><strong aria-hidden="true">3.</strong> One wallet for all your signing needs</a></li><li class="chapter-item expanded affix "><li class="part-title">Shivarthu</li><li class="chapter-item expanded "><a href="../shivarthu/tyranny_of_the_majority.html"><strong aria-hidden="true">4.</strong> Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma</a></li><li class="chapter-item expanded "><a href="../shivarthu/simple_majority_and_super_majority.html"><strong aria-hidden="true">5.</strong> Simple Majority vs Super Majority</a></li><li class="chapter-item expanded "><a href="../shivarthu/consensus_price_discovery.html" class="active"><strong aria-hidden="true">6.</strong> Consensus Price Discovery</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,89 +171,62 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="signing-transactions-with-another-secure-app"><a class="header" href="#signing-transactions-with-another-secure-app">Signing transactions with another secure app</a></h2>
-<p><a href="https://substrate.stackexchange.com/questions/10156/signing-transactions-with-another-secure-app">Link</a></p>
-<p>If we make an Android dapp, can't we use Android <a href="https://developer.android.com/training/basics/intents/sending">intents</a> to sign a transaction in another Android wallet app that supports receiving data through intents? We can pass message and public key in the intent (e.g. using <a href="https://github.com/paritytech/subxt/blob/d7124b56f7e7ed4cba1f05cdb38a8fe48eebf898/examples/wasm-example/src/routes/signing.rs">subxt</a>) , and wallet makes transaction. Will there be any security issues? Though we can't connect the wallet to get the public key, we can just copy the public key from the wallet and paste it on the dapp, to get the dapp UI for the public key.</p>
-<p>Another approach could involve creating a trusted <a href="https://github.com/tauri-apps/tauri/discussions/2751">server apps</a> responsible for handling transactions and securely storing private keys or seeds. Authentication mechanisms can be implemented to ensure that only trusted applications on the computer can access the server API. This approach effectively separates the authentication logic from the dapp itself, similar to browser extensions wallet, and can also be utilized on desktop systems where &quot;intents&quot; are not available.</p>
-<p>Here, two passwords can be utilized: one for communication between the Dapp and the server, which the Dapp can interact with, here <a href="https://docs.rs/libotp/latest/libotp/">one time password</a> can be used for more security, also you don't need to memorize the password, and another password for signing transactions, similar to how MetaMask or the Polkadot.js extension wallet operates, where only the server wallet app can interact with this password.</p>
-<p>For dapps that you trust or low stake transaction (e.g. your wallet just have a very small amount of money), you can allow automatic approval of signing transaction through API using ui of dapps, whereas for an untrusted dapp you need to approve the transaction in the wallet. This will improve user experience. You can set the desired security in wallet app. </p>
-<p>You can also use the wallet for transacting <a href="https://www.toptal.com/ethereum/one-click-login-flows-a-metamask-tutorial">web2 apps</a>. </p>
+                        <h2 id="what-if-crypto-token-prices-are-discovered-through-consensus-of-utility-rather-than-demand-and-supply"><a class="header" href="#what-if-crypto-token-prices-are-discovered-through-consensus-of-utility-rather-than-demand-and-supply">What if crypto token prices are discovered through consensus of utility rather than demand and supply?</a></h2>
 <blockquote>
-<p>One wallet for all your signing needs. </p>
+<p>“The stock market is filled with individuals who know the price of everything, but the value of nothing.” — Phillip Fisher</p>
 </blockquote>
-<h2 id="leptos"><a class="header" href="#leptos">Leptos</a></h2>
-<p>You can use <a href="https://github.com/leptos-rs/leptos">leptos</a> for dapp with tauri.</p>
-<p>Isomorphic: Leptos provides primitives to write isomorphic server functions, i.e., functions that can be called with the “same shape” on the client or server, but only run on the server. This means you can write your server-only logic (database requests, authentication etc.) alongside the client-side components that will consume it, and call server functions as if they were running in the browser, without needing to create and maintain a separate REST or other API.</p>
-<p><a href="https://docs.rs/leptos_actix/latest/leptos_actix/">Actix in leptos</a></p>
-<h2 id="one-time-password"><a class="header" href="#one-time-password">One time password</a></h2>
-<pre><code> https://docs.rs/libotp/latest/libotp/
-</code></pre>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use libotp::{totp, validate_totp};
-
-const TOTP_STEP: u64 = 30;
-const OTP_DIGITS: u32 = 8;
-
-fn check_user_otp(user: User, guess: u32) -&gt; Option&lt;bool&gt; {
-   // get the shared secret from some database.
-   let secret = user.get_totp_secret();
-
-   validate_totp(guess, 1, secret, OTP_DIGITS, TOTP_STEP, 0)
-}
-
-fn get_user_otp(user: User) -&gt; Option&lt;u32&gt; {
-   // get shared secret
-   let secret = user.get_totp_secret();
-
-   totp(secret, OTP_DIGITS, TOTP_STEP, 0)
-}
-<span class="boring">}</span></code></pre></pre>
-<h2 id="signing-remotely"><a class="header" href="#signing-remotely">Signing remotely</a></h2>
-<p><a href="https://github.com/paritytech/subxt/issues/1196">Discussion</a></p>
-<p>Yes, you can use <a href="https://docs.rs/subxt/latest/subxt/tx/struct.PartialExtrinsic.html#method.signer_payload">signer_payload</a> but you need construct a PartialExtrinsic</p>
-<p>Example:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>    let tx = node_runtime::tx().preimage().note_preimage(vec![0u8]);
-    let partial_extrinsic = api
-        .tx()
-        .create_partial_signed(&amp;tx, &amp;alice.public_key().into(), Default::default())
-        .await
-        .unwrap();
-
-    // Get the signer payload.
-    let signer_payload = partial_extrinsic.signer_payload();
-    // Sign it (possibly externally).
-    let signature = alice.sign(&amp;signer_payload);
-    // Use this to build a signed extrinsic.
-    let extrinsic = partial_extrinsic
-        .sign_with_address_and_signature(&amp;alice.public_key().into(), &amp;signature.into());
-
-    // And now submit it.
-    extrinsic
-        .submit_and_watch()
-        .await
-        .unwrap()
-        .wait_for_finalized_success()
-        .await
-        .unwrap();
-<span class="boring">}</span></code></pre></pre>
-<h2 id="building-a-cryptowallet-in-rust"><a class="header" href="#building-a-cryptowallet-in-rust">Building a cryptowallet in rust</a></h2>
-<p><a href="https://tms-dev-blog.com/build-a-crypto-wallet-using-rust/">Website</a></p>
-<p><a href="https://github.com/tmsdev82/rust-eth-crypto-wallet-tutorial">Github</a></p>
+<p>Scams involving cryptocurrency are extremely prevalent.
+The majority of coins on the cryptocurrency market are worthless meme coins, but they nevertheless manage to dupe individuals into parting by enticing them to grow their money and making them rich in no time.
+Crypto scams are currently not limited to big cities now they have even begun targeting underdeveloped villages in nations like India.</p>
+<p>The issue is caused by the price being determined by the supply and demand of tokens on exchanges without considering their utility. The prices of tokens depend on how many people you manage to fool, and the scammer's ability to make a sudden spike through pump and dump.</p>
+<p>Crypto scams, also negatively impact useful coins, and all currency prices move in sync, both good coins, and bad coins get dumped in a beer market.</p>
+<blockquote>
+<p>Bad money drives out good, so we need to eliminate the bad money.</p>
+</blockquote>
+<p>The price of tokens derived through demand and supply is suboptimal. It doesn't include a consensus from everyone, but just the interacting party. So, they are free to produce as much as negative externality they like without any consequences.</p>
+<p>Can we discover prices through consensus and using human rationality rather than speculation, increase stability of coins prices and curtail FUD? There may be some way out.</p>
+<p>The score schelling game can assist in determining cryptocurrency prices in decentralized exchanges by consensus and human reason.</p>
+<p>The algorithm is provided in the <a href="https://github.com/amiyatulu/shivarthu/blob/main/docs/Shivarthu.md#price-discovery-of-projects-through-score-schelling-game">following link</a>.</p>
+<p>But setting an exchange using score schelling game is not without challenges. One of the problem is arbitrage. If the AMM price is lower than the market price, then people will drain all the liquidity and sell it at a higher price in the market. The solution can be the ability to withdraw after a month or have a KYC so that you can't withdraw tokens after certain limits.
+Similarly, if the demand and utility of the token are more and the price is set lower, it can create a shortage, and more people will not be benefited, so, prices need to be increased through consensus.</p>
+<blockquote>
+<p>Another way is to tax the shit coins and subsidize the good coins based on the price discovery, and this won't impact the liquidity or create the problem of arbitrage, neither KYC is needed.
+Taxing can be done using market makers like Uniswap, and taxes collected are sold at lower discovered prices to buy or collect good coins and hence plummeting the shitcoin price and good coins collected are given as subsidies while exchanging the good coins . Liquidity providers can also be incentivized with tax collected.</p>
+</blockquote>
+<h3 id="rationality-disinformation-and-nudge"><a class="header" href="#rationality-disinformation-and-nudge">Rationality, Disinformation and Nudge</a></h3>
+<p>Only a nudge while buying from an exchange can work to many extents.
+For example in real world, Adani stocks got plummeted by the Hindenburg report.</p>
+<p>A decentralized cryptoexchange with a <a href="tyranny_of_the_majority.html">good governance</a> can provide a nudge for discovered prices, or provide research review and discussion about the advantages, disadvantages, security and application or use case of the cryptocurrency. </p>
+<p><strong>An example nudge: &quot;The price of the coin derived by decentralized experts is this. Do you want to buy the token at this price?&quot;</strong></p>
+<p>We also need to have good institutes to stop disinformation by scammers. Social media are usually a good target for online fraud. </p>
+<p>We can slowly increase the complexity of exchange with passing year that includes providing liquidity at predicted prices.</p>
+<h3 id="an-example-exchange"><a class="header" href="#an-example-exchange">An example exchange:</a></h3>
+<p>Discovering price in crypto exchange using score Schelling game based on coin utility.</p>
+<p>Bitcoin = 0.1<br />
+Ethereum = 0.4<br />
+Polkadot = 0.3<br />
+Near = 0.2</p>
+<p>Exchange:</p>
+<p>2 Near = 1 Ethereum</p>
+<p>To calculate the price you need to take into account:</p>
+<ol>
+<li>Utility of the token (Most priority)</li>
+<li>Total Supply of token</li>
+<li>Inflation or deflation of token</li>
+<li>Demand for token</li>
+</ol>
+<p>KYC of user, with limits to how much they can withdraw every day.</p>
+<p>There can be incentives for providing liquidity, and the ability sale your token at the discovered price during the initial coin offering.</p>
+<p>Price discovery every day or weekly.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../parsing_xpath.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../shivarthu/simple_majority_and_super_majority.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../shivarthu/tyranny_of_the_majority.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -261,13 +234,10 @@ fn get_user_otp(user: User) -&gt; Option&lt;u32&gt; {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../parsing_xpath.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../shivarthu/simple_majority_and_super_majority.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../shivarthu/tyranny_of_the_majority.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>

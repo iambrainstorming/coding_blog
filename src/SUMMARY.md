@@ -9,3 +9,4 @@
 # Shivarthu
 - [Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma](./shivarthu/tyranny_of_the_majority.md)
 - [Simple Majority vs Super Majority](./shivarthu/simple_majority_and_super_majority.md)
+- [Consensus Price Discovery](./shivarthu/consensus_price_discovery.md)
