@@ -21,7 +21,7 @@ The score schelling game can assist in determining cryptocurrency prices in dece
 
 The algorithm is provided in the [following link](https://github.com/amiyatulu/shivarthu/blob/main/docs/Shivarthu.md#price-discovery-of-projects-through-score-schelling-game).
 
-But setting an exchange using score schelling game is not without challenges. One of the problem is arbitrage. If the AMM price is lower than the market price, then people will drain all the liquidity and sell it at a higher price in the market. The solution can be the ability to withdraw after a month or have a KYC so that you can't withdraw tokens after certain limits.
+But setting an exchange using score schelling game is not without challenges. **One of the problem is arbitrage**. If the AMM price is lower than the market price, then people will drain all the liquidity and sell it at a higher price in the market. The solution can be the ability to withdraw after a month or have a KYC so that you can't withdraw tokens after certain limits.
 Similarly, if the demand and utility of the token are more and the price is set lower, it can create a shortage, and more people will not be benefited, so, prices need to be increased through consensus.
 
 >Another way is to tax the shit coins and subsidize the good coins based on the price discovery, and this won't impact the liquidity or create the problem of arbitrage, neither KYC is needed.
@@ -60,7 +60,9 @@ To calculate the price you need to take into account:
 3) Inflation or deflation of token
 4) Demand for token
 
-KYC of user, with limits to how much they can withdraw every day. One can also make [anonymous accounts from kyc account](https://github.com/amiyatulu/shivarthu/wiki/Anonymous-Accounts-Steps) using technology like TEE, such as Phala Network or [Integritee network](https://github.com/integritee-network/integritee-node)
+> KYC of user, with limits to how much they can withdraw every day or within a given period of time. One can also make [anonymous accounts from kyc account](https://github.com/amiyatulu/shivarthu/wiki/Anonymous-Accounts-Steps) using technology like TEE, such as Phala Network or [Integritee network](https://github.com/integritee-network/integritee-node)
+
+> There are other methods, such as time-locked withdrawals, where one can withdraw funds in a predictable manner based on the DeFi algorithm, without needing any kyc.
 
 There can be incentives for providing liquidity, and the ability sale your token at the discovered price during the initial coin offering.
 
