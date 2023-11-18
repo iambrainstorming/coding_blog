@@ -60,8 +60,14 @@ To calculate the price you need to take into account:
 3) Inflation or deflation of token
 4) Demand for token
 
-KYC of user, with limits to how much they can withdraw every day.
+KYC of user, with limits to how much they can withdraw every day. One can also make [anonymous accounts from kyc account](https://github.com/amiyatulu/shivarthu/wiki/Anonymous-Accounts-Steps) using technology like TEE, such as Phala Network or [Integritee network](https://github.com/integritee-network/integritee-node)
 
 There can be incentives for providing liquidity, and the ability sale your token at the discovered price during the initial coin offering.
 
 Price discovery every day or weekly.
+
+## Impact of other exchanges
+
+Even if such an rational exchange is developed, what about other exchanges that can go bad and disrupt the pricing system? If these rational exchanges grow big, then other exchanges can only have a little effect, but that's not how it works [when profit and incentives are involved](https://finematics.com/bank-run-in-defi-iron-finance-explained/).
+
+> Can we make a token available only to whitelisted exchanges by encoding it to blockchain specifications and prevent it from being traded on any other exchanges? If so, what would be the specification or intermediary logic involved in fund transfers?
