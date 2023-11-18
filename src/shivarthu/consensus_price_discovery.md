@@ -13,7 +13,7 @@ Crypto scams, also negatively impact useful coins, and all currency prices move 
 
 > Bad money drives out good, so we need to eliminate the bad money.
 
-The price of tokens derived through demand and supply is suboptimal. It doesn't include a consensus from everyone, but just the interacting party. So, they are free to produce as much as negative externality they like without any consequences.
+The price of tokens derived through demand and supply is suboptimal. It doesn't include a consensus from [everyone](tyranny_of_the_majority.md), but just the interacting party. So, they are free to produce as much as negative externality they like without any consequences.
 
 Can we discover prices through consensus and using human rationality rather than speculation, increase stability of coins prices and curtail FUD? There may be some way out.
 
@@ -73,3 +73,7 @@ Price discovery every day or weekly.
 Even if such an rational exchange is developed, what about other exchanges that can go bad and disrupt the pricing system? If these rational exchanges grow big, then other exchanges can only have a little effect, but that's not how it works [when profit and incentives are involved](https://finematics.com/bank-run-in-defi-iron-finance-explained/).
 
 > Can we make a token available only to whitelisted exchanges by encoding it to blockchain specifications and prevent it from being traded on any other exchanges? If so, what would be the specification or intermediary logic involved in fund transfers?
+
+There are two ways of transferring tokens: one is through the blockchain, where tokens are minted to your wallet for performing specific tasks validated by the blockchain algorithm itself. The other is peer-to-peer (p2p) transfer or wallet-to-wallet transfer. Token exchanges between trading pair occur through wallet-to-wallet transfers. 
+
+Though minting tokens based on validation by blockchain is a form of trade, when I refer to trading, I mean swapping or transferring tokens between two pairs. In my personal opinion, we don't need high-frequency trading. A fair amount of limited monthly trading can fulfill everyone's needs.
