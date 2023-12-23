@@ -60,7 +60,7 @@ To calculate the price you need to take into account:
 3) Inflation or deflation of token
 4) Demand for token
 
-> KYC of user, with limits to how much they can withdraw every day or within a given period of time. One can also make [anonymous accounts from kyc account](https://github.com/amiyatulu/shivarthu/wiki/Anonymous-Accounts-Steps) using technology like TEE, such as Phala Network or [Integritee network](https://github.com/integritee-network/integritee-node)
+> KYC of user, with limits to how much they can withdraw every day or within a given period of time. One can also make [anonymous accounts from kyc account](https://github.com/amiyatulu/shivarthu/wiki/Anonymous-Accounts-Steps) using technology like TEE, such as Phala Network or [Integritee network](https://github.com/integritee-network/integritee-node) or using Zero-knowledge proof. 
 
 > There are other methods, such as time-locked withdrawals, where one can withdraw funds in a predictable manner based on the DeFi algorithm, without needing any kyc.
 
