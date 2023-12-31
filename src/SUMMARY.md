@@ -18,4 +18,9 @@
   - [Upload files safely](./4everland/upload_files_safely.md)
   - [Custom Policy](./4everland/custom_policy.md)
   - [Rust sts](./4everland/rust_sts.md)
+  
+# Linux
+
+- [Offline Centric Apps](./linux/Offline_centric_apps.md)
+- [Firejail](./linux/firejail.md)
 

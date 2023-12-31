@@ -1,4 +1,4 @@
-## Signing transactions with another secure app
+# Signing transactions with another secure app
 
 [Link](https://substrate.stackexchange.com/questions/10156/signing-transactions-with-another-secure-app)
 
@@ -15,6 +15,7 @@ You can also use the wallet for transacting [web2 apps](https://www.toptal.com/e
 > One wallet for all your signing needs. 
 
 ## Leptos
+
 You can use [leptos](https://github.com/leptos-rs/leptos) for dapp with tauri.
 
 Isomorphic: Leptos provides primitives to write isomorphic server functions, i.e., functions that can be called with the “same shape” on the client or server, but only run on the server. This means you can write your server-only logic (database requests, authentication etc.) alongside the client-side components that will consume it, and call server functions as if they were running in the browser, without needing to create and maintain a separate REST or other API.
@@ -22,6 +23,7 @@ Isomorphic: Leptos provides primitives to write isomorphic server functions, i.e
 [Actix in leptos](https://docs.rs/leptos_actix/latest/leptos_actix/)
 
 ## One time password
+
 ```
  https://docs.rs/libotp/latest/libotp/
 ```
@@ -83,11 +85,7 @@ Example:
 ```
 
 ## Building a cryptowallet in rust
+
 [Website](https://tms-dev-blog.com/build-a-crypto-wallet-using-rust/)
 
 [Github](https://github.com/tmsdev82/rust-eth-crypto-wallet-tutorial)
-
-
-
-
-
