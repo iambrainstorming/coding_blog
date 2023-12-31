@@ -59,3 +59,13 @@ Conclusion:
 A privacy-centric approach to app development, emphasizing offline functionality and transparent communication, not only enhances security but also empowers users to have greater control over their data. By implementing features such as permission-based connections, user traceability, and file ignore options, we can strike a balance between functionality and safeguarding user privacy.
 
 A similar experiment to design crypto wallet using intents here: [One Wallet App](../rust/one_wallet_app.md)
+
+## Security enhancement of an operating system (e.g. Linux OS)
+
+With technology like [AppImage](./appimage.md), there is no need to change the operating system. This further increases the security of the OS. One can also check if something has changed or tampered in the system files crucial for security by obtaining the hash of the OS folder, as it will have the same hash at all times. In the case of an OS update, the changed hash can be publicly declared.
+
+If you just want to check if something in the folder changed:
+
+```bash
+ls -alR --full-time /folder/of/stuff | sha1sum
+```
