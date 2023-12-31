@@ -28,7 +28,7 @@ The `Online App` has access only to an `Online Folder`, whereas the `Offline App
 
 **Communication Framework:**
 
-- The `Online App` provides an API endpoint with three fields for the `Offline App`: a data description, the data itself, and the function name of the WebAssembly (wasm) code. Custom wasm logic facilitates remote server communication, enhancing interoperability.
+- The `Online App` provides an API endpoint with three fields for the `Offline App`: a data description, the data itself, and the function name of the WebAssembly (wasm) code. Custom wasm code is one time uploaded to `Online App` by `Offline App`. Custom wasm logic facilitates remote server communication, enhancing interoperability.
 
 **User Traceability:**
 
