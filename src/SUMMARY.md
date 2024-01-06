@@ -24,4 +24,5 @@
 - [Offline Centric Apps](./linux/Offline_centric_apps.md)
   - [Firejail](./linux/firejail.md)
   - [AppImage](./linux/appimage.md)
+  - [Full Stack rust-libp2p apps, with Wasm and WebRTC](./linux/lipp2p.md)
 

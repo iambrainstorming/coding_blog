@@ -1,7 +1,5 @@
 # Enhancing Privacy and Security in Offline App Design with WebAssembly
 
-Its a draft, will update it with more details.
-
 Introduction:
 
 In the realm of application development, a shift towards designing offline apps by default is imperative for enhanced privacy and security. One key consideration involves the separation of folders for online connections and those accessed by the application for computation, ensuring data privacy without compromising functionality.
@@ -54,6 +52,8 @@ The `Online App` has access only to an `Online Folder`, whereas the `Offline App
 
 - What if the data that goes to the `Online App` is encrypted or obscured, so that you can't trace what data is being sent? Encrypting or obscuring data sent to the `Online App` can be mitigated by only transmitting unobscured data or files. The `Online App` can verify the integrity of received data by comparing it to the original files in its designated folder.
 
+
+
 Conclusion:
 
 A privacy-centric approach to app development, emphasizing offline functionality and transparent communication, not only enhances security but also empowers users to have greater control over their data. By implementing features such as permission-based connections, user traceability, and file ignore options, we can strike a balance between functionality and safeguarding user privacy.
@@ -69,3 +69,7 @@ If you just want to check if something in the folder changed:
 ```bash
 ls -alR --full-time /folder/of/stuff | sha1sum
 ```
+
+## Wasm interface types
+
+[Wit Bindgen](https://github.com/bytecodealliance/wit-bindgen) uses Guest language bindings generator for WIT and the Component Model. With it different modules (or apps) can talk with each other. Its also used for the [Tauri Inter-process communication (IPC) bridge](https://github.com/tauri-apps/tauri-bindgen)
