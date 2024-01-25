@@ -79,6 +79,8 @@ But how can we trust the compromised linux operating system software that genera
 
 ## Anonymity Protocols in rust
 
-One can use anonymous protocols like Tor by default with tauri to protect users.
+One can use anonymous protocols like Tor by default with tauri apps or AppImage to protect users.
+
+> Defend yourself against tracking and surveillance. Circumvent censorship.
 
 [Arti](https://tpo.pages.torproject.net/core/arti/) is a project to implement the Tor anonymity protocols in the Rust programming language.
