@@ -76,3 +76,9 @@ But how can we trust the compromised linux operating system software that genera
 ## Wasm interface types
 
 [Wit Bindgen](https://github.com/bytecodealliance/wit-bindgen) uses Guest language bindings generator for WIT and the Component Model. With it different modules (or apps) can talk with each other. Its also used for the [Tauri Inter-process communication (IPC) bridge](https://github.com/tauri-apps/tauri-bindgen)
+
+## Anonymity Protocols in rust
+
+One can use anonymous protocols like Tor by default with tauri to protect users.
+
+[Arti](https://tpo.pages.torproject.net/core/arti/) is a project to implement the Tor anonymity protocols in the Rust programming language.
