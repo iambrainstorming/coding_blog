@@ -73,6 +73,12 @@ A similar experiment to design crypto wallet using intents here: [One Wallet App
 
 Designing two separate apps can be a bit complicated. It would be easier for both app developers and users if all three modules (as shown in the image) were integrated into a single app. However, consolidating them into a single app might make it challenging for users to trust the app even if it's open source and lacks sufficient code reviewers.
 
+Here is another model: all WebAssembly modules are assembled in a single package, whereas a generic module is used for sandboxing the files and folders. Any app developer can utilize this module, and it can be easily validated by users or developers without requiring much skill.
+
+![Sandboxing files and folders](./image/sandboxing_files_folder.png)
+
+
+
 ## Security enhancement of an operating system (e.g. Linux OS)
 
 With technology like [AppImage](./appimage.md), there is no need to change the operating system. This further increases the security of the OS. One can also check if something has changed or tampered in the system files crucial for security by obtaining the hash of the OS folder, as it will have the same hash at all times. In the case of an OS update, the changed hash can be publicly declared.
