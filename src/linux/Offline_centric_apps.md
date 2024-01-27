@@ -77,7 +77,7 @@ Here is another model: all WebAssembly modules are assembled in a single package
 
 ![Sandboxing files and folders](./image/sandboxing_files_folder.png)
 
-
+A command-line tool can also be built that takes the source code (e.g., Tauri source code) and provides security results, such as whether the app is properly internet sandboxed. It makes it easy to check the security.
 
 ## Security enhancement of an operating system (e.g. Linux OS)
 
