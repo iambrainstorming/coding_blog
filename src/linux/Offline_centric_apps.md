@@ -71,9 +71,9 @@ A similar experiment to design crypto wallet using intents here: [One Wallet App
 
 ### Challenges
 
-Designing two separate apps can be a bit complicated. It would be easier for both app developers and users if all three modules (as shown in the image) were integrated into a single app. However, consolidating them into a single app might make it challenging for users to trust the app even if it's open source and lacks sufficient code reviewers.
+Designing two separate apps can be a bit complicated. It would be easier for both app developers and users if all three modules (as shown in the image) were integrated into a single app. However, consolidating them into a single app might make it challenging for users to trust the app even if it's open source and when it lacks sufficient code reviewers.
 
-Here is another model: all WebAssembly modules are assembled in a single package, whereas a generic module is used for sandboxing the files and folders. Any app developer can utilize this module, and it can be easily validated by users or developers without requiring much skill.
+Here is another model: all WebAssembly modules are assembled in a single package, whereas a generic module is used for sandboxing the files and folders. Any app developer can utilize this module, and sandboxing of files and folders can be easily validated by users or developers without requiring much skill.
 
 ![Sandboxing files and folders](./image/sandboxing_files_folder.png)
 
