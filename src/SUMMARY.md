@@ -26,3 +26,7 @@
   - [AppImage](./linux/appimage.md)
   - [Full Stack rust-libp2p apps, with Wasm and WebRTC](./linux/libp2p.md)
 
+# Broadband Share
+
+- [Sharing Broadband, Mesh Network](./broadband_share/broadband_share_idea.md)
+
