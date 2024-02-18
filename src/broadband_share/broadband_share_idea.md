@@ -32,7 +32,7 @@ Two types of account:
 
 ## Transfer the funds from the user to the service provider based on statistics
 
-It a prepaid system. Users can switch service providers within a day. This helps promote competition and eliminates fraudulent or non-reliable service providers.
+It is a prepaid system. Users can switch service providers within a day. This helps promote competition and eliminates fraudulent or non-reliable service providers.
 
 
 More reliable mesh network where service provider can also become user, in case of network failure of service provider. 
