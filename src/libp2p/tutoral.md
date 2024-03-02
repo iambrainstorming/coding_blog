@@ -109,3 +109,12 @@ Paper:
   - DONT_HAVE
 
 [Accelerating Content Routing with Bitswap: A multi-path file transfer protocol in IPFS and Filecoin](https://research.protocol.ai/publications/accelerating-content-routing-with-bitswap-a-multi-path-file-transfer-protocol-in-ipfs-and-filecoin/delarocha2021.pdf)
+
+
+## Freenet Explained
+
+<https://freenet.org/>
+
+<https://github.com/freenet/freenet-core>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yBtyNIqZios?si=juqvpeAW3o7Xeg6F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
