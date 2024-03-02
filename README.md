@@ -1,3 +1,3 @@
 # blog
 
-https://amiyatulu.github.io/blog/
+https://iambrainstorming.github.io/coding_blog/
