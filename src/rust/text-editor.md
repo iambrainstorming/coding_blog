@@ -2,6 +2,12 @@
 
 ## [Helix editor](https://helix-editor.com/)
 
+<https://helix-editor.com/>
+
+Modal editor
+
+A post-modern text editor.
+
 ### Lightweight and Speed:
 Helix is ightweight nature and fast performance. It runs in the terminal, making it efficient and responsive even on remote servers or low-resource environments.
 
@@ -28,7 +34,7 @@ wrap-indicator = ""  # set wrap-indicator to "" to hide it
 While Helix has a learning curve initially, some users argue that once mastered, it can be extremely efficient for text editing and manipulation. In command mode, activated by pressing the colon key (:), you can explore the tutorial (:tutor) to gain experience with Helix commands within a few days or a week.
 
 
-### Use yazi for terminal file manager 
+### Use yazi for terminal file manager: 
  
 [Yazi](https://github.com/sxyazi/yazi)
 
