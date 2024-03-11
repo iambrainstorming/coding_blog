@@ -58,6 +58,8 @@ pub fn NumericInput() -> impl IntoView {
                 }
             >
                 <p>"You entered " <strong>{value}</strong></p>
+                // If you don't want to display the value:
+                // {move || value.get().map(|_| ())}
             </ErrorBoundary>
         </label>
     }
