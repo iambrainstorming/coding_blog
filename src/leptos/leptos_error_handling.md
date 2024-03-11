@@ -59,6 +59,9 @@ pub fn NumericInput() -> impl IntoView {
             >
                 <p>"You entered " <strong>{value}</strong></p>
                 // If you don't want to display the value:
+                // The way that ErrorBoundary works is by detecting whether the Err(_) branch of a result is rendered, 
+                // so something does have to be displayed. 
+                // However, it doesn't necessarily need to be value — you can map the original to a Result<(), E> for example:
                 // {move || value.get().map(|_| ())}
             </ErrorBoundary>
         </label>
