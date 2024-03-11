@@ -31,6 +31,7 @@
   - [Firejail](./linux/firejail.md)
   - [AppImage](./linux/appimage.md)
   - [Full Stack rust-libp2p apps, with Wasm and WebRTC](./linux/libp2p.md)
+  - [Helix editor](./rust/text-editor.md)
 
 # Broadband Share
 
