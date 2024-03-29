@@ -49,3 +49,15 @@ edit = [
 	{ run = '${EDITOR:=hx} "$@"', desc = "$EDITOR", block = true, for = "unix" },
 ]
 ```
+
+### Use Zellij terminal workspace
+
+<https://zellij.dev/>
+
+Zellij Tutorial
+
+<https://zellij.dev/tutorials/basic-functionality/>
+
+### Rust based terminal
+
+<https://github.com/alacritty/alacritty>
