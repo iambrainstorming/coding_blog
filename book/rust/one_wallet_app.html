@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>One wallet for all your signing needs - Iambrainstorming Blog</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../home.html"><strong aria-hidden="true">1.</strong> Profile</a></li><li class="chapter-item expanded affix "><li class="part-title">Rust Programming</li><li class="chapter-item expanded "><a href="../parsing_xpath.html"><strong aria-hidden="true">2.</strong> Parsing with XPath in Rust</a></li><li class="chapter-item expanded "><a href="../rust/one_wallet_app.html" class="active"><strong aria-hidden="true">3.</strong> One wallet for all your signing needs</a></li><li class="chapter-item expanded affix "><li class="part-title">Leptos</li><li class="chapter-item expanded "><a href="../leptos/leptos_error_handling.html"><strong aria-hidden="true">4.</strong> Error handling in leptos</a></li><li class="chapter-item expanded affix "><li class="part-title">Libp2p</li><li class="chapter-item expanded "><a href="../libp2p/tutoral.html"><strong aria-hidden="true">5.</strong> Building Blocks of libp2p</a></li><li class="chapter-item expanded affix "><li class="part-title">Shivarthu</li><li class="chapter-item expanded "><a href="../shivarthu/tyranny_of_the_majority.html"><strong aria-hidden="true">6.</strong> Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma</a></li><li class="chapter-item expanded "><a href="../shivarthu/simple_majority_and_super_majority.html"><strong aria-hidden="true">7.</strong> Simple Majority vs Super Majority</a></li><li class="chapter-item expanded "><a href="../shivarthu/consensus_price_discovery.html"><strong aria-hidden="true">8.</strong> Rationality based Price Discovery Exchange</a></li><li class="chapter-item expanded affix "><li class="part-title">IPFS</li><li class="chapter-item expanded "><a href="../4everland/4everland_api.html"><strong aria-hidden="true">9.</strong> 4everland</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../4everland/4ever_security_token.html"><strong aria-hidden="true">9.1.</strong> 4ever security token</a></li><li class="chapter-item expanded "><a href="../4everland/upload_files_safely.html"><strong aria-hidden="true">9.2.</strong> Upload files safely</a></li><li class="chapter-item expanded "><a href="../4everland/custom_policy.html"><strong aria-hidden="true">9.3.</strong> Custom Policy</a></li><li class="chapter-item expanded "><a href="../4everland/rust_sts.html"><strong aria-hidden="true">9.4.</strong> Rust sts</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Linux</li><li class="chapter-item expanded "><a href="../linux/Offline_centric_apps.html"><strong aria-hidden="true">10.</strong> Offline Centric Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../linux/firejail.html"><strong aria-hidden="true">10.1.</strong> Firejail</a></li><li class="chapter-item expanded "><a href="../linux/appimage.html"><strong aria-hidden="true">10.2.</strong> AppImage</a></li><li class="chapter-item expanded "><a href="../linux/libp2p.html"><strong aria-hidden="true">10.3.</strong> Full Stack rust-libp2p apps, with Wasm and WebRTC</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/text-editor.html"><strong aria-hidden="true">11.</strong> Helix editor</a></li><li class="chapter-item expanded affix "><li class="part-title">Broadband Share</li><li class="chapter-item expanded "><a href="../broadband_share/broadband_share_idea.html"><strong aria-hidden="true">12.</strong> Sharing Broadband, Mesh Network</a></li><li class="chapter-item expanded affix "><li class="part-title">Philosophy</li><li class="chapter-item expanded "><a href="../philosophy/stages_of_grief.html"><strong aria-hidden="true">13.</strong> 5 stages of grief</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Iambrainstorming Blog</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/iambrainstorming/coding_blog" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="signing-transactions-with-another-secure-app"><a class="header" href="#signing-transactions-with-another-secure-app">Signing transactions with another secure app</a></h1>
+<p><a href="https://substrate.stackexchange.com/questions/10156/signing-transactions-with-another-secure-app">Link</a></p>
+<p>If we make an Android dapp, can't we use Android <a href="https://developer.android.com/training/basics/intents/sending">intents</a> to sign a transaction in another Android wallet app that supports receiving data through intents? We can pass message and public key in the intent (e.g. using <a href="https://github.com/paritytech/subxt/blob/d7124b56f7e7ed4cba1f05cdb38a8fe48eebf898/examples/wasm-example/src/routes/signing.rs">subxt</a>) , and wallet makes transaction. Will there be any security issues? Though we can't connect the wallet to get the public key, we can just copy the public key from the wallet and paste it on the dapp, to get the dapp UI for the public key.</p>
+<p>Another approach could involve creating a trusted <a href="https://github.com/tauri-apps/tauri/discussions/2751">server apps</a> responsible for handling transactions and securely storing private keys or seeds. Authentication mechanisms can be implemented to ensure that only trusted applications on the computer can access the server API. This approach effectively separates the authentication logic from the dapp itself, similar to browser extensions wallet, and can also be utilized on desktop systems where &quot;intents&quot; are not available.</p>
+<p>Here, two passwords can be utilized: one for communication between the Dapp and the server, which the Dapp can interact with, here <a href="https://docs.rs/libotp/latest/libotp/">one time password</a> can be used for more security, also you don't need to memorize the password, and another password for signing transactions, similar to how MetaMask or the Polkadot.js extension wallet operates, where only the server wallet app can interact with this password.</p>
+<p>For dapps that you trust or low stake transaction (e.g. your wallet just have a very small amount of money), you can allow automatic approval of signing transaction through API using ui of dapps, whereas for an untrusted dapp you need to approve the transaction in the wallet. This will improve user experience. You can set the desired security in wallet app. </p>
+<p>You can also use the wallet for transacting <a href="https://www.toptal.com/ethereum/one-click-login-flows-a-metamask-tutorial">web2 apps</a>. </p>
+<blockquote>
+<p>One wallet for all your signing needs. </p>
+</blockquote>
+<h2 id="leptos"><a class="header" href="#leptos">Leptos</a></h2>
+<p>You can use <a href="https://github.com/leptos-rs/leptos">leptos</a> for dapp with tauri.</p>
+<p>Isomorphic: Leptos provides primitives to write isomorphic server functions, i.e., functions that can be called with the “same shape” on the client or server, but only run on the server. This means you can write your server-only logic (database requests, authentication etc.) alongside the client-side components that will consume it, and call server functions as if they were running in the browser, without needing to create and maintain a separate REST or other API.</p>
+<p><a href="https://docs.rs/leptos_actix/latest/leptos_actix/">Actix in leptos</a></p>
+<h2 id="one-time-password"><a class="header" href="#one-time-password">One time password</a></h2>
+<pre><code> https://docs.rs/libotp/latest/libotp/
+</code></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use libotp::{totp, validate_totp};
+
+const TOTP_STEP: u64 = 30;
+const OTP_DIGITS: u32 = 8;
+
+fn check_user_otp(user: User, guess: u32) -&gt; Option&lt;bool&gt; {
+   // get the shared secret from some database.
+   let secret = user.get_totp_secret();
+
+   validate_totp(guess, 1, secret, OTP_DIGITS, TOTP_STEP, 0)
+}
+
+fn get_user_otp(user: User) -&gt; Option&lt;u32&gt; {
+   // get shared secret
+   let secret = user.get_totp_secret();
+
+   totp(secret, OTP_DIGITS, TOTP_STEP, 0)
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="signing-remotely"><a class="header" href="#signing-remotely">Signing remotely</a></h2>
+<p><a href="https://github.com/paritytech/subxt/issues/1196">Discussion</a></p>
+<p>Yes, you can use <a href="https://docs.rs/subxt/latest/subxt/tx/struct.PartialExtrinsic.html#method.signer_payload">signer_payload</a> but you need construct a PartialExtrinsic</p>
+<p>Example:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    let tx = node_runtime::tx().preimage().note_preimage(vec![0u8]);
+    let partial_extrinsic = api
+        .tx()
+        .create_partial_signed(&amp;tx, &amp;alice.public_key().into(), Default::default())
+        .await
+        .unwrap();
+
+    // Get the signer payload.
+    let signer_payload = partial_extrinsic.signer_payload();
+    // Sign it (possibly externally).
+    let signature = alice.sign(&amp;signer_payload);
+    // Use this to build a signed extrinsic.
+    let extrinsic = partial_extrinsic
+        .sign_with_address_and_signature(&amp;alice.public_key().into(), &amp;signature.into());
+
+    // And now submit it.
+    extrinsic
+        .submit_and_watch()
+        .await
+        .unwrap()
+        .wait_for_finalized_success()
+        .await
+        .unwrap();
+<span class="boring">}</span></code></pre></pre>
+<h2 id="building-a-cryptowallet-in-rust"><a class="header" href="#building-a-cryptowallet-in-rust">Building a cryptowallet in rust</a></h2>
+<p><a href="https://tms-dev-blog.com/build-a-crypto-wallet-using-rust/">Website</a></p>
+<p><a href="https://github.com/tmsdev82/rust-eth-crypto-wallet-tutorial">Github</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../parsing_xpath.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../leptos/leptos_error_handling.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../parsing_xpath.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../leptos/leptos_error_handling.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

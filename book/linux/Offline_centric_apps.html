@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Offline Centric Apps - Iambrainstorming Blog</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../home.html"><strong aria-hidden="true">1.</strong> Profile</a></li><li class="chapter-item expanded affix "><li class="part-title">Rust Programming</li><li class="chapter-item expanded "><a href="../parsing_xpath.html"><strong aria-hidden="true">2.</strong> Parsing with XPath in Rust</a></li><li class="chapter-item expanded "><a href="../rust/one_wallet_app.html"><strong aria-hidden="true">3.</strong> One wallet for all your signing needs</a></li><li class="chapter-item expanded affix "><li class="part-title">Leptos</li><li class="chapter-item expanded "><a href="../leptos/leptos_error_handling.html"><strong aria-hidden="true">4.</strong> Error handling in leptos</a></li><li class="chapter-item expanded affix "><li class="part-title">Libp2p</li><li class="chapter-item expanded "><a href="../libp2p/tutoral.html"><strong aria-hidden="true">5.</strong> Building Blocks of libp2p</a></li><li class="chapter-item expanded affix "><li class="part-title">Shivarthu</li><li class="chapter-item expanded "><a href="../shivarthu/tyranny_of_the_majority.html"><strong aria-hidden="true">6.</strong> Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma</a></li><li class="chapter-item expanded "><a href="../shivarthu/simple_majority_and_super_majority.html"><strong aria-hidden="true">7.</strong> Simple Majority vs Super Majority</a></li><li class="chapter-item expanded "><a href="../shivarthu/consensus_price_discovery.html"><strong aria-hidden="true">8.</strong> Rationality based Price Discovery Exchange</a></li><li class="chapter-item expanded affix "><li class="part-title">IPFS</li><li class="chapter-item expanded "><a href="../4everland/4everland_api.html"><strong aria-hidden="true">9.</strong> 4everland</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../4everland/4ever_security_token.html"><strong aria-hidden="true">9.1.</strong> 4ever security token</a></li><li class="chapter-item expanded "><a href="../4everland/upload_files_safely.html"><strong aria-hidden="true">9.2.</strong> Upload files safely</a></li><li class="chapter-item expanded "><a href="../4everland/custom_policy.html"><strong aria-hidden="true">9.3.</strong> Custom Policy</a></li><li class="chapter-item expanded "><a href="../4everland/rust_sts.html"><strong aria-hidden="true">9.4.</strong> Rust sts</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Linux</li><li class="chapter-item expanded "><a href="../linux/Offline_centric_apps.html" class="active"><strong aria-hidden="true">10.</strong> Offline Centric Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../linux/firejail.html"><strong aria-hidden="true">10.1.</strong> Firejail</a></li><li class="chapter-item expanded "><a href="../linux/appimage.html"><strong aria-hidden="true">10.2.</strong> AppImage</a></li><li class="chapter-item expanded "><a href="../linux/libp2p.html"><strong aria-hidden="true">10.3.</strong> Full Stack rust-libp2p apps, with Wasm and WebRTC</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/text-editor.html"><strong aria-hidden="true">11.</strong> Helix editor</a></li><li class="chapter-item expanded affix "><li class="part-title">Broadband Share</li><li class="chapter-item expanded "><a href="../broadband_share/broadband_share_idea.html"><strong aria-hidden="true">12.</strong> Sharing Broadband, Mesh Network</a></li><li class="chapter-item expanded affix "><li class="part-title">Philosophy</li><li class="chapter-item expanded "><a href="../philosophy/stages_of_grief.html"><strong aria-hidden="true">13.</strong> 5 stages of grief</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Iambrainstorming Blog</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/iambrainstorming/coding_blog" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="enhancing-privacy-and-security-in-offline-app-design-with-webassembly"><a class="header" href="#enhancing-privacy-and-security-in-offline-app-design-with-webassembly">Enhancing Privacy and Security in Offline App Design with WebAssembly</a></h1>
+<p>Introduction:</p>
+<p>In the realm of application development, a shift towards designing offline apps by default is imperative for enhanced privacy and security. One key consideration involves the separation of folders for online connections and those accessed by the application for computation, ensuring data privacy without compromising functionality.</p>
+<p>Specification:</p>
+<p><strong>Isolating Online Connection and App-Read Folders:</strong></p>
+<ul>
+<li>How can we segregate folders for online connections and those read by the app for computation to prevent data transmission to the server?</li>
+</ul>
+<p><strong>Ensuring Data Privacy:</strong></p>
+<ul>
+<li>How can we determine which software reads data without transmitting it to the server?</li>
+</ul>
+<p><strong>Interaction with Server in the Absence of Data Read:</strong></p>
+<ul>
+<li>If the software is restricted from reading data, how will it interact with the server?</li>
+</ul>
+<h2 id="two-app-paradigm-online-app-and-offline-app-with-intents-based-communication"><a class="header" href="#two-app-paradigm-online-app-and-offline-app-with-intents-based-communication">Two App Paradigm: <code>Online App</code> and <code>Offline App</code> with <a href="../rust/one_wallet_app.html">intents</a> based communication.</a></h2>
+<p>The <code>Online App</code> has access only to an <code>Online Folder</code>, whereas the <code>Offline App</code> has access to both an <code>Offline Folder</code> and an <code>Online Folder</code>.</p>
+<p>&quot;In this framework, we introduce two distinct applications: the <code>Online App</code>, a publicly audited high-security app with internet access, serving as the gatekeeper for all <code>Offline Apps</code> compatible with it, and the <code>Offline App</code>, designed for user interaction without direct internet access. The <code>Offline App</code> operates in a sandboxed environment, utilizing technologies like <a href="./firejail.html">firejail</a> for added security.</p>
+<p><strong>Communication Framework:</strong></p>
+<ul>
+<li>The <code>Online App</code> provides an API endpoint with three fields for the <code>Offline App</code>: a data description, the data itself, and the function name of the WebAssembly (wasm) code. Custom wasm code is one time uploaded to <code>Online App</code> by <code>Offline App</code>. Custom wasm logic facilitates remote server communication, enhancing interoperability.</li>
+</ul>
+<p><strong>User Traceability:</strong></p>
+<ul>
+<li>Data exchanged between the <code>Offline App</code> and <code>Online App</code> can be traced by users, offering transparency and the ability to maintain logs.</li>
+</ul>
+<p><strong>Differentiation from Browsers:</strong></p>
+<ul>
+<li>Unlike browsers, where file reads are potentially transmitted to servers due to constant internet connectivity, the <code>Offline App</code> allow intermittent internet access, promoting the development of offline-centric applications.</li>
+</ul>
+<p><strong>Promoting Offline App Development:</strong></p>
+<ul>
+<li>By eliminating the necessity for constant internet connection, developers are encouraged to create offline apps, enhancing user privacy. For instance, a code editor like VSCode only requires internet access for initial downloads. But currently, apps are free to connect to the internet all the time, you never know what is going on in the background. You can't use <a href="./firejail.html">Firejail</a> because it completely disables the internet for the app. Open source helps, but as software has become highly complicated, security analysis of open source software is left to only a few developers.</li>
+</ul>
+<p><strong>Permission-Based Connection:</strong></p>
+<ul>
+<li>Implementing permission-based connections and providing a user interface for monitoring data flow ensures better control and transparency.</li>
+</ul>
+<p><strong>Enhancing User Experience:</strong></p>
+<ul>
+<li>To mitigate the need of constant monitoring, introduce regex-based file ignore functionality, similar to .gitignore, allowing users to specify files that are exempt from server access in the <code>Online Folder</code>.</li>
+</ul>
+<p><strong>Addressing Security Concerns:</strong></p>
+<ul>
+<li>What if the data that goes to the <code>Online App</code> is encrypted or obscured, so that you can't trace what data is being sent? Encrypting or obscuring data sent to the <code>Online App</code> can be mitigated by only transmitting unobscured data or files. The <code>Online App</code> can verify the integrity of received data by comparing it to the original files in its designated folder.</li>
+</ul>
+<p>Conclusion:</p>
+<p>A privacy-centric approach to app development, emphasizing offline functionality and transparent communication, not only enhances security but also empowers users to have greater control over their data. By implementing features such as permission-based connections, user traceability, and file ignore options, we can strike a balance between functionality and safeguarding user privacy.</p>
+<p>A similar experiment to design crypto wallet using intents here: <a href="../rust/one_wallet_app.html">One Wallet App</a></p>
+<h3 id="sandboxed-core-functionality"><a class="header" href="#sandboxed-core-functionality">Sandboxed core functionality</a></h3>
+<p><img src="./image/sandbox_core_functionality.png" alt="Sandboxed core functionality" /></p>
+<p style="text-align:center;">
+  <cite><a href="./libp2p.html">Full Stack rust-libp2p apps</a></cite>
+</p>
+<h3 id="challenges"><a class="header" href="#challenges">Challenges</a></h3>
+<p>Designing two separate apps can be a bit complicated. It would be easier for both app developers and users if all three modules (as shown in the image) were integrated into a single app. However, consolidating them into a single app might make it challenging for users to trust the app even if it's open source and when it lacks sufficient code reviewers.</p>
+<p>Here is another model: all WebAssembly modules are assembled in a single package, whereas a generic module well audited by developer community is used for sandboxing the files and folders. Any app developer can utilize this module, and sandboxing of files and folders can be easily validated by users or developers without requiring much skill.</p>
+<p><img src="./image/sandboxing_files_folder.png" alt="Sandboxing files and folders" /></p>
+<p>A command-line tool can also be built that takes the source code (e.g., Tauri source code) and provides security results, such as whether the app is properly internet sandboxed. It makes it easy to check the security.</p>
+<h2 id="security-enhancement-of-an-operating-system-eg-linux-os"><a class="header" href="#security-enhancement-of-an-operating-system-eg-linux-os">Security enhancement of an operating system (e.g. Linux OS)</a></h2>
+<p>With technology like <a href="./appimage.html">AppImage</a>, there is no need to change the operating system. This further increases the security of the OS. One can also check if something has changed or tampered in the system files crucial for security by obtaining the hash of the OS folder, as it will have the same hash at all times. In the case of an OS update, the changed hash can be publicly declared.</p>
+<p>If you just want to check if something in the folder changed:</p>
+<pre><code class="language-bash">ls -alR --full-time /folder/of/stuff | sha1sum
+</code></pre>
+<p>But how can we trust the compromised linux operating system software that generates the checksum? We don't have to. For example, Ubuntu software provides a checksum for publicly audited software. One can install the Ubuntu on a pendrive and verify the checksum of the folder containing the Linux OS installed on the computer's hard disk.</p>
+<h2 id="wasm-interface-types"><a class="header" href="#wasm-interface-types">Wasm interface types</a></h2>
+<p><a href="https://github.com/bytecodealliance/wit-bindgen">Wit Bindgen</a> uses Guest language bindings generator for WIT and the Component Model. With it different modules (or apps) can talk with each other. Its also used for the <a href="https://github.com/tauri-apps/tauri-bindgen">Tauri Inter-process communication (IPC) bridge</a></p>
+<h2 id="anonymity-protocols-in-rust"><a class="header" href="#anonymity-protocols-in-rust">Anonymity Protocols in rust</a></h2>
+<p>One can use anonymous protocols like Tor by default with tauri apps or AppImage to protect users.</p>
+<blockquote>
+<p>Defend yourself against tracking and surveillance. Circumvent censorship.</p>
+</blockquote>
+<p><a href="https://tpo.pages.torproject.net/core/arti/">Arti</a> is a project to implement the Tor anonymity protocols in the Rust programming language.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../4everland/rust_sts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../linux/firejail.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../4everland/rust_sts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../linux/firejail.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

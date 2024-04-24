@@ -37,3 +37,7 @@
 
 - [Sharing Broadband, Mesh Network](./broadband_share/broadband_share_idea.md)
 
+# Philosophy
+
+- [5 stages of grief](./philosophy/stages_of_grief.md)
+
