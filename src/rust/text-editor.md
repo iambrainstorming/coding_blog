@@ -38,6 +38,49 @@ While Helix has a learning curve initially, some users argue that once mastered,
  
 [Yazi](https://github.com/sxyazi/yazi)
 
+yz-fp
+
+```bash
+#!/bin/bash
+
+selected_file="$1"
+
+# KEY ASSUMPTIONS
+# - editor pane was the most recently active pane
+# - yazi fp is only open floating pane
+
+# go back to editor
+zellij action toggle-floating-panes
+
+# open selected file in editor
+zellij action write 27 # send escape key
+zellij action write-chars ":open $selected_file"
+zellij action write 13 # send enter key
+
+# go back to floating yazi pane and close it
+zellij action toggle-floating-panes
+zellij action close-pane
+```
+
+
+yy
+
+```bash
+#!/bin/bash
+
+zellij run -c -f -- yazi "$PWD"	
+```
+
+copy yz-fp and yy to /bin folder and make it executable
+
+```bash
+sudo cp yz-fp /bin
+sudo cp yy /bin
+sudo chmod +x yz-fp
+sudo chmod +x yy
+```
+
+
 You can configure it for helix in yazi.toml file
 
 .config/yazi/
@@ -45,10 +88,36 @@ You can configure it for helix in yazi.toml file
 [yazi.toml](https://yazi-rs.github.io/docs/configuration/overview)
 ```toml
 [opener]
-edit = [
-	{ run = '${EDITOR:=hx} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+helix = [
+  { run = 'yz-fp "$0"', desc = "Use yazi as file picker within helix" },
+]
+
+[open]
+rules = [
+  { name = "**/*", use = "helix" },
 ]
 ```
+
+~/.config/helix
+
+config.toml
+
+```toml
+[keys.normal]
+C-y = ":sh yy" # launch filepicker
+
+[editor.lsp]
+display-inlay-hints = true
+
+
+[keys.normal.space]
+"H" = ":toggle lsp.display-inlay-hints"
+ 
+```
+
+It will open file picker on Ctrl+y in zellij
+
+Space + Capital H for toggle inlay hints
 
 ### Use Zellij terminal workspace
 
