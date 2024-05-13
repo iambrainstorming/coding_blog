@@ -56,7 +56,7 @@ podman search ubuntu
 podman pull docker.io/library/ubuntu	
 ```
 
-## Running a container iamge
+## Running a container image
 
 ```
 podman run -it <image_name>
