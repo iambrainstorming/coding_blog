@@ -33,6 +33,9 @@
   - [Full Stack rust-libp2p apps, with Wasm and WebRTC](./linux/libp2p.md)
 - [Helix editor](./rust/text-editor.md)
 
+# Hosting server
+- [Podman Tutorial](./hosting/podman.md)
+
 # Shortcuts
 - [Line numbers](./linux/line_numbers.md)
 
