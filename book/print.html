@@ -1617,6 +1617,119 @@ podman ps -a
 <p>ls : to view the folders</p>
 <p>exit: to exit from the container</p>
 <p>You can also stop the container by pressing Ctrl+C</p>
+<p>Since we didn't specified the name using the flag -name, podman generated a name for us.</p>
+<p>Best practice is not assign name, let podman assign the name to avoid conflits</p>
+<h2 id="working-with-containers"><a class="header" href="#working-with-containers">Working with Containers</a></h2>
+<pre><code>podman run --name &lt;container_name&gt; -p ext_port:int_porst &lt;container_image&gt;
+
+// This start the container in detached mode, this means it runs in background
+podman start &lt;container_name&gt;
+
+podman inspect &lt;container_name&gt; 
+
+// List all ports mapping in the container
+podman port &lt;container_name&gt;
+
+// To stop the container
+podman stop &lt;container_name&gt;
+
+
+// Remove the container
+podman rm &lt;container_name&gt;
+
+
+// Remove the container image, specify the image id
+podman rmi &lt;container_image&gt;
+
+// Check all the images in the system
+podman images
+
+// To get list of all commands
+
+podman --help
+
+</code></pre>
+<h2 id="buidling-a-container-image"><a class="header" href="#buidling-a-container-image">Buidling a Container Image</a></h2>
+<pre><code>hx Dockerfile  
+
+podmand build -t &lt;image_name&gt; .
+
+podman run --name &lt;container_name&gt; -p 8080:8080 &lt;image_name&gt;:&lt;tag&gt;
+
+e.g.
+podman run --name pdm-golang -p 8080:8080 pdm-golang:latest
+</code></pre>
+<h2 id="sharing-a-container-images"><a class="header" href="#sharing-a-container-images">Sharing a container images</a></h2>
+<pre><code>podman login &lt;registry_name&gt;
+
+podman build -t &lt;username&gt;/&lt;image_name&gt; .
+
+podman push &lt;username&gt;/&lt;container_name&gt;  
+</code></pre>
+<p>Use dockerhub</p>
+<pre><code>podman login docker.io
+
+podman build -t reaudito/pdm-golang . 
+
+podman push reaudito/pdm-golang
+
+podman search pdm-golang
+
+podman pull docker.io/reaudito/pdm-golang
+  
+</code></pre>
+<h2 id="building-pod-with-podman"><a class="header" href="#building-pod-with-podman">Building Pod with Podman</a></h2>
+<p>Pod are similar to kubernetes pods. They provide a way for applications to be organized and scaled within a Kubernets cluster.</p>
+<p>Kubernetes API objects such as Deployments, ReplicaSets, and StatefulSets are used to manage them.</p>
+<pre><code>podman pod --help
+
+
+// Create a new empty pod
+podman pod create --name &lt;pod_name&gt;
+
+// List all created pods
+podman pod ls
+
+
+// List all the containers in the pod
+podman ps -a --pod  
+</code></pre>
+<p>Pods are a group of one or more containers sharing the same network, pid and ipc namespaces.</p>
+<pre><code>// Don't use podman name to avoid conflit, let podman assign it.
+podman pod create --name pdm-golang-pod 
+
+podman pod ls
+
+</code></pre>
+<p>You can see there is one container inside the pod pdm-golang-pod, but you created a empty pod, because podmand automatically added a infra container. Allow you to add container in the pod and also start and stop containers within the Pod by keeping the Pod running. </p>
+<p>Default infra container is based on the image k8s.gcr.io/pause</p>
+<p>You can display it</p>
+<pre><code>podman ps -a --pod  
+</code></pre>
+<h2 id="working-with-containers-inside-a-pod-with-podman"><a class="header" href="#working-with-containers-inside-a-pod-with-podman">Working with containers inside a Pod with Podman</a></h2>
+<pre><code>podman run -dt --pod &lt;pod_name&gt; &lt;container_image_name&gt;
+
+podman pod start &lt;pod_name&gt;
+
+podman pod stop &lt;pod_name&gt;
+
+podman pod rm &lt;pod_name&gt;  
+</code></pre>
+<pre><code>podman run -dt -pod pdm-golang-pod pdm-golang  
+</code></pre>
+<p>Even if container is inside the pod, you can use all the avaiable commands to work with containers. </p>
+<pre><code>// List all the pods
+podman pod ls
+
+podman pod stop pdm-golang-pod
+
+podman pod start pdm-golang-pod
+
+podman pod stop pdm-golang-pod
+
+podman pod rm pdm-golang-pod  
+</code></pre>
+<h2 id="working-with-k8s-yaml-manifest"><a class="header" href="#working-with-k8s-yaml-manifest">Working with K8s YAML Manifest</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="podman-build"><a class="header" href="#podman-build">Podman build</a></h1>
 <pre><code>podman build . -t=image1
 podman run -d --name=container1 image1
