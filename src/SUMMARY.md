@@ -5,6 +5,7 @@
 # Rust Programming
 - [Parsing with XPath in Rust](./parsing_xpath.md)
 - [One wallet for all your signing needs](./rust/one_wallet_app.md)
+- [Rust Workspace](./rust/rust_workspace.md)
 
 # Leptos
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
@@ -47,4 +48,8 @@
 # Philosophy
 
 - [5 stages of grief](./philosophy/stages_of_grief.md)
+
+# Awesome GIS
+
+- [Awesome GIS](./gis/awesome-gis.md)
 
