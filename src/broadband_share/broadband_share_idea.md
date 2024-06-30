@@ -15,6 +15,12 @@ User id can be the crypto public key.
 
 One can use raspberry pi zero as server.
 
+[Adding and removing users from the FreeRadius Database (MySQL)](http://xaviertidus.com/linux/adding-and-removing-users-from-the-freeradius-database-mysql/)
+
+[How to encrypt user password in Freeradius](https://serverfault.com/questions/1078192/how-to-encrypt-user-password-in-freeradius)
+
+[How To](https://wiki.freeradius.org/guide/HOWTO)
+
 [Data usage reporting](https://wiki.freeradius.org/guide/Data-Usage-Reporting)
 
 ## Get the broadband statistics, upload it to blockchain, every day
