@@ -34,6 +34,9 @@
   - [Full Stack rust-libp2p apps, with Wasm and WebRTC](./linux/libp2p.md)
 - [Helix editor](./rust/text-editor.md)
 
+# IPFS
+- [Hard time with IPFS](./rust/ipfs.md)
+
 # Hosting server
 - [Podman Tutorial](./hosting/podman.md)
 - [Podman Build](./hosting/container_file.md)

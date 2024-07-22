@@ -1,39 +1,42 @@
 <!DOCTYPE HTML>
 <html lang="en" class="light" dir="ltr">
-    <head>
-        <!-- Book generated using mdBook -->
-        <meta charset="UTF-8">
-        <title>Sharing Broadband, Mesh Network - Iambrainstorming Blog</title>
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>Sharing Broadband, Mesh Network - Iambrainstorming Blog</title>
 
 
-        <!-- Custom HTML head -->
-        
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+    <!-- Custom HTML head -->
+    
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+    <link rel="icon" href="../favicon.svg">
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+    <link rel="stylesheet" href="../css/print.css" media="print">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
 
-        <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
 
-        <!-- Custom theme stylesheets -->
+    <!-- Custom theme stylesheets -->
 
-        <!-- MathJax -->
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    </head>
-    <body class="sidebar-visible no-js">
+    <!-- MathJax -->
+    <script async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -60,7 +63,7 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('light')
@@ -78,7 +81,7 @@
             var sidebar = null;
             var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
-                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
@@ -90,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../home.html"><strong aria-hidden="true">1.</strong> Profile</a></li><li class="chapter-item expanded affix "><li class="part-title">Rust Programming</li><li class="chapter-item expanded "><a href="../parsing_xpath.html"><strong aria-hidden="true">2.</strong> Parsing with XPath in Rust</a></li><li class="chapter-item expanded "><a href="../rust/one_wallet_app.html"><strong aria-hidden="true">3.</strong> One wallet for all your signing needs</a></li><li class="chapter-item expanded "><a href="../rust/rust_workspace.html"><strong aria-hidden="true">4.</strong> Rust Workspace</a></li><li class="chapter-item expanded affix "><li class="part-title">Leptos</li><li class="chapter-item expanded "><a href="../leptos/leptos_error_handling.html"><strong aria-hidden="true">5.</strong> Error handling in leptos</a></li><li class="chapter-item expanded affix "><li class="part-title">Libp2p</li><li class="chapter-item expanded "><a href="../libp2p/tutoral.html"><strong aria-hidden="true">6.</strong> Building Blocks of libp2p</a></li><li class="chapter-item expanded affix "><li class="part-title">Shivarthu</li><li class="chapter-item expanded "><a href="../shivarthu/tyranny_of_the_majority.html"><strong aria-hidden="true">7.</strong> Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma</a></li><li class="chapter-item expanded "><a href="../shivarthu/simple_majority_and_super_majority.html"><strong aria-hidden="true">8.</strong> Simple Majority vs Super Majority</a></li><li class="chapter-item expanded "><a href="../shivarthu/consensus_price_discovery.html"><strong aria-hidden="true">9.</strong> Rationality based Price Discovery Exchange</a></li><li class="chapter-item expanded affix "><li class="part-title">IPFS</li><li class="chapter-item expanded "><a href="../4everland/4everland_api.html"><strong aria-hidden="true">10.</strong> 4everland</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../4everland/4ever_security_token.html"><strong aria-hidden="true">10.1.</strong> 4ever security token</a></li><li class="chapter-item expanded "><a href="../4everland/upload_files_safely.html"><strong aria-hidden="true">10.2.</strong> Upload files safely</a></li><li class="chapter-item expanded "><a href="../4everland/custom_policy.html"><strong aria-hidden="true">10.3.</strong> Custom Policy</a></li><li class="chapter-item expanded "><a href="../4everland/rust_sts.html"><strong aria-hidden="true">10.4.</strong> Rust sts</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Linux</li><li class="chapter-item expanded "><a href="../linux/Offline_centric_apps.html"><strong aria-hidden="true">11.</strong> Offline Centric Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../linux/firejail.html"><strong aria-hidden="true">11.1.</strong> Firejail</a></li><li class="chapter-item expanded "><a href="../linux/appimage.html"><strong aria-hidden="true">11.2.</strong> AppImage</a></li><li class="chapter-item expanded "><a href="../linux/libp2p.html"><strong aria-hidden="true">11.3.</strong> Full Stack rust-libp2p apps, with Wasm and WebRTC</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/text-editor.html"><strong aria-hidden="true">12.</strong> Helix editor</a></li><li class="chapter-item expanded affix "><li class="part-title">Hosting server</li><li class="chapter-item expanded "><a href="../hosting/podman.html"><strong aria-hidden="true">13.</strong> Podman Tutorial</a></li><li class="chapter-item expanded "><a href="../hosting/container_file.html"><strong aria-hidden="true">14.</strong> Podman Build</a></li><li class="chapter-item expanded affix "><li class="part-title">Shortcuts</li><li class="chapter-item expanded "><a href="../linux/line_numbers.html"><strong aria-hidden="true">15.</strong> Line numbers</a></li><li class="chapter-item expanded affix "><li class="part-title">Broadband Share</li><li class="chapter-item expanded "><a href="../broadband_share/broadband_share_idea.html" class="active"><strong aria-hidden="true">16.</strong> Sharing Broadband, Mesh Network</a></li><li class="chapter-item expanded affix "><li class="part-title">Philosophy</li><li class="chapter-item expanded "><a href="../philosophy/stages_of_grief.html"><strong aria-hidden="true">17.</strong> 5 stages of grief</a></li><li class="chapter-item expanded affix "><li class="part-title">Awesome GIS</li><li class="chapter-item expanded "><a href="../gis/awesome-gis.html"><strong aria-hidden="true">18.</strong> Awesome GIS</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../home.html"><strong aria-hidden="true">1.</strong> Profile</a></li><li class="chapter-item expanded affix "><li class="part-title">Rust Programming</li><li class="chapter-item expanded "><a href="../parsing_xpath.html"><strong aria-hidden="true">2.</strong> Parsing with XPath in Rust</a></li><li class="chapter-item expanded "><a href="../rust/one_wallet_app.html"><strong aria-hidden="true">3.</strong> One wallet for all your signing needs</a></li><li class="chapter-item expanded "><a href="../rust/rust_workspace.html"><strong aria-hidden="true">4.</strong> Rust Workspace</a></li><li class="chapter-item expanded affix "><li class="part-title">Leptos</li><li class="chapter-item expanded "><a href="../leptos/leptos_error_handling.html"><strong aria-hidden="true">5.</strong> Error handling in leptos</a></li><li class="chapter-item expanded affix "><li class="part-title">Libp2p</li><li class="chapter-item expanded "><a href="../libp2p/tutoral.html"><strong aria-hidden="true">6.</strong> Building Blocks of libp2p</a></li><li class="chapter-item expanded affix "><li class="part-title">Shivarthu</li><li class="chapter-item expanded "><a href="../shivarthu/tyranny_of_the_majority.html"><strong aria-hidden="true">7.</strong> Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma</a></li><li class="chapter-item expanded "><a href="../shivarthu/simple_majority_and_super_majority.html"><strong aria-hidden="true">8.</strong> Simple Majority vs Super Majority</a></li><li class="chapter-item expanded "><a href="../shivarthu/consensus_price_discovery.html"><strong aria-hidden="true">9.</strong> Rationality based Price Discovery Exchange</a></li><li class="chapter-item expanded affix "><li class="part-title">IPFS</li><li class="chapter-item expanded "><a href="../4everland/4everland_api.html"><strong aria-hidden="true">10.</strong> 4everland</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../4everland/4ever_security_token.html"><strong aria-hidden="true">10.1.</strong> 4ever security token</a></li><li class="chapter-item expanded "><a href="../4everland/upload_files_safely.html"><strong aria-hidden="true">10.2.</strong> Upload files safely</a></li><li class="chapter-item expanded "><a href="../4everland/custom_policy.html"><strong aria-hidden="true">10.3.</strong> Custom Policy</a></li><li class="chapter-item expanded "><a href="../4everland/rust_sts.html"><strong aria-hidden="true">10.4.</strong> Rust sts</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Linux</li><li class="chapter-item expanded "><a href="../linux/Offline_centric_apps.html"><strong aria-hidden="true">11.</strong> Offline Centric Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../linux/firejail.html"><strong aria-hidden="true">11.1.</strong> Firejail</a></li><li class="chapter-item expanded "><a href="../linux/appimage.html"><strong aria-hidden="true">11.2.</strong> AppImage</a></li><li class="chapter-item expanded "><a href="../linux/libp2p.html"><strong aria-hidden="true">11.3.</strong> Full Stack rust-libp2p apps, with Wasm and WebRTC</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/text-editor.html"><strong aria-hidden="true">12.</strong> Helix editor</a></li><li class="chapter-item expanded affix "><li class="part-title">IPFS</li><li class="chapter-item expanded "><a href="../rust/ipfs.html"><strong aria-hidden="true">13.</strong> Hard time with IPFS</a></li><li class="chapter-item expanded affix "><li class="part-title">Hosting server</li><li class="chapter-item expanded "><a href="../hosting/podman.html"><strong aria-hidden="true">14.</strong> Podman Tutorial</a></li><li class="chapter-item expanded "><a href="../hosting/container_file.html"><strong aria-hidden="true">15.</strong> Podman Build</a></li><li class="chapter-item expanded affix "><li class="part-title">Shortcuts</li><li class="chapter-item expanded "><a href="../linux/line_numbers.html"><strong aria-hidden="true">16.</strong> Line numbers</a></li><li class="chapter-item expanded affix "><li class="part-title">Broadband Share</li><li class="chapter-item expanded "><a href="../broadband_share/broadband_share_idea.html" class="active"><strong aria-hidden="true">17.</strong> Sharing Broadband, Mesh Network</a></li><li class="chapter-item expanded affix "><li class="part-title">Philosophy</li><li class="chapter-item expanded "><a href="../philosophy/stages_of_grief.html"><strong aria-hidden="true">18.</strong> 5 stages of grief</a></li><li class="chapter-item expanded affix "><li class="part-title">Awesome GIS</li><li class="chapter-item expanded "><a href="../gis/awesome-gis.html"><strong aria-hidden="true">19.</strong> Awesome GIS</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -98,7 +101,7 @@
         <!-- Track and set sidebar scroll position -->
         <script>
             var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
+            sidebarScrollbox.addEventListener('click', function (e) {
                 if (e.target.tagName === 'A') {
                     sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
                 }
@@ -123,10 +126,14 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor"
+                            title="Toggle Table of Contents" aria-label="Toggle Table of Contents"
+                            aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                            aria-label="Change theme" aria-haspopup="true" aria-expanded="false"
+                            aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
@@ -136,9 +143,14 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
+                
+                        <div id="google_translate_element"></div>
+                     
                     </div>
 
                     <h1 class="menu-title">Iambrainstorming Blog</h1>
@@ -156,7 +168,8 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                            aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -169,50 +182,28 @@
                 <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="mesh-network"><a class="header" href="#mesh-network">Mesh Network</a></h1>
-<p>Can an incentive system be built for a mesh network? How can payments be made to service provider by users who use Wi-Fi over the internet? One could create a smart contract for each Wi-Fi router, where people pay in tokens (perhaps including USDT) to access the internet.&quot;</p>
-<p>One can use wireless bridge to expand the network, 20KM: <a href="https://www.amazon.in/20-11ac-Outdoor-Wireless-Bridge/dp/B084DKMWPB/ref=sr_1_3?crid=1TS5L8K8QI9ZS&amp;dib=eyJ2IjoiMSJ9.emYyaG6gf0TdpUbCO5D8aTDewobwH9JHbtB-VABf52awP0zH7pOJabjGUj5SCL7vf-E1pA2A3Iw908YQTwub66WLNlbca7sqQgXCF3hSjxoQ0MLltmzcAy7IgEyhR6rcRMcUuJ_RKaLSRX0diqZ2wg._JKz9RGogW7erEuk53vTX9r5Xm6cX44ptJWgDfLF8xg&amp;dib_tag=se&amp;keywords=10+km+wifi+AC+bridges&amp;qid=1708235044&amp;sprefix=10+km+wifi+ac+bridge%2Caps%2C319&amp;sr=8-3">Outdoor Wireless Bridge</a></p>
-<h2 id="for-creating-accounts-of-users-and-network-broadband-tracking"><a class="header" href="#for-creating-accounts-of-users-and-network-broadband-tracking">For creating accounts of users and network broadband tracking</a></h2>
-<h3 id="use-freeradius"><a class="header" href="#use-freeradius">Use freeRADIUS</a></h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ppTQsjgxIyU?si=r7QHwXxl_ZlbTaSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<p>User id can be the crypto public key.</p>
-<p>One can use raspberry pi zero as server.</p>
-<p><a href="http://xaviertidus.com/linux/adding-and-removing-users-from-the-freeradius-database-mysql/">Adding and removing users from the FreeRadius Database (MySQL)</a></p>
-<p><a href="https://serverfault.com/questions/1078192/how-to-encrypt-user-password-in-freeradius">How to encrypt user password in Freeradius</a></p>
-<p><a href="https://wiki.freeradius.org/guide/HOWTO">How To</a></p>
-<p><a href="https://wiki.freeradius.org/guide/Data-Usage-Reporting">Data usage reporting</a></p>
-<h2 id="get-the-broadband-statistics-upload-it-to-blockchain-every-day"><a class="header" href="#get-the-broadband-statistics-upload-it-to-blockchain-every-day">Get the broadband statistics, upload it to blockchain, every day</a></h2>
-<p>Parse the braodband statistics, and upload it to blockchain</p>
-<p>Two types of account:</p>
-<pre><code>1) Service provider
-
-2) Service User
-</code></pre>
-<h2 id="transfer-the-funds-from-the-user-to-the-service-provider-based-on-statistics"><a class="header" href="#transfer-the-funds-from-the-user-to-the-service-provider-based-on-statistics">Transfer the funds from the user to the service provider based on statistics</a></h2>
-<p>It is a prepaid system. Users can switch service providers within a day. This helps promote competition and eliminates fraudulent or non-reliable service providers.</p>
-<p>More reliable mesh network where service provider can also become user, in case of network failure of service provider. </p>
-<p>Voting by <a href="https://iambrainstorming.github.io/chapters/shivarthu/Shivarthu.html">Schelling game</a> evaluates its connectivity, speed, and coverage every month. Disapproval may result in slashing. Good and authentic service means no slashing occurs.</p>
-<h2 id="other-incentives"><a class="header" href="#other-incentives">Other incentives</a></h2>
-<p>In addition, other incentives, such as staking to gain interest, rewards for providing reliable service, and bonuses for registering for the service, can be provided.</p>
+                        <h1 id="sharing-broadband-mesh-network"><a class="header" href="#sharing-broadband-mesh-network">Sharing Broadband, Mesh Network</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../linux/line_numbers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
+                        <a rel="prev" href="../linux/line_numbers.html" class="mobile-nav-chapters previous"
+                            title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
 
-                            <a rel="next prefetch" href="../philosophy/stages_of_grief.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
+                        <a rel="next prefetch" href="../philosophy/stages_of_grief.html" class="mobile-nav-chapters next"
+                            title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -220,13 +211,15 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../linux/line_numbers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
+                <a rel="prev" href="../linux/line_numbers.html" class="nav-chapters previous" title="Previous chapter"
+                    aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <i class="fa fa-angle-left"></i>
+                </a>
 
-                    <a rel="next prefetch" href="../philosophy/stages_of_grief.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
+                <a rel="next prefetch" href="../philosophy/stages_of_grief.html" class="nav-chapters next" title="Next chapter"
+                    aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <i class="fa fa-angle-right"></i>
+                </a>
             </nav>
 
         </div>
@@ -250,6 +243,21 @@
         <!-- Custom JS scripts -->
 
 
+
+       
+
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
     </div>
-    </body>
+     
+</body>
+
 </html>
