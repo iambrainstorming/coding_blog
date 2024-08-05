@@ -15,7 +15,7 @@ Accessing IPFS files with gateways hardly works; for example, if you upload a fi
 
 ## DHT are slow
 
-DHT are slow, blockchain can be used for storage of trackers, for easy peer discovery. Storing on blockchain, trackers can't be censored.
+DHT are slow, blockchain can be used for storage of trackers, for easy peer discovery. Storing on blockchain, trackers can't be censored. One can use DHT along with direct peer discovery.
 
 ## Connecting Multiple Node Id and Fetching the Collection
 
@@ -27,9 +27,12 @@ Node Ids are stored in blockchain so that it can't be censored.
 
 [Discussion](https://github.com/n0-computer/iroh/issues/2524)
 
-## Wasm Iroh
+## Wasm Iroh or libp2p
 
 Wasm Iroh is needed to access files in the browser directly from the Iroh client, instead of fetching them through a gateway. Similar to [WebTorrent](https://webtorrent.io/)
+
+Rust libp2p supports wasm. 
+
 
 ## Serveless hosting
 
@@ -37,6 +40,16 @@ Also wasm doesn't mean only for browser environment, Iroh need to also support e
 
 [Discussion](https://github.com/n0-computer/iroh/issues/1803)
 
+Rust libp2p supports wasm
+
 ## Show the statistics
 
 Fetching files can be slow at times; instead of leaving the user confused about why the file is failing to fetch, it needs to display statistics like seeders, leechers, and trackers.
+
+## Split files into chunks
+
+The following file sharing example, only connects to the single peer to fetch the complete file. What if I connect to multiple peers, and fetch part of file from different peers, just like bittorrent does. 
+
+Doing it is not very hard, will try it while building dapps
+
+[Discussion](https://github.com/libp2p/rust-libp2p/discussions/5508)
