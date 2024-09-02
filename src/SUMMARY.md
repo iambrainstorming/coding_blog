@@ -34,6 +34,7 @@
   - [Full Stack rust-libp2p apps, with Wasm and WebRTC](./linux/libp2p.md)
 - [Helix editor](./rust/text-editor.md)
 - [Helix editor commands](./rust/helix-commands.md)
+- [Redox OS](./rust/redox-os.md)
 
 # IPFS
 - [Hard time with IPFS](./rust/ipfs.md)
