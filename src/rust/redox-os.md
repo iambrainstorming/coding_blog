@@ -27,7 +27,11 @@ Sandboxing for non-root users needs to be easy to maintain high security. Even i
 
 ## Rust and Redox OS: The Future of Efficient Computing
 
-With [Moore's Law coming to an end](https://iambrainstorming.github.io/chapters/computer/moore-law.html), the speed and efficiency of software will become a paramount issue. The Rust language offers performance comparable to C and C++, while its rich type system and ownership model guarantee memory safety and thread safety, features that are not provided by C and C++. This enables the elimination of many classes of bugs at compile-time, making Rust a more efficient language than C and C++. The Redox OS, built on Rust, will inherit these features, boasting faster boot times of mere seconds and a responsive operating system, even on low-end devices such as those with Celeron processors or single-board computers like the Raspberry Pi.
+With [Moore's Law coming to an end](https://iambrainstorming.github.io/chapters/computer/moore-law.html), the speed and efficiency of software will become a paramount issue. The Rust language offers performance comparable to C and C++, while its rich type system and ownership model guarantee memory safety and thread safety, features that are not provided by C and C++. This enables the elimination of many classes of bugs at compile-time, making Rust a more efficient language than C and C++. 
+
+The Redox OS, built on Rust,  will inherit these features, boasting faster boot times of mere seconds and a responsive operating system, even on low-end devices such as those with Celeron processors or single-board computers like the Raspberry Pi.
+
+The microkernel design of Redox OS, with its minimal lines of code, will result in a smaller-sized OS, yielding a significantly lower carbon footprint, even lower than that of Linux.
 
 ## About Licence
 
