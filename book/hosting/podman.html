@@ -324,7 +324,7 @@ podman pod create --name pdm-golang-pod
 podman pod ls
 
 </code></pre>
-<p>You can see there is one container inside the pod pdm-golang-pod, but you created a empty pod, because podmand automatically added a infra container. Allow you to add container in the pod and also start and stop containers within the Pod by keeping the Pod running. </p>
+<p>You can see there is one container inside the pod pdm-golang-pod, but you created a empty pod, because podmand automatically added a infra container. Allow you to add container in the pod and also start and stop containers within the Pod by keeping the Pod running.</p>
 <p>Default infra container is based on the image k8s.gcr.io/pause</p>
 <p>You can display it</p>
 <pre><code>podman ps -a --pod  
@@ -340,7 +340,7 @@ podman pod rm &lt;pod_name&gt;
 </code></pre>
 <pre><code>podman run -dt -pod pdm-golang-pod pdm-golang  
 </code></pre>
-<p>Even if container is inside the pod, you can use all the avaiable commands to work with containers. </p>
+<p>Even if container is inside the pod, you can use all the avaiable commands to work with containers.</p>
 <pre><code>// List all the pods
 podman pod ls
 

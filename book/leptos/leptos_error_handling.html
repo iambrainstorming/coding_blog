@@ -200,9 +200,9 @@ use thiserror::Error;
 
 #[derive(Error, Debug, Clone, Deserialize, Serialize)]
 pub enum NumberError {
-    #[error(&quot;Number getter than 20&quot;)]
+    #[error("Number getter than 20")]
     NumberGreater20,
-    #[error(&quot;Error parsing to number: `{0}`&quot;)]
+    #[error("Error parsing to number: `{0}`")]
     ParseIntError(String),
 }
 
@@ -226,15 +226,15 @@ pub fn NumericInput() -&gt; impl IntoView {
     };
 
     view! {
-        &lt;h1&gt;&quot;Error Handling&quot;&lt;/h1&gt;
+        &lt;h1&gt;"Error Handling"&lt;/h1&gt;
         &lt;label&gt;
-            &quot;Type a number less than than 20 (or something that's not a number!)&quot;
-            &lt;input type=&quot;number&quot; on:input=on_input/&gt;
+            "Type a number less than than 20 (or something that's not a number!)"
+            &lt;input type="number" on:input=on_input/&gt;
             &lt;ErrorBoundary
                 // the fallback receives a signal containing current errors
                 fallback=|errors| view! {
-                    &lt;div class=&quot;error&quot;&gt;
-                        &lt;p&gt;&quot; Errors: &quot;&lt;/p&gt;
+                    &lt;div class="error"&gt;
+                        &lt;p&gt;" Errors: "&lt;/p&gt;
                         // we can render a list of errors as strings, if we'd like
                         &lt;ul&gt;
                             {move || errors.get()
@@ -246,7 +246,7 @@ pub fn NumericInput() -&gt; impl IntoView {
                     &lt;/div&gt;
                 }
             &gt;
-                &lt;p&gt;&quot;You entered &quot; &lt;strong&gt;{value}&lt;/strong&gt;&lt;/p&gt;
+                &lt;p&gt;"You entered " &lt;strong&gt;{value}&lt;/strong&gt;&lt;/p&gt;
                 // If you don't want to display the value:
                 // The way that ErrorBoundary works is by detecting whether the Err(_) branch of a result is rendered, 
                 // so something does have to be displayed. 

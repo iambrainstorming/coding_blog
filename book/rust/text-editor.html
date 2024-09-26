@@ -207,7 +207,7 @@ You use keyboard shortcuts to select, multi-select, delete, copy, and switch mod
 enable = true
 max-wrap = 25 # increase value to reduce forced mid-word wrapping
 max-indent-retain = 0
-wrap-indicator = &quot;&quot;  # set wrap-indicator to &quot;&quot; to hide it
+wrap-indicator = ""  # set wrap-indicator to "" to hide it
 </code></pre>
 <h3 id="learning-curve-and-efficiency"><a class="header" href="#learning-curve-and-efficiency">Learning Curve and Efficiency:</a></h3>
 <p>While Helix has a learning curve initially, some users argue that once mastered, it can be extremely efficient for text editing and manipulation. In command mode, activated by pressing the colon key (:), you can explore the tutorial (:tutor) to gain experience with Helix commands within a few days or a week.</p>
@@ -216,7 +216,7 @@ wrap-indicator = &quot;&quot;  # set wrap-indicator to &quot;&quot; to hide it
 <p>yz-fp</p>
 <pre><code class="language-bash">#!/bin/bash
 
-selected_file=&quot;$1&quot;
+selected_file="$1"
 
 # KEY ASSUMPTIONS
 # - editor pane was the most recently active pane
@@ -227,7 +227,7 @@ zellij action toggle-floating-panes
 
 # open selected file in editor
 zellij action write 27 # send escape key
-zellij action write-chars &quot;:open $selected_file&quot;
+zellij action write-chars ":open $selected_file"
 zellij action write 13 # send enter key
 
 # go back to floating yazi pane and close it
@@ -237,7 +237,7 @@ zellij action close-pane
 <p>yy</p>
 <pre><code class="language-bash">#!/bin/bash
 
-zellij run -c -f -- yazi &quot;$PWD&quot;	
+zellij run -c -f -- yazi "$PWD"	
 </code></pre>
 <p>copy yz-fp and yy to /bin folder and make it executable</p>
 <pre><code class="language-bash">sudo cp yz-fp /bin
@@ -250,25 +250,25 @@ sudo chmod +x yy
 <p><a href="https://yazi-rs.github.io/docs/configuration/overview">yazi.toml</a></p>
 <pre><code class="language-toml">[opener]
 helix = [
-  { run = 'yz-fp &quot;$0&quot;', desc = &quot;Use yazi as file picker within helix&quot; },
+  { run = 'yz-fp "$0"', desc = "Use yazi as file picker within helix" },
 ]
 
 [open]
 rules = [
-  { name = &quot;**/*&quot;, use = &quot;helix&quot; },
+  { name = "**/*", use = "helix" },
 ]
 </code></pre>
 <p>~/.config/helix</p>
 <p>config.toml</p>
 <pre><code class="language-toml">[keys.normal]
-C-y = &quot;:sh yy&quot; # launch filepicker
+C-y = ":sh yy" # launch filepicker
 
 [editor.lsp]
 display-inlay-hints = true
 
 
 [keys.normal.space]
-&quot;H&quot; = &quot;:toggle lsp.display-inlay-hints&quot;
+"H" = ":toggle lsp.display-inlay-hints"
  
 </code></pre>
 <p>It will open file picker on Ctrl+y in zellij</p>

@@ -202,8 +202,8 @@
 <span class="boring">}</span></code></pre></pre>
 <p>In Cargo.toml</p>
 <pre><code>[dependencies]
-sxd-xpath=&quot;0.4.2&quot;
-sxd-document=&quot;0.3.2&quot;
+sxd-xpath="0.4.2"
+sxd-document="0.3.2"
 </code></pre>
 <pre><pre class="playground"><code class="language-rust">use std::fs;
 use sxd_document::parser;
@@ -225,21 +225,21 @@ fn remove_first_two_lines(input: &amp;str) -&gt; String {
 }
 
 fn get_list() {
-    let file = fs::read_to_string(&quot;src/ids.xml&quot;).unwrap();
+    let file = fs::read_to_string("src/ids.xml").unwrap();
     let data = remove_first_two_lines(&amp;file);
-    let package = parser::parse(&amp;data).expect(&quot;failed to parse XML&quot;);
+    let package = parser::parse(&amp;data).expect("failed to parse XML");
     let document = package.as_document();
 
-    let value = evaluate_xpath(&amp;document, &quot;//Id&quot;);
+    let value = evaluate_xpath(&amp;document, "//Id");
 
     match value {
         Ok(Value::Nodeset(nodeset)) =&gt; {
             for node in nodeset.iter() {
-                println!(&quot;{}&quot;, node.string_value());
+                println!("{}", node.string_value());
             }
         }
         _ =&gt; {
-            println!(&quot;XPath expression didn't return a nodeset&quot;);
+            println!("XPath expression didn't return a nodeset");
         }
     }
 }
@@ -250,8 +250,8 @@ fn main() {
 <p>ids.xml</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE eSearchResult PUBLIC &quot;-//NLM//DTD esearch 20060628//EN&quot; &quot;https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd&quot;&gt;
+</span>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd"&gt;
 &lt;div&gt;
 &lt;Id&gt;37793170&lt;/Id&gt;
 &lt;Id&gt;37793014&lt;/Id&gt;
@@ -308,12 +308,12 @@ fn main() {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="signing-transactions-with-another-secure-app"><a class="header" href="#signing-transactions-with-another-secure-app">Signing transactions with another secure app</a></h1>
 <p><a href="https://substrate.stackexchange.com/questions/10156/signing-transactions-with-another-secure-app">Link</a></p>
 <p>If we make an Android dapp, can't we use Android <a href="https://developer.android.com/training/basics/intents/sending">intents</a> to sign a transaction in another Android wallet app that supports receiving data through intents? We can pass message and public key in the intent (e.g. using <a href="https://github.com/paritytech/subxt/blob/d7124b56f7e7ed4cba1f05cdb38a8fe48eebf898/examples/wasm-example/src/routes/signing.rs">subxt</a>) , and wallet makes transaction. Will there be any security issues? Though we can't connect the wallet to get the public key, we can just copy the public key from the wallet and paste it on the dapp, to get the dapp UI for the public key.</p>
-<p>Another approach could involve creating a trusted <a href="https://github.com/tauri-apps/tauri/discussions/2751">server apps</a> responsible for handling transactions and securely storing private keys or seeds. Authentication mechanisms can be implemented to ensure that only trusted applications on the computer can access the server API. This approach effectively separates the authentication logic from the dapp itself, similar to browser extensions wallet, and can also be utilized on desktop systems where &quot;intents&quot; are not available.</p>
+<p>Another approach could involve creating a trusted <a href="https://github.com/tauri-apps/tauri/discussions/2751">server apps</a> responsible for handling transactions and securely storing private keys or seeds. Authentication mechanisms can be implemented to ensure that only trusted applications on the computer can access the server API. This approach effectively separates the authentication logic from the dapp itself, similar to browser extensions wallet, and can also be utilized on desktop systems where "intents" are not available.</p>
 <p>Here, two passwords can be utilized: one for communication between the Dapp and the server, which the Dapp can interact with, here <a href="https://docs.rs/libotp/latest/libotp/">one time password</a> can be used for more security, also you don't need to memorize the password, and another password for signing transactions, similar to how MetaMask or the Polkadot.js extension wallet operates, where only the server wallet app can interact with this password.</p>
-<p>For dapps that you trust or low stake transaction (e.g. your wallet just have a very small amount of money), you can allow automatic approval of signing transaction through API using ui of dapps, whereas for an untrusted dapp you need to approve the transaction in the wallet. This will improve user experience. You can set the desired security in wallet app. </p>
-<p>You can also use the wallet for transacting <a href="https://www.toptal.com/ethereum/one-click-login-flows-a-metamask-tutorial">web2 apps</a>. </p>
+<p>For dapps that you trust or low stake transaction (e.g. your wallet just have a very small amount of money), you can allow automatic approval of signing transaction through API using ui of dapps, whereas for an untrusted dapp you need to approve the transaction in the wallet. This will improve user experience. You can set the desired security in wallet app.</p>
+<p>You can also use the wallet for transacting <a href="https://www.toptal.com/ethereum/one-click-login-flows-a-metamask-tutorial">web2 apps</a>.</p>
 <blockquote>
-<p>One wallet for all your signing needs. </p>
+<p>One wallet for all your signing needs.</p>
 </blockquote>
 <h2 id="leptos"><a class="header" href="#leptos">Leptos</a></h2>
 <p>You can use <a href="https://github.com/leptos-rs/leptos">leptos</a> for dapp with tauri.</p>
@@ -377,7 +377,7 @@ fn get_user_otp(user: User) -&gt; Option&lt;u32&gt; {
 <p><a href="https://tms-dev-blog.com/build-a-crypto-wallet-using-rust/">Website</a></p>
 <p><a href="https://github.com/tmsdev82/rust-eth-crypto-wallet-tutorial">Github</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-workspace"><a class="header" href="#rust-workspace">Rust workspace</a></h1>
-<p>Sure! Let's create a simple example to demonstrate how to build a specific package in a Cargo workspace. </p>
+<p>Sure! Let's create a simple example to demonstrate how to build a specific package in a Cargo workspace.</p>
 <ol>
 <li><strong>Set up a Cargo workspace</strong>:
 <ul>
@@ -406,8 +406,8 @@ fn get_user_otp(user: User) -&gt; Option&lt;u32&gt; {
 <p>In the root of your workspace (<code>my_workspace/Cargo.toml</code>):</p>
 <pre><code class="language-toml">[workspace]
 members = [
-    &quot;package_a&quot;,
-    &quot;package_b&quot;,
+    "package_a",
+    "package_b",
 ]
 </code></pre>
 <ol start="3">
@@ -415,17 +415,17 @@ members = [
 </ol>
 <p>For <code>package_a</code> (<code>my_workspace/package_a/Cargo.toml</code>):</p>
 <pre><code class="language-toml">[package]
-name = &quot;package_a&quot;
-version = &quot;0.1.0&quot;
-edition = &quot;2021&quot;
+name = "package_a"
+version = "0.1.0"
+edition = "2021"
 
 [dependencies]
 </code></pre>
 <p>For <code>package_b</code> (<code>my_workspace/package_b/Cargo.toml</code>):</p>
 <pre><code class="language-toml">[package]
-name = &quot;package_b&quot;
-version = &quot;0.1.0&quot;
-edition = &quot;2021&quot;
+name = "package_b"
+version = "0.1.0"
+edition = "2021"
 
 [dependencies]
 </code></pre>
@@ -434,11 +434,11 @@ edition = &quot;2021&quot;
 </ol>
 <p>For <code>package_a</code> (<code>my_workspace/package_a/src/main.rs</code>):</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
-    println!(&quot;Hello from package_a!&quot;);
+    println!("Hello from package_a!");
 }</code></pre></pre>
 <p>For <code>package_b</code> (<code>my_workspace/package_b/src/main.rs</code>):</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
-    println!(&quot;Hello from package_b!&quot;);
+    println!("Hello from package_b!");
 }</code></pre></pre>
 <ol start="5">
 <li><strong>Building a specific package</strong>:</li>
@@ -462,9 +462,9 @@ use thiserror::Error;
 
 #[derive(Error, Debug, Clone, Deserialize, Serialize)]
 pub enum NumberError {
-    #[error(&quot;Number getter than 20&quot;)]
+    #[error("Number getter than 20")]
     NumberGreater20,
-    #[error(&quot;Error parsing to number: `{0}`&quot;)]
+    #[error("Error parsing to number: `{0}`")]
     ParseIntError(String),
 }
 
@@ -488,15 +488,15 @@ pub fn NumericInput() -&gt; impl IntoView {
     };
 
     view! {
-        &lt;h1&gt;&quot;Error Handling&quot;&lt;/h1&gt;
+        &lt;h1&gt;"Error Handling"&lt;/h1&gt;
         &lt;label&gt;
-            &quot;Type a number less than than 20 (or something that's not a number!)&quot;
-            &lt;input type=&quot;number&quot; on:input=on_input/&gt;
+            "Type a number less than than 20 (or something that's not a number!)"
+            &lt;input type="number" on:input=on_input/&gt;
             &lt;ErrorBoundary
                 // the fallback receives a signal containing current errors
                 fallback=|errors| view! {
-                    &lt;div class=&quot;error&quot;&gt;
-                        &lt;p&gt;&quot; Errors: &quot;&lt;/p&gt;
+                    &lt;div class="error"&gt;
+                        &lt;p&gt;" Errors: "&lt;/p&gt;
                         // we can render a list of errors as strings, if we'd like
                         &lt;ul&gt;
                             {move || errors.get()
@@ -508,7 +508,7 @@ pub fn NumericInput() -&gt; impl IntoView {
                     &lt;/div&gt;
                 }
             &gt;
-                &lt;p&gt;&quot;You entered &quot; &lt;strong&gt;{value}&lt;/strong&gt;&lt;/p&gt;
+                &lt;p&gt;"You entered " &lt;strong&gt;{value}&lt;/strong&gt;&lt;/p&gt;
                 // If you don't want to display the value:
                 // The way that ErrorBoundary works is by detecting whether the Err(_) branch of a result is rendered, 
                 // so something does have to be displayed. 
@@ -557,7 +557,7 @@ pub fn NumericInput() -&gt; impl IntoView {
 </li>
 </ul>
 <h2 id="multiplexing"><a class="header" href="#multiplexing">Multiplexing</a></h2>
-<p>Multiplexing a connection is basically taking a connection and running a bunch of vitrual connections on top of that single connection. </p>
+<p>Multiplexing a connection is basically taking a connection and running a bunch of vitrual connections on top of that single connection.</p>
 <ul>
 <li>Establishing a P2P connection may not be cheap or easy (e.g. hole punching, negotiation, handshake, etc.)</li>
 <li>Re-use established connections for serveral protocols
@@ -573,7 +573,7 @@ pub fn NumericInput() -&gt; impl IntoView {
 </li>
 </ul>
 <h2 id="nat-traversal"><a class="header" href="#nat-traversal">NAT Traversal</a></h2>
-<p>Why overcome NATs and Firewalls? Most networks are not actually data centers well connected, but they are in home setting where they are behind a NAT or firewall. </p>
+<p>Why overcome NATs and Firewalls? Most networks are not actually data centers well connected, but they are in home setting where they are behind a NAT or firewall.</p>
 <h3 id="nov-22nd-2019-63-of-ipfs-dht-we-couldnt-reach"><a class="header" href="#nov-22nd-2019-63-of-ipfs-dht-we-couldnt-reach">Nov 22nd 2019, 63% of IPFS DHT we couldn't reach</a></h3>
 <p>Motivation: IPFS DHT crawl measurements (Nov 22nd 2019) showed that out of 4244 peers, 2754 were undialable (~63%)</p>
 <p>Goal:</p>
@@ -649,7 +649,7 @@ pub fn NumericInput() -&gt; impl IntoView {
 <p><a href="https://freenet.org/">https://freenet.org/</a></p>
 <p><a href="https://github.com/freenet/freenet-core">https://github.com/freenet/freenet-core</a></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yBtyNIqZios?si=juqvpeAW3o7Xeg6F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><div style="break-before: page; page-break-before: always;"></div><h1 id="tyranny-of-the-majority"><a class="header" href="#tyranny-of-the-majority">Tyranny of the Majority</a></h1>
-<p>Tyranny of the majority is a concept that highlights a potential flaw in democratic systems, where the majority, in pursuit of its own interests, oppresses or neglects the rights and interests of minority groups. John Stuart Mill, in his 1859 book &quot;On Liberty,&quot; argued that this kind of tyranny could be as oppressive as the rule of a despot. To overcome tyranny of the majority, various strategies and mechanisms can be employed, as illustrated in the provided examples:</p>
+<p>Tyranny of the majority is a concept that highlights a potential flaw in democratic systems, where the majority, in pursuit of its own interests, oppresses or neglects the rights and interests of minority groups. John Stuart Mill, in his 1859 book "On Liberty," argued that this kind of tyranny could be as oppressive as the rule of a despot. To overcome tyranny of the majority, various strategies and mechanisms can be employed, as illustrated in the provided examples:</p>
 <ol>
 <li><strong>Centralization Excess:</strong>
 <ul>
@@ -680,10 +680,10 @@ pub fn NumericInput() -&gt; impl IntoView {
 <p><strong>Example:</strong> Imagine a scenario where a majority of voters support a policy that goes against scientific evidence, such as denying climate change. To overcome the tyranny of this majority, public consultations involving scientists and experts can be held to present the facts. Additionally, a legal system that allows judicial review can act as a safeguard, ensuring that decisions are rational and constitutional.</p>
 <p>In both scenarios, the key is to introduce checks and balances that prevent the majority from imposing its will in a way that harms minority rights or results in irrational or arbitrary decisions. These mechanisms aim to strike a balance between majority rule and the protection of minority interests and the principles of rationality and fairness.</p>
 <h1 id="tyranny-of-the-minority"><a class="header" href="#tyranny-of-the-minority">Tyranny of the Minority</a></h1>
-<p>The tyranny of the minority occurs when a supermajority consensus is required for a decision, and a minority, in pursuit of its own interests, oppresses or neglects the rights and interests of the majority groups. </p>
+<p>The tyranny of the minority occurs when a supermajority consensus is required for a decision, and a minority, in pursuit of its own interests, oppresses or neglects the rights and interests of the majority groups.</p>
 <p><strong>Example:</strong> Creating an Ultra Low Emission Zone (ULEZ) area or controlling traffic where cars are not allowed, but a minority group of car owners opposes it. Though it is difficult to pass such a bill with a supermajority decision, the minority can create a blockage. Once the bill is passed, it becomes challenging to reverse.</p>
 <h1 id="tyranny-of-representatives"><a class="header" href="#tyranny-of-representatives">Tyranny of Representatives</a></h1>
-<p>The &quot;Tyranny of Representatives&quot; refers to a situation in which a small percentage of elected representatives gain unchecked control over the legislative process and no longer truly represent the interests or wishes of their constituents. This phenomenon can occur in democratic systems when a combination of factors allows a minority of elected officials to wield disproportionate power.</p>
+<p>The "Tyranny of Representatives" refers to a situation in which a small percentage of elected representatives gain unchecked control over the legislative process and no longer truly represent the interests or wishes of their constituents. This phenomenon can occur in democratic systems when a combination of factors allows a minority of elected officials to wield disproportionate power.</p>
 <p>Here's an elaboration of this concept:</p>
 <p>In a well-functioning democracy, representatives are elected to serve the best interests of their constituents. They are expected to listen to the concerns and desires of the people they represent and make decisions that reflect the will of the majority. However, the tyranny of representatives occurs when a select group of politicians, often from a particular party or faction, consolidates power to such an extent that they can disregard the needs and preferences of their constituents.</p>
 <p>Several factors can contribute to this situation:</p>
@@ -706,7 +706,7 @@ pub fn NumericInput() -&gt; impl IntoView {
 </ol>
 <p>When this tyranny of representatives occurs, it erodes the fundamental principles of democracy. The elected officials cease to be true representatives of the people and instead act in their own interests or those of a select few. To combat this, it is essential to implement measures such as redistricting reform, campaign finance regulations, and fostering a culture of political accountability to ensure that representatives genuinely serve the wishes of their constituents and maintain a healthy democratic system.</p>
 <h2 id="eg-pollution-paradox-because-of-tyranny-of-representatives"><a class="header" href="#eg-pollution-paradox-because-of-tyranny-of-representatives">e.g. Pollution Paradox because of Tyranny of Representatives</a></h2>
-<p>The &quot;pollution paradox&quot; is a term used to describe a situation where special interest groups or large donors from the fossil fuel industry, who often contribute to political campaigns and lobby for their interests, may have a counterintuitive impact on environmental policy. It points to a scenario in which the very industries responsible for environmental pollution, such as the fossil fuel industry, can influence political decisions in a way that appears to run counter to environmental conservation efforts.</p>
+<p>The "pollution paradox" is a term used to describe a situation where special interest groups or large donors from the fossil fuel industry, who often contribute to political campaigns and lobby for their interests, may have a counterintuitive impact on environmental policy. It points to a scenario in which the very industries responsible for environmental pollution, such as the fossil fuel industry, can influence political decisions in a way that appears to run counter to environmental conservation efforts.</p>
 <p>Here's how the pollution paradox can be connected to the tyranny of representatives:</p>
 <ol>
 <li>
@@ -724,7 +724,7 @@ pub fn NumericInput() -&gt; impl IntoView {
 </ol>
 <p>The connection between the pollution paradox and the tyranny of representatives underscores the challenges that arise when powerful interest groups exert undue influence over elected officials and policy decisions.</p>
 <h1 id="tyranny-of-shareholders"><a class="header" href="#tyranny-of-shareholders">Tyranny of Shareholders</a></h1>
-<p>The concept of the &quot;tyranny of shareholders&quot; refers to a situation in which corporations prioritize the interests of their shareholders above all other stakeholders, such as workers, suppliers, consumers, and communities. This approach to corporate governance is often associated with the doctrine of &quot;shareholder primacy,&quot; which asserts that the primary purpose of a corporation is to generate profits and maximize shareholder value. While maximizing shareholder value is a critical aspect of corporate governance, the exclusive focus on it can lead to negative consequences for other stakeholders.</p>
+<p>The concept of the "tyranny of shareholders" refers to a situation in which corporations prioritize the interests of their shareholders above all other stakeholders, such as workers, suppliers, consumers, and communities. This approach to corporate governance is often associated with the doctrine of "shareholder primacy," which asserts that the primary purpose of a corporation is to generate profits and maximize shareholder value. While maximizing shareholder value is a critical aspect of corporate governance, the exclusive focus on it can lead to negative consequences for other stakeholders.</p>
 <p>Here's an explanation of how the tyranny of shareholders works and its impact on various stakeholders:</p>
 <ol>
 <li>
@@ -744,7 +744,7 @@ pub fn NumericInput() -&gt; impl IntoView {
 </li>
 </ol>
 <p>An example of the tyranny of shareholders can be seen in cases where companies engage in share buybacks, which involve using corporate funds to repurchase their own shares in the stock market. While this can boost the company's stock price, it may divert resources that could have been invested in research, employee training, infrastructure improvements, or other long-term strategies.</p>
-<p>A more balanced approach to corporate governance, considering the interests of all stakeholders, can lead to sustainable and responsible business practices that benefit society as a whole rather than just a narrow group of shareholders. </p>
+<p>A more balanced approach to corporate governance, considering the interests of all stakeholders, can lead to sustainable and responsible business practices that benefit society as a whole rather than just a narrow group of shareholders.</p>
 <h2 id="democratic-reform-trilemma-or-trade-offs"><a class="header" href="#democratic-reform-trilemma-or-trade-offs">Democratic reform trilemma or trade-offs</a></h2>
 <blockquote>
 <p>Trade-off: a balancing of factors all of which are not attainable at the same time.</p>
@@ -837,9 +837,9 @@ Taxing can be done using market makers like Uniswap, and taxes collected are sol
 <h3 id="rationality-disinformation-and-nudge"><a class="header" href="#rationality-disinformation-and-nudge">Rationality, Disinformation and Nudge</a></h3>
 <p>Only a nudge while buying from an exchange can work to many extents.
 For example in real world, Adani stocks got plummeted by the Hindenburg report.</p>
-<p>A decentralized cryptoexchange with a <a href="shivarthu/tyranny_of_the_majority.html">good governance</a> can provide a nudge for discovered prices, or provide research review and discussion about the advantages, disadvantages, security and application or use case of the cryptocurrency. </p>
-<p><strong>An example nudge: &quot;The price of the coin derived by decentralized experts is this. Do you want to buy the token at this price?&quot;</strong></p>
-<p>We also need to have good institutes to stop disinformation by scammers. Social media are usually a good target for online fraud. </p>
+<p>A decentralized cryptoexchange with a <a href="shivarthu/tyranny_of_the_majority.html">good governance</a> can provide a nudge for discovered prices, or provide research review and discussion about the advantages, disadvantages, security and application or use case of the cryptocurrency.</p>
+<p><strong>An example nudge: "The price of the coin derived by decentralized experts is this. Do you want to buy the token at this price?"</strong></p>
+<p>We also need to have good institutes to stop disinformation by scammers. Social media are usually a good target for online fraud.</p>
 <p>We can slowly increase the complexity of exchange with passing year that includes providing liquidity at predicted prices.</p>
 <h3 id="an-example-exchange"><a class="header" href="#an-example-exchange">An example exchange:</a></h3>
 <p>Discovering price in crypto exchange using score Schelling game based on coin utility.</p>
@@ -857,7 +857,7 @@ Near = 0.2</p>
 <li>Demand for token</li>
 </ol>
 <blockquote>
-<p>KYC of user, with limits to how much they can withdraw every day or within a given period of time. One can also make <a href="https://github.com/amiyatulu/shivarthu/wiki/Anonymous-Accounts-Steps">anonymous accounts from kyc account</a> using technology like TEE, such as Phala Network or <a href="https://github.com/integritee-network/integritee-node">Integritee network</a> or using Zero-knowledge proof. </p>
+<p>KYC of user, with limits to how much they can withdraw every day or within a given period of time. One can also make <a href="https://github.com/amiyatulu/shivarthu/wiki/Anonymous-Accounts-Steps">anonymous accounts from kyc account</a> using technology like TEE, such as Phala Network or <a href="https://github.com/integritee-network/integritee-node">Integritee network</a> or using Zero-knowledge proof.</p>
 </blockquote>
 <blockquote>
 <p>There are other methods, such as time-locked withdrawals, where one can withdraw funds in a predictable manner based on the DeFi algorithm, without needing any kyc.</p>
@@ -869,37 +869,37 @@ Near = 0.2</p>
 <blockquote>
 <p>Can we make a token available only to whitelisted exchanges by encoding it to blockchain specifications and prevent it from being traded on any other exchanges? If so, what would be the specification or intermediary logic involved in fund transfers?</p>
 </blockquote>
-<p>There are two ways of transferring tokens: one is through the blockchain, where tokens are minted to your wallet for performing specific tasks validated by the blockchain algorithm itself. The other is peer-to-peer (p2p) transfer or wallet-to-wallet transfer. Token exchanges between trading pair occur through wallet-to-wallet transfers. </p>
+<p>There are two ways of transferring tokens: one is through the blockchain, where tokens are minted to your wallet for performing specific tasks validated by the blockchain algorithm itself. The other is peer-to-peer (p2p) transfer or wallet-to-wallet transfer. Token exchanges between trading pair occur through wallet-to-wallet transfers.</p>
 <p>Though minting tokens based on validation by blockchain is a form of trade, when I refer to trading, I mean swapping or transferring tokens between two pairs. In my personal opinion, we don't need high-frequency trading. A fair amount of limited monthly trading can fulfill everyone's needs.</p>
 <div style="break-before: page; page-break-before: always;"></div><p><a href="https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/example-for-javascript">Bucket Api</a></p>
 <pre><code class="language-bash">npm install @aws-sdk/client-s3
 </code></pre>
 <h1 id="example"><a class="header" href="#example">Example</a></h1>
 <h2 id="init-s3-client"><a class="header" href="#init-s3-client">init s3 client</a></h2>
-<pre><code class="language-javascript">import { S3 } from &quot;@aws-sdk/client-s3&quot;;
+<pre><code class="language-javascript">import { S3 } from "@aws-sdk/client-s3";
 
 const { endpoint, accessKey, secretKey, sessionToken } = s3Params;
 const s3 = new S3({
   endpoint,
-  signatureVersion: &quot;v4&quot;,
+  signatureVersion: "v4",
   credentials: {
     accessKeyId: accessKey,
     secretAccessKey: secretKey,
     sessionToken,
   },
-  region: &quot;us-west-2&quot;,
+  region: "us-west-2",
 });
 </code></pre>
 <h2 id="create-bucket-and-put-object"><a class="header" href="#create-bucket-and-put-object">create bucket and put object</a></h2>
-<pre><code class="language-javascript">import { Upload } from &quot;@aws-sdk/lib-storage&quot;;
+<pre><code class="language-javascript">import { Upload } from "@aws-sdk/lib-storage";
 
 const createBucketOutput = await s3.createBucket({
-  Bucket: &quot;bucketname&quot;,
+  Bucket: "bucketname",
 });
 const putObjectOutput = await s3.putObject({
-  Bucket: &quot;bucketname&quot;,
-  Key: &quot;key&quot;,
-  Body: &quot;data content&quot;,
+  Bucket: "bucketname",
+  Key: "key",
+  Body: "data content",
 });
 
 // multipart upload
@@ -915,14 +915,14 @@ try {
     queueSize: 3, // 3 MiB
     params,
   });
-  task.on(&quot;httpUploadProgress&quot;, (e) =&gt; {
+  task.on("httpUploadProgress", (e) =&gt; {
     const progress = ((e.loaded / e.total) * 100) | 0;
     console.log(progress, e);
   });
   await task.done();
 } catch (error) {
   if (error) {
-    console.log(&quot;task&quot;, error.message);
+    console.log("task", error.message);
   }
 }
 </code></pre>
@@ -933,7 +933,7 @@ try {
     }
 });
 
-s3.listObjectsV2({ Bucket: &quot;bucketname&quot;, MaxKeys: 10 }, (err, data)=&gt;{
+s3.listObjectsV2({ Bucket: "bucketname", MaxKeys: 10 }, (err, data)=&gt;{
     if(!err) {
         console.log(data.KeyCount)
         data.Contents.forEach((o)=&gt;{
@@ -945,14 +945,14 @@ s3.listObjectsV2({ Bucket: &quot;bucketname&quot;, MaxKeys: 10 }, (err, data)=&g
 </code></pre>
 <h2 id="get-ipfs-hash-and-arweave-hash"><a class="header" href="#get-ipfs-hash-and-arweave-hash">Get ipfs hash and arweave hash</a></h2>
 <pre><code class="language-javascript">s3.headObject({
-    Bucket: &quot;bucketname&quot;,
-    Key: &quot;objectkey&quot;,
+    Bucket: "bucketname",
+    Key: "objectkey",
 },(err, data)=&gt;{
     if(!err) {
         console.log(data)
-        console.log(&quot;ipfs cid:    &quot;, data.Metadata['ipfs-hash'])
+        console.log("ipfs cid:    ", data.Metadata['ipfs-hash'])
         // if synced to arweave
-        console.log(&quot;arweave hash:&quot;, data.Metadata['arweave-hash']) 
+        console.log("arweave hash:", data.Metadata['arweave-hash']) 
     }
 
 })
@@ -978,19 +978,19 @@ const stsClient = new STSClient({
 });
 ​
 const params = {
-    RoleSessionName: &quot;only-put-object&quot;,
+    RoleSessionName: "only-put-object",
     DurationSeconds: 3600,
     Policy: `{
-    &quot;Version&quot;: &quot;2012-10-17&quot;,
-    &quot;Statement&quot;: [
+    "Version": "2012-10-17",
+    "Statement": [
         {
-            &quot;Effect&quot;: &quot;Allow&quot;,
-            &quot;Action&quot;: [
-                &quot;s3:PutObject&quot;,
-                &quot;s3:AbortMultipartUpload&quot;
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:AbortMultipartUpload"
             ],
-            &quot;Resource&quot;: [
-                &quot;arn:aws:s3:::your-bucket-name/your-directory/*&quot;
+            "Resource": [
+                "arn:aws:s3:::your-bucket-name/your-directory/*"
             ]
         }
     ]
@@ -1009,12 +1009,12 @@ stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
 <pre><code class="language-javascript">stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
     // Extract the session token from the temporary credentials
     const sessionToken = data.Credentials.SessionToken;
-    console.log(&quot;Session Token:&quot;, sessionToken);
+    console.log("Session Token:", sessionToken);
 });
 </code></pre>
 <h2 id="sts-in-one-function"><a class="header" href="#sts-in-one-function">STS in one function</a></h2>
 <p>To create an export function that takes in <code>accessKeyId</code> and <code>secretAccessKey</code> as arguments and returns the credentials, you can modify the code like this:</p>
-<pre><code class="language-javascript">const { STSClient, AssumeRoleCommand } = require(&quot;@aws-sdk/client-sts&quot;);
+<pre><code class="language-javascript">const { STSClient, AssumeRoleCommand } = require("@aws-sdk/client-sts");
 
 async function getSTSCredentials(accessKeyId, secretAccessKey) {
     const stsClient = new STSClient({
@@ -1027,19 +1027,19 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
     });
 
     const params = {
-        RoleSessionName: &quot;only-put-object&quot;,
+        RoleSessionName: "only-put-object",
         DurationSeconds: 3600,
         Policy: `{
-            &quot;Version&quot;: &quot;2012-10-17&quot;,
-            &quot;Statement&quot;: [
+            "Version": "2012-10-17",
+            "Statement": [
                 {
-                    &quot;Effect&quot;: &quot;Allow&quot;,
-                    &quot;Action&quot;: [
-                        &quot;s3:PutObject&quot;,
-                        &quot;s3:AbortMultipartUpload&quot;
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:PutObject",
+                        "s3:AbortMultipartUpload"
                     ],
-                    &quot;Resource&quot;: [
-                        &quot;arn:aws:s3:::your-bucket-name/your-directory/*&quot;
+                    "Resource": [
+                        "arn:aws:s3:::your-bucket-name/your-directory/*"
                     ]
                 }
             ]
@@ -1050,7 +1050,7 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
         const data = await stsClient.send(new AssumeRoleCommand(params));
         return data.Credentials;
     } catch (error) {
-        console.error(&quot;Error fetching STS credentials:&quot;, error);
+        console.error("Error fetching STS credentials:", error);
         throw error;
     }
 }
@@ -1064,14 +1064,14 @@ getSTSCredentials(accessKeyId, secretAccessKey)
         console.log(credentials);
     })
     .catch(error =&gt; {
-        console.error(&quot;Error:&quot;, error);
+        console.error("Error:", error);
     });
 </code></pre>
 <p>This code defines an <code>async</code> function <code>getSTSCredentials</code> that takes <code>accessKeyId</code> and <code>secretAccessKey</code> as arguments, creates an STS client, sends an <code>AssumeRoleCommand</code>, and returns the resulting credentials. The example usage section demonstrates how to call this function with your access key and secret key.</p>
 <h2 id="compiled-code-tested"><a class="header" href="#compiled-code-tested">Compiled code (tested)</a></h2>
 <p>app.js</p>
 <pre><code class="language-javascript">import dotenv from 'dotenv';
-import {STSClient, AssumeRoleCommand } from &quot;@aws-sdk/client-sts&quot;;
+import {STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 
 dotenv.config();
@@ -1092,19 +1092,19 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
     });
 
     const params = {
-        RoleSessionName: &quot;only-put-object&quot;,
+        RoleSessionName: "only-put-object",
         DurationSeconds: 7889400, // 3 months
         Policy: `{
-            &quot;Version&quot;: &quot;2012-10-17&quot;,
-            &quot;Statement&quot;: [
+            "Version": "2012-10-17",
+            "Statement": [
                 {
-                    &quot;Effect&quot;: &quot;Allow&quot;,
-                    &quot;Action&quot;: [
-                        &quot;s3:PutObject&quot;,
-                        &quot;s3:AbortMultipartUpload&quot;
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:PutObject",
+                        "s3:AbortMultipartUpload"
                     ],
-                    &quot;Resource&quot;: [
-                        &quot;arn:aws:s3:::shivarthu-upload/website_tests/*&quot; 
+                    "Resource": [
+                        "arn:aws:s3:::shivarthu-upload/website_tests/*" 
                     ]
                 }
             ]
@@ -1115,7 +1115,7 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
         const data = await stsClient.send(new AssumeRoleCommand(params));
         return data.Credentials;
     } catch (error) {
-        console.error(&quot;Error fetching STS credentials:&quot;, error);
+        console.error("Error fetching STS credentials:", error);
         throw error;
     }
 }
@@ -1129,7 +1129,7 @@ getSTSCredentials(accessKeyId, secretAccessKey)
         console.log(credentials);
     })
     .catch(error =&gt; {
-        console.error(&quot;Error:&quot;, error);
+        console.error("Error:", error);
     });
 
 </code></pre>
@@ -1140,8 +1140,8 @@ EVERLAND_SECRET_MASTER=ierudieikdie
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="upload-files-safely-tested"><a class="header" href="#upload-files-safely-tested">Upload files safely (tested)</a></h1>
 <pre><code class="language-javascript">import dotenv from 'dotenv';
-import { S3 } from &quot;@aws-sdk/client-s3&quot;;
-import { Upload } from &quot;@aws-sdk/lib-storage&quot;;
+import { S3 } from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
 
 dotenv.config();
 
@@ -1191,7 +1191,7 @@ async function main() {
       const file = {
         name: 'example.txt',
         type: 'text/plain',
-        inside_text: &quot;Website tests&quot;,
+        inside_text: "Website tests",
         // ... other file properties
       };
   
@@ -1217,63 +1217,63 @@ Expiration=2024-03-23T21:27:36.000Z
 <h3 id="step-1-create-a-custom-policy"><a class="header" href="#step-1-create-a-custom-policy">Step 1: Create a Custom Policy</a></h3>
 <p>Define a policy that allows only specific actions, such as read-only access, for your S3 bucket. In this example, I'm assuming you want to restrict users from deleting the bucket.</p>
 <pre><code class="language-json">{
-    &quot;Version&quot;: &quot;2012-10-17&quot;,
-    &quot;Statement&quot;: [
+    "Version": "2012-10-17",
+    "Statement": [
         {
-            &quot;Effect&quot;: &quot;Allow&quot;,
-            &quot;Action&quot;: [
-                &quot;s3:ListBucket&quot;,
-                &quot;s3:GetObject&quot;,
-                &quot;s3:GetObjectVersion&quot;
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject",
+                "s3:GetObjectVersion"
             ],
-            &quot;Resource&quot;: [
-                &quot;arn:aws:s3:::your-bucket-name&quot;,
-                &quot;arn:aws:s3:::your-bucket-name/*&quot;
+            "Resource": [
+                "arn:aws:s3:::your-bucket-name",
+                "arn:aws:s3:::your-bucket-name/*"
             ]
         },
         {
-            &quot;Effect&quot;: &quot;Deny&quot;,
-            &quot;Action&quot;: &quot;s3:DeleteBucket&quot;,
-            &quot;Resource&quot;: &quot;arn:aws:s3:::your-bucket-name&quot;
+            "Effect": "Deny",
+            "Action": "s3:DeleteBucket",
+            "Resource": "arn:aws:s3:::your-bucket-name"
         }
     ]
 }
 </code></pre>
 <h2 id="put-data"><a class="header" href="#put-data">Put data</a></h2>
 <pre><code class="language-json">{
-  &quot;Id&quot;: &quot;Policy1703314728428&quot;,
-  &quot;Version&quot;: &quot;2012-10-17&quot;,
-  &quot;Statement&quot;: [
+  "Id": "Policy1703314728428",
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      &quot;Sid&quot;: &quot;Stmt1703314504947&quot;,
-      &quot;Action&quot;: [
-        &quot;s3:PutObject&quot;
+      "Sid": "Stmt1703314504947",
+      "Action": [
+        "s3:PutObject"
       ],
-      &quot;Effect&quot;: &quot;Allow&quot;,
-      &quot;Resource&quot;: &quot;arn:aws:s3:::your-bucket-name&quot;,
-      &quot;Principal&quot;: {
-        &quot;AWS&quot;: [
-          &quot;allow to write&quot;
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::your-bucket-name",
+      "Principal": {
+        "AWS": [
+          "allow to write"
         ]
       }
     },
     {
-      &quot;Sid&quot;: &quot;Stmt1703314726015&quot;,
-      &quot;Action&quot;: [
-        &quot;s3:DeleteBucket&quot;
+      "Sid": "Stmt1703314726015",
+      "Action": [
+        "s3:DeleteBucket"
       ],
-      &quot;Effect&quot;: &quot;Deny&quot;,
-      &quot;Resource&quot;: &quot;arn:aws:s3:::your-bucket-name&quot;,
-      &quot;Principal&quot;: {
-        &quot;AWS&quot;: [
-          &quot;deny delete bucket&quot;
+      "Effect": "Deny",
+      "Resource": "arn:aws:s3:::your-bucket-name",
+      "Principal": {
+        "AWS": [
+          "deny delete bucket"
         ]
       }
     }
   ]
 }
 </code></pre>
-<p>Replace <code>&quot;your-bucket-name&quot;</code> with the actual name of your S3 bucket.</p>
+<p>Replace <code>"your-bucket-name"</code> with the actual name of your S3 bucket.</p>
 <h3 id="step-2-use-4ever-sts-api-to-generate-temporary-credentials"><a class="header" href="#step-2-use-4ever-sts-api-to-generate-temporary-credentials">Step 2: Use 4EVER STS API to Generate Temporary Credentials</a></h3>
 <p>Use the 4EVER STS API to generate temporary credentials based on the custom policy. Here's an example using the JavaScript SDK:</p>
 <pre><code class="language-javascript">const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
@@ -1288,14 +1288,14 @@ const stsClient = new STSClient({
 });
 
 const params = {
-    RoleSessionName: &quot;read-only-user&quot;,
+    RoleSessionName: "read-only-user",
     DurationSeconds: 3600,  // Adjust as needed
     Policy: JSON.stringify(/* Your custom policy */),
 };
 
 stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
     // Use data.Credentials for your S3 operations
-    console.log(&quot;Temporary Credentials:&quot;, data.Credentials);
+    console.log("Temporary Credentials:", data.Credentials);
 });
 </code></pre>
 <h3 id="step-3-use-temporary-credentials-with-aws-sdk-for-s3"><a class="header" href="#step-3-use-temporary-credentials-with-aws-sdk-for-s3">Step 3: Use Temporary Credentials with AWS SDK for S3</a></h3>
@@ -1340,7 +1340,7 @@ stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
  // snippet-start:[sts.rust.assume_role]
  async fn assume_role(config: &amp;SdkConfig, role_name: String, session_name: Option&lt;String&gt;) {
      let provider = aws_config::sts::AssumeRoleProvider::builder(role_name)
-         .session_name(session_name.unwrap_or(&quot;rust_sdk_example_session&quot;.into()))
+         .session_name(session_name.unwrap_or("rust_sdk_example_session".into()))
          .configure(config)
          .build()
          .await;
@@ -1354,11 +1354,11 @@ stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
      let resp = req.send().await;
      match resp {
          Ok(e) =&gt; {
-             println!(&quot;UserID :               {}&quot;, e.user_id().unwrap_or_default());
-             println!(&quot;Account:               {}&quot;, e.account().unwrap_or_default());
-             println!(&quot;Arn    :               {}&quot;, e.arn().unwrap_or_default());
+             println!("UserID :               {}", e.user_id().unwrap_or_default());
+             println!("Account:               {}", e.account().unwrap_or_default());
+             println!("Arn    :               {}", e.arn().unwrap_or_default());
          }
-         Err(e) =&gt; println!(&quot;{:?}&quot;, e),
+         Err(e) =&gt; println!("{:?}", e),
      }
  }
  // snippet-end:[sts.rust.assume_role]
@@ -1385,13 +1385,13 @@ stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
  
      let region_provider = RegionProviderChain::first_try(region.map(Region::new))
          .or_default_provider()
-         .or_else(Region::new(&quot;us-west-2&quot;));
+         .or_else(Region::new("us-west-2"));
      println!();
  
      if verbose {
-         println!(&quot;STS client version: {}&quot;, PKG_VERSION);
+         println!("STS client version: {}", PKG_VERSION);
          println!(
-             &quot;Region:                    {}&quot;,
+             "Region:                    {}",
              region_provider.region().await.unwrap().as_ref()
          );
  
@@ -1405,20 +1405,20 @@ stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
  </code></pre></pre>
 <h2 id="cargotoml"><a class="header" href="#cargotoml">Cargo.toml</a></h2>
 <pre><code class="language-toml">[package]
-name = &quot;sts_implement&quot;
-version = &quot;0.1.0&quot;
-edition = &quot;2021&quot;
+name = "sts_implement"
+version = "0.1.0"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-aws-config = { version = &quot;1.1.1&quot;, features = [&quot;behavior-version-latest&quot;] }
-aws-sdk-sts = &quot;1.9.0&quot;
-tokio = { version = &quot;1&quot;, features = [&quot;full&quot;] }
-aws-smithy-types = { version = &quot;1.0.1&quot; }
-aws-types = { version = &quot;1.0.1&quot; }
-clap = { version = &quot;~4.4&quot;, features = [&quot;derive&quot;] }
-tracing-subscriber = { version = &quot;0.3.15&quot;, features = [&quot;env-filter&quot;] 
+aws-config = { version = "1.1.1", features = ["behavior-version-latest"] }
+aws-sdk-sts = "1.9.0"
+tokio = { version = "1", features = ["full"] }
+aws-smithy-types = { version = "1.0.1" }
+aws-types = { version = "1.0.1" }
+clap = { version = "~4.4", features = ["derive"] }
+tracing-subscriber = { version = "0.3.15", features = ["env-filter"] 
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="enhancing-privacy-and-security-in-offline-app-design-with-webassembly"><a class="header" href="#enhancing-privacy-and-security-in-offline-app-design-with-webassembly">Enhancing Privacy and Security in Offline App Design with WebAssembly</a></h1>
 <p>Introduction:</p>
@@ -1438,7 +1438,7 @@ tracing-subscriber = { version = &quot;0.3.15&quot;, features = [&quot;env-filte
 </ul>
 <h2 id="two-app-paradigm-online-app-and-offline-app-with-intents-based-communication"><a class="header" href="#two-app-paradigm-online-app-and-offline-app-with-intents-based-communication">Two App Paradigm: <code>Online App</code> and <code>Offline App</code> with <a href="linux/../rust/one_wallet_app.html">intents</a> based communication.</a></h2>
 <p>The <code>Online App</code> has access only to an <code>Online Folder</code>, whereas the <code>Offline App</code> has access to both an <code>Offline Folder</code> and an <code>Online Folder</code>.</p>
-<p>&quot;In this framework, we introduce two distinct applications: the <code>Online App</code>, a publicly audited high-security app with internet access, serving as the gatekeeper for all <code>Offline Apps</code> compatible with it, and the <code>Offline App</code>, designed for user interaction without direct internet access. The <code>Offline App</code> operates in a sandboxed environment, utilizing technologies like <a href="linux/./firejail.html">firejail</a> for added security.</p>
+<p>"In this framework, we introduce two distinct applications: the <code>Online App</code>, a publicly audited high-security app with internet access, serving as the gatekeeper for all <code>Offline Apps</code> compatible with it, and the <code>Offline App</code>, designed for user interaction without direct internet access. The <code>Offline App</code> operates in a sandboxed environment, utilizing technologies like <a href="linux/./firejail.html">firejail</a> for added security.</p>
 <p><strong>Communication Framework:</strong></p>
 <ul>
 <li>The <code>Online App</code> provides an API endpoint with three fields for the <code>Offline App</code>: a data description, the data itself, and the function name of the WebAssembly (wasm) code. Custom wasm code is one time uploaded to <code>Online App</code> by <code>Offline App</code>. Custom wasm logic facilitates remote server communication, enhancing interoperability.</li>
@@ -1582,7 +1582,7 @@ You use keyboard shortcuts to select, multi-select, delete, copy, and switch mod
 enable = true
 max-wrap = 25 # increase value to reduce forced mid-word wrapping
 max-indent-retain = 0
-wrap-indicator = &quot;&quot;  # set wrap-indicator to &quot;&quot; to hide it
+wrap-indicator = ""  # set wrap-indicator to "" to hide it
 </code></pre>
 <h3 id="learning-curve-and-efficiency"><a class="header" href="#learning-curve-and-efficiency">Learning Curve and Efficiency:</a></h3>
 <p>While Helix has a learning curve initially, some users argue that once mastered, it can be extremely efficient for text editing and manipulation. In command mode, activated by pressing the colon key (:), you can explore the tutorial (:tutor) to gain experience with Helix commands within a few days or a week.</p>
@@ -1591,7 +1591,7 @@ wrap-indicator = &quot;&quot;  # set wrap-indicator to &quot;&quot; to hide it
 <p>yz-fp</p>
 <pre><code class="language-bash">#!/bin/bash
 
-selected_file=&quot;$1&quot;
+selected_file="$1"
 
 # KEY ASSUMPTIONS
 # - editor pane was the most recently active pane
@@ -1602,7 +1602,7 @@ zellij action toggle-floating-panes
 
 # open selected file in editor
 zellij action write 27 # send escape key
-zellij action write-chars &quot;:open $selected_file&quot;
+zellij action write-chars ":open $selected_file"
 zellij action write 13 # send enter key
 
 # go back to floating yazi pane and close it
@@ -1612,7 +1612,7 @@ zellij action close-pane
 <p>yy</p>
 <pre><code class="language-bash">#!/bin/bash
 
-zellij run -c -f -- yazi &quot;$PWD&quot;	
+zellij run -c -f -- yazi "$PWD"	
 </code></pre>
 <p>copy yz-fp and yy to /bin folder and make it executable</p>
 <pre><code class="language-bash">sudo cp yz-fp /bin
@@ -1625,25 +1625,25 @@ sudo chmod +x yy
 <p><a href="https://yazi-rs.github.io/docs/configuration/overview">yazi.toml</a></p>
 <pre><code class="language-toml">[opener]
 helix = [
-  { run = 'yz-fp &quot;$0&quot;', desc = &quot;Use yazi as file picker within helix&quot; },
+  { run = 'yz-fp "$0"', desc = "Use yazi as file picker within helix" },
 ]
 
 [open]
 rules = [
-  { name = &quot;**/*&quot;, use = &quot;helix&quot; },
+  { name = "**/*", use = "helix" },
 ]
 </code></pre>
 <p>~/.config/helix</p>
 <p>config.toml</p>
 <pre><code class="language-toml">[keys.normal]
-C-y = &quot;:sh yy&quot; # launch filepicker
+C-y = ":sh yy" # launch filepicker
 
 [editor.lsp]
 display-inlay-hints = true
 
 
 [keys.normal.space]
-&quot;H&quot; = &quot;:toggle lsp.display-inlay-hints&quot;
+"H" = ":toggle lsp.display-inlay-hints"
  
 </code></pre>
 <p>It will open file picker on Ctrl+y in zellij</p>
@@ -1693,7 +1693,7 @@ Insert mode, so it is a very common shorthand for di.</p>
 <p>Type N to go to the previous search match.</p>
 <h2 id="multiple-cursor"><a class="header" href="#multiple-cursor">Multiple cursor</a></h2>
 <p>Type capital C to duplicate the cursor to the next suitable line.
-Type , to remove the cursor. </p>
+Type , to remove the cursor.</p>
 <h2 id="align-selections"><a class="header" href="#align-selections">Align selections</a></h2>
 <p>Type &amp; to align the contents of the selections.</p>
 <ol>
@@ -1709,17 +1709,17 @@ the cursor on the whitespace just after the arrow.</li>
 --&gt; 100) sit
 --&gt; 101) amet
 </code></pre>
-<p>Note: &amp; only cares about the alignment of the &quot;head&quot; of the
+<p>Note: &amp; only cares about the alignment of the "head" of the
 selections - the end that moves. The other end is called
-the &quot;anchor&quot;.</p>
+the "anchor".</p>
 <h2 id="replace-with-yanked-text"><a class="header" href="#replace-with-yanked-text">Replace with yanked text</a></h2>
 <p>Type R to replace the selection with previously yanked text.</p>
 <p>Space + R to replace selections by clipboard contents</p>
 <ol>
 <li>Move the cursor to the line marked '--&gt;' below.</li>
-<li>Type w to select &quot;watermelons&quot; and then y to yank it.</li>
-<li>Select &quot;oranges&quot; with w.</li>
-<li>Type R to replace &quot;oranges&quot; with &quot;watermelons&quot;</li>
+<li>Type w to select "watermelons" and then y to yank it.</li>
+<li>Select "oranges" with w.</li>
+<li>Type R to replace "oranges" with "watermelons"</li>
 </ol>
 <p>--&gt; I like watermelons because oranges are refreshing.
 I like watermelons because watermelons are refreshing.</p>
@@ -1764,6 +1764,8 @@ I like watermelons because watermelons are refreshing.</p>
 <h2 id="security"><a class="header" href="#security">Security</a></h2>
 <p>With <a href="https://doc.redox-os.org/book/ch01-05-how-redox-compares.html#the-kernel">kernel 50,000 lines of code</a> to review and a focus on bug-free, robust security through <a href="https://doc.redox-os.org/book/ch04-10-security.html#sandbox">sandboxing at the OS level</a>, Redox OS has a unique selling point in an era where privacy has become paramount.</p>
 <p>Sandboxing for non-root users needs to be easy to maintain high security. Even if a user installs malicious apps downloaded from the internet, your computer should remain safe. Sandboxing should be highly customizable, with the ability to control internet access, read and write permissions for files and folders, and specify which folders an app can access. It should also be easy to manage through both a user interface and command-line interface.</p>
+<h2 id="rust-and-redox-os-the-future-of-efficient-computing"><a class="header" href="#rust-and-redox-os-the-future-of-efficient-computing">Rust and Redox OS: The Future of Efficient Computing</a></h2>
+<p>With <a href="https://iambrainstorming.github.io/chapters/computer/moore-law.html">Moore's Law coming to an end</a>, the speed and efficiency of software will become a paramount issue. The Rust language offers performance comparable to C and C++, while its rich type system and ownership model guarantee memory safety and thread safety, features that are not provided by C and C++. This enables the elimination of many classes of bugs at compile-time, making Rust a more efficient language than C and C++. The Redox OS, built on Rust, will inherit these features, boasting faster boot times of mere seconds and a responsive operating system, even on low-end devices such as those with Celeron processors or single-board computers like the Raspberry Pi.</p>
 <h2 id="about-licence"><a class="header" href="#about-licence">About Licence</a></h2>
 <p>Redox uses MIT licence rather than <a href="https://iambrainstorming.github.io/chapters/programming/foss_philosophy.html#which-open-source-license-to-use">AGPL or GPL</a>. With MIT licence corporations have no incentive to open-source their changes to the code. This could lead to a problem where big tech companies hijack the code without contributing back to the open-access development of the OS. For complex operating system, a GPL license might be suitable, but its my personal opinion. GNU copyleft licenses may have particularly helped Linux protect its code and prevent corporations from converting it to closed source during its early days. With Redox OS, things are different. Redox is a microkernel with a manageable number of lines of code, and each driver, filesystem, network protocol, and more is provided as a separate process. This means that each component has full licensing autonomy and is not legally bound by the license of other OS code, including the microkernel license. However, it's important to note that no open-source license, including the GPL, can completely prevent big tech companies from converting the code to proprietary software. They can copy the design and change function names within a short period, and such changes may not be easily detected by plagiarism checkers, especially with the help of AI translators. The microkernel has fewer lines of code than the Linux kernel, making it easier to copy.</p>
 <p>Many users choose to use FOSS not only because it solves their problems but also because it provides them <code>freedom</code>. <a href="https://iambrainstorming.github.io/chapters/programming/foss_philosophy.html">Freedom</a> is an important value sought by many FOSS users and developers, who prefer to use and develop software that respects their freedoms. For example, I prefer to use only FOSS applications if there are alternatives available. In such cases, the type of FOSS license becomes less relevant, as the primary concern is having the freedom to use, modify, and distribute the software as desired.</p>
@@ -1782,13 +1784,13 @@ I like watermelons because watermelons are refreshing.</p>
 <h2 id="dht-are-slow"><a class="header" href="#dht-are-slow">DHT are slow</a></h2>
 <p>DHT are slow, blockchain can be used for storage of trackers, for easy peer discovery. Storing on blockchain, trackers can't be censored. One can use DHT along with direct peer discovery.</p>
 <h2 id="connecting-multiple-node-id-and-fetching-the-collection"><a class="header" href="#connecting-multiple-node-id-and-fetching-the-collection">Connecting Multiple Node Id and Fetching the Collection</a></h2>
-<p>The <a href="https://github.com/n0-computer/iroh-examples/blob/main/iroh-gateway/src/main.rs#L358">gateway</a>  example connects a single node, and then fetching the file. </p>
+<p>The <a href="https://github.com/n0-computer/iroh-examples/blob/main/iroh-gateway/src/main.rs#L358">gateway</a>  example connects a single node, and then fetching the file.</p>
 <p>What if I want to connect multiple node ids that have a file with the same hash, and download different parts of file from different node in parallel?</p>
-<p>Node Ids are stored in blockchain so that it can't be censored. </p>
+<p>Node Ids are stored in blockchain so that it can't be censored.</p>
 <p><a href="https://github.com/n0-computer/iroh/issues/2524">Discussion</a></p>
 <h2 id="wasm-iroh-or-libp2p"><a class="header" href="#wasm-iroh-or-libp2p">Wasm Iroh or libp2p</a></h2>
 <p>Wasm Iroh is needed to access files in the browser directly from the Iroh client, instead of fetching them through a gateway. Similar to <a href="https://webtorrent.io/">WebTorrent</a></p>
-<p>Rust libp2p supports wasm. </p>
+<p>Rust libp2p supports wasm.</p>
 <h2 id="serveless-hosting"><a class="header" href="#serveless-hosting">Serveless hosting</a></h2>
 <p>Also wasm doesn't mean only for browser environment, Iroh need to also support edge serverless computing like wasmedge, <a href="https://github.com/fermyon/spin">spin</a> or <a href="https://everywhere.computer/">everywhere computer</a></p>
 <p><a href="https://github.com/n0-computer/iroh/issues/1803">Discussion</a></p>
@@ -1796,7 +1798,7 @@ I like watermelons because watermelons are refreshing.</p>
 <h2 id="show-the-statistics"><a class="header" href="#show-the-statistics">Show the statistics</a></h2>
 <p>Fetching files can be slow at times; instead of leaving the user confused about why the file is failing to fetch, it needs to display statistics like seeders, leechers, and trackers.</p>
 <h2 id="split-files-into-chunks"><a class="header" href="#split-files-into-chunks">Split files into chunks</a></h2>
-<p>The following file sharing example, only connects to the single peer to fetch the complete file. What if I connect to multiple peers, and fetch part of file from different peers, just like bittorrent does. </p>
+<p>The following file sharing example, only connects to the single peer to fetch the complete file. What if I connect to multiple peers, and fetch part of file from different peers, just like bittorrent does.</p>
 <p>Doing it is not very hard, will try it while building dapps</p>
 <p><a href="https://github.com/libp2p/rust-libp2p/discussions/5508">Discussion</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="podman-tutorial"><a class="header" href="#podman-tutorial">Podman Tutorial</a></h1>
@@ -1934,7 +1936,7 @@ podman pod create --name pdm-golang-pod
 podman pod ls
 
 </code></pre>
-<p>You can see there is one container inside the pod pdm-golang-pod, but you created a empty pod, because podmand automatically added a infra container. Allow you to add container in the pod and also start and stop containers within the Pod by keeping the Pod running. </p>
+<p>You can see there is one container inside the pod pdm-golang-pod, but you created a empty pod, because podmand automatically added a infra container. Allow you to add container in the pod and also start and stop containers within the Pod by keeping the Pod running.</p>
 <p>Default infra container is based on the image k8s.gcr.io/pause</p>
 <p>You can display it</p>
 <pre><code>podman ps -a --pod  
@@ -1950,7 +1952,7 @@ podman pod rm &lt;pod_name&gt;
 </code></pre>
 <pre><code>podman run -dt -pod pdm-golang-pod pdm-golang  
 </code></pre>
-<p>Even if container is inside the pod, you can use all the avaiable commands to work with containers. </p>
+<p>Even if container is inside the pod, you can use all the avaiable commands to work with containers.</p>
 <pre><code>// List all the pods
 podman pod ls
 
@@ -1999,7 +2001,7 @@ RUN /usr/bin/node-template --version
 # ws_port
 EXPOSE 9930 9333 9944 30333 30334
 
-CMD [&quot;/usr/bin/node-template&quot;]
+CMD ["/usr/bin/node-template"]
 </code></pre>
 <h2 id="breakdown-of-file"><a class="header" href="#breakdown-of-file">Breakdown of file</a></h2>
 <p>Here is a breakdown of the Dockerfile:</p>
@@ -2014,7 +2016,7 @@ CMD [&quot;/usr/bin/node-template&quot;]
 <li><code>COPY --chown=polkadot:polkadot --chmod=774 node-template /usr/bin/node-template</code>: This line copies the <code>node-template</code> binary from the host machine into the container and sets the ownership and permissions for the file. The <code>--chown</code> option sets the ownership of the file to the <code>polkadot</code> user and group, and the <code>--chmod</code> option sets the permissions to <code>774</code>, which means that the owner and group have read, write, and execute permissions, and others have only read and execute permissions.</li>
 <li><code>RUN /usr/bin/node-template --version</code>: This line runs the <code>node-template</code> binary inside the container to check if it is working correctly. The <code>--version</code> option prints the version of the binary.</li>
 <li><code>EXPOSE 9930 9333 9944 30333 30334</code>: This line exposes several ports on the container. This means that the application running inside the container will be accessible on these ports.</li>
-<li><code>CMD [&quot;/usr/bin/node-template&quot;]</code>: This line sets the command that will be run when the container starts. In this case, it will run the <code>node-template</code> binary.</li>
+<li><code>CMD ["/usr/bin/node-template"]</code>: This line sets the command that will be run when the container starts. In this case, it will run the <code>node-template</code> binary.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="find-line-numbers-of-files-in-a-folder"><a class="header" href="#find-line-numbers-of-files-in-a-folder">Find line numbers of files in a folder</a></h1>
 <p><a href="https://stackoverflow.com/questions/4822471/count-number-of-lines-in-a-git-repository">https://stackoverflow.com/questions/4822471/count-number-of-lines-in-a-git-repository</a></p>
@@ -2029,13 +2031,13 @@ CMD [&quot;/usr/bin/node-template&quot;]
 <ol>
 <li>Denial</li>
 <li>Anger</li>
-<li>Bargaining </li>
-<li>Depression </li>
-<li>Acceptance </li>
-<li>Saturday </li>
+<li>Bargaining</li>
+<li>Depression</li>
+<li>Acceptance</li>
+<li>Saturday</li>
 <li>Sunday</li>
 </ol>
-<p>The list you provided appears to be a humorous twist on the traditional &quot;five stages of grief,&quot; which is a psychological model describing the emotional stages that people may go through when dealing with loss or difficult situations. In this humorous version:</p>
+<p>The list you provided appears to be a humorous twist on the traditional "five stages of grief," which is a psychological model describing the emotional stages that people may go through when dealing with loss or difficult situations. In this humorous version:</p>
 <ol>
 <li>Denial: At the beginning of a project, people might deny the challenges or complexities it involves.</li>
 <li>Anger: As the project progresses and difficulties arise, frustration and anger can be common reactions.</li>
@@ -2043,7 +2045,7 @@ CMD [&quot;/usr/bin/node-template&quot;]
 <li>Depression: When facing setbacks or obstacles, it's not uncommon for people to feel a sense of sadness or hopelessness.</li>
 <li>Acceptance: Ultimately, people come to terms with the project and its challenges.</li>
 </ol>
-<p>The last two stages, &quot;Saturday&quot; and &quot;Sunday,&quot; appear to be a playful addition and don't correspond to traditional project stages. They could suggest that, after the hard work of the project is done, people look forward to the weekend or a break. It's a lighthearted take on project management or dealing with challenges.</p>
+<p>The last two stages, "Saturday" and "Sunday," appear to be a playful addition and don't correspond to traditional project stages. They could suggest that, after the hard work of the project is done, people look forward to the weekend or a break. It's a lighthearted take on project management or dealing with challenges.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="awesome-gis"><a class="header" href="#awesome-gis">Awesome GIS</a></h1>
 <p>Learning Geospatial Analysis with Python</p>
 <p><a href="https://github.com/pka/awesome-georust">Awesome Georust</a></p>

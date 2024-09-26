@@ -225,7 +225,7 @@ RUN /usr/bin/node-template --version
 # ws_port
 EXPOSE 9930 9333 9944 30333 30334
 
-CMD [&quot;/usr/bin/node-template&quot;]
+CMD ["/usr/bin/node-template"]
 </code></pre>
 <h2 id="breakdown-of-file"><a class="header" href="#breakdown-of-file">Breakdown of file</a></h2>
 <p>Here is a breakdown of the Dockerfile:</p>
@@ -240,7 +240,7 @@ CMD [&quot;/usr/bin/node-template&quot;]
 <li><code>COPY --chown=polkadot:polkadot --chmod=774 node-template /usr/bin/node-template</code>: This line copies the <code>node-template</code> binary from the host machine into the container and sets the ownership and permissions for the file. The <code>--chown</code> option sets the ownership of the file to the <code>polkadot</code> user and group, and the <code>--chmod</code> option sets the permissions to <code>774</code>, which means that the owner and group have read, write, and execute permissions, and others have only read and execute permissions.</li>
 <li><code>RUN /usr/bin/node-template --version</code>: This line runs the <code>node-template</code> binary inside the container to check if it is working correctly. The <code>--version</code> option prints the version of the binary.</li>
 <li><code>EXPOSE 9930 9333 9944 30333 30334</code>: This line exposes several ports on the container. This means that the application running inside the container will be accessible on these ports.</li>
-<li><code>CMD [&quot;/usr/bin/node-template&quot;]</code>: This line sets the command that will be run when the container starts. In this case, it will run the <code>node-template</code> binary.</li>
+<li><code>CMD ["/usr/bin/node-template"]</code>: This line sets the command that will be run when the container starts. In this case, it will run the <code>node-template</code> binary.</li>
 </ol>
 
                     </main>

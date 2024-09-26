@@ -194,63 +194,63 @@
 <h3 id="step-1-create-a-custom-policy"><a class="header" href="#step-1-create-a-custom-policy">Step 1: Create a Custom Policy</a></h3>
 <p>Define a policy that allows only specific actions, such as read-only access, for your S3 bucket. In this example, I'm assuming you want to restrict users from deleting the bucket.</p>
 <pre><code class="language-json">{
-    &quot;Version&quot;: &quot;2012-10-17&quot;,
-    &quot;Statement&quot;: [
+    "Version": "2012-10-17",
+    "Statement": [
         {
-            &quot;Effect&quot;: &quot;Allow&quot;,
-            &quot;Action&quot;: [
-                &quot;s3:ListBucket&quot;,
-                &quot;s3:GetObject&quot;,
-                &quot;s3:GetObjectVersion&quot;
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject",
+                "s3:GetObjectVersion"
             ],
-            &quot;Resource&quot;: [
-                &quot;arn:aws:s3:::your-bucket-name&quot;,
-                &quot;arn:aws:s3:::your-bucket-name/*&quot;
+            "Resource": [
+                "arn:aws:s3:::your-bucket-name",
+                "arn:aws:s3:::your-bucket-name/*"
             ]
         },
         {
-            &quot;Effect&quot;: &quot;Deny&quot;,
-            &quot;Action&quot;: &quot;s3:DeleteBucket&quot;,
-            &quot;Resource&quot;: &quot;arn:aws:s3:::your-bucket-name&quot;
+            "Effect": "Deny",
+            "Action": "s3:DeleteBucket",
+            "Resource": "arn:aws:s3:::your-bucket-name"
         }
     ]
 }
 </code></pre>
 <h2 id="put-data"><a class="header" href="#put-data">Put data</a></h2>
 <pre><code class="language-json">{
-  &quot;Id&quot;: &quot;Policy1703314728428&quot;,
-  &quot;Version&quot;: &quot;2012-10-17&quot;,
-  &quot;Statement&quot;: [
+  "Id": "Policy1703314728428",
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      &quot;Sid&quot;: &quot;Stmt1703314504947&quot;,
-      &quot;Action&quot;: [
-        &quot;s3:PutObject&quot;
+      "Sid": "Stmt1703314504947",
+      "Action": [
+        "s3:PutObject"
       ],
-      &quot;Effect&quot;: &quot;Allow&quot;,
-      &quot;Resource&quot;: &quot;arn:aws:s3:::your-bucket-name&quot;,
-      &quot;Principal&quot;: {
-        &quot;AWS&quot;: [
-          &quot;allow to write&quot;
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::your-bucket-name",
+      "Principal": {
+        "AWS": [
+          "allow to write"
         ]
       }
     },
     {
-      &quot;Sid&quot;: &quot;Stmt1703314726015&quot;,
-      &quot;Action&quot;: [
-        &quot;s3:DeleteBucket&quot;
+      "Sid": "Stmt1703314726015",
+      "Action": [
+        "s3:DeleteBucket"
       ],
-      &quot;Effect&quot;: &quot;Deny&quot;,
-      &quot;Resource&quot;: &quot;arn:aws:s3:::your-bucket-name&quot;,
-      &quot;Principal&quot;: {
-        &quot;AWS&quot;: [
-          &quot;deny delete bucket&quot;
+      "Effect": "Deny",
+      "Resource": "arn:aws:s3:::your-bucket-name",
+      "Principal": {
+        "AWS": [
+          "deny delete bucket"
         ]
       }
     }
   ]
 }
 </code></pre>
-<p>Replace <code>&quot;your-bucket-name&quot;</code> with the actual name of your S3 bucket.</p>
+<p>Replace <code>"your-bucket-name"</code> with the actual name of your S3 bucket.</p>
 <h3 id="step-2-use-4ever-sts-api-to-generate-temporary-credentials"><a class="header" href="#step-2-use-4ever-sts-api-to-generate-temporary-credentials">Step 2: Use 4EVER STS API to Generate Temporary Credentials</a></h3>
 <p>Use the 4EVER STS API to generate temporary credentials based on the custom policy. Here's an example using the JavaScript SDK:</p>
 <pre><code class="language-javascript">const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
@@ -265,14 +265,14 @@ const stsClient = new STSClient({
 });
 
 const params = {
-    RoleSessionName: &quot;read-only-user&quot;,
+    RoleSessionName: "read-only-user",
     DurationSeconds: 3600,  // Adjust as needed
     Policy: JSON.stringify(/* Your custom policy */),
 };
 
 stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
     // Use data.Credentials for your S3 operations
-    console.log(&quot;Temporary Credentials:&quot;, data.Credentials);
+    console.log("Temporary Credentials:", data.Credentials);
 });
 </code></pre>
 <h3 id="step-3-use-temporary-credentials-with-aws-sdk-for-s3"><a class="header" href="#step-3-use-temporary-credentials-with-aws-sdk-for-s3">Step 3: Use Temporary Credentials with AWS SDK for S3</a></h3>

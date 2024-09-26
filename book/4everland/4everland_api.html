@@ -194,30 +194,30 @@
 </code></pre>
 <h1 id="example"><a class="header" href="#example">Example</a></h1>
 <h2 id="init-s3-client"><a class="header" href="#init-s3-client">init s3 client</a></h2>
-<pre><code class="language-javascript">import { S3 } from &quot;@aws-sdk/client-s3&quot;;
+<pre><code class="language-javascript">import { S3 } from "@aws-sdk/client-s3";
 
 const { endpoint, accessKey, secretKey, sessionToken } = s3Params;
 const s3 = new S3({
   endpoint,
-  signatureVersion: &quot;v4&quot;,
+  signatureVersion: "v4",
   credentials: {
     accessKeyId: accessKey,
     secretAccessKey: secretKey,
     sessionToken,
   },
-  region: &quot;us-west-2&quot;,
+  region: "us-west-2",
 });
 </code></pre>
 <h2 id="create-bucket-and-put-object"><a class="header" href="#create-bucket-and-put-object">create bucket and put object</a></h2>
-<pre><code class="language-javascript">import { Upload } from &quot;@aws-sdk/lib-storage&quot;;
+<pre><code class="language-javascript">import { Upload } from "@aws-sdk/lib-storage";
 
 const createBucketOutput = await s3.createBucket({
-  Bucket: &quot;bucketname&quot;,
+  Bucket: "bucketname",
 });
 const putObjectOutput = await s3.putObject({
-  Bucket: &quot;bucketname&quot;,
-  Key: &quot;key&quot;,
-  Body: &quot;data content&quot;,
+  Bucket: "bucketname",
+  Key: "key",
+  Body: "data content",
 });
 
 // multipart upload
@@ -233,14 +233,14 @@ try {
     queueSize: 3, // 3 MiB
     params,
   });
-  task.on(&quot;httpUploadProgress&quot;, (e) =&gt; {
+  task.on("httpUploadProgress", (e) =&gt; {
     const progress = ((e.loaded / e.total) * 100) | 0;
     console.log(progress, e);
   });
   await task.done();
 } catch (error) {
   if (error) {
-    console.log(&quot;task&quot;, error.message);
+    console.log("task", error.message);
   }
 }
 </code></pre>
@@ -251,7 +251,7 @@ try {
     }
 });
 
-s3.listObjectsV2({ Bucket: &quot;bucketname&quot;, MaxKeys: 10 }, (err, data)=&gt;{
+s3.listObjectsV2({ Bucket: "bucketname", MaxKeys: 10 }, (err, data)=&gt;{
     if(!err) {
         console.log(data.KeyCount)
         data.Contents.forEach((o)=&gt;{
@@ -263,14 +263,14 @@ s3.listObjectsV2({ Bucket: &quot;bucketname&quot;, MaxKeys: 10 }, (err, data)=&g
 </code></pre>
 <h2 id="get-ipfs-hash-and-arweave-hash"><a class="header" href="#get-ipfs-hash-and-arweave-hash">Get ipfs hash and arweave hash</a></h2>
 <pre><code class="language-javascript">s3.headObject({
-    Bucket: &quot;bucketname&quot;,
-    Key: &quot;objectkey&quot;,
+    Bucket: "bucketname",
+    Key: "objectkey",
 },(err, data)=&gt;{
     if(!err) {
         console.log(data)
-        console.log(&quot;ipfs cid:    &quot;, data.Metadata['ipfs-hash'])
+        console.log("ipfs cid:    ", data.Metadata['ipfs-hash'])
         // if synced to arweave
-        console.log(&quot;arweave hash:&quot;, data.Metadata['arweave-hash']) 
+        console.log("arweave hash:", data.Metadata['arweave-hash']) 
     }
 
 })

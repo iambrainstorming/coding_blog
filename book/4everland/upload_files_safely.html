@@ -191,8 +191,8 @@
                     <main>
                         <h1 id="upload-files-safely-tested"><a class="header" href="#upload-files-safely-tested">Upload files safely (tested)</a></h1>
 <pre><code class="language-javascript">import dotenv from 'dotenv';
-import { S3 } from &quot;@aws-sdk/client-s3&quot;;
-import { Upload } from &quot;@aws-sdk/lib-storage&quot;;
+import { S3 } from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
 
 dotenv.config();
 
@@ -242,7 +242,7 @@ async function main() {
       const file = {
         name: 'example.txt',
         type: 'text/plain',
-        inside_text: &quot;Website tests&quot;,
+        inside_text: "Website tests",
         // ... other file properties
       };
   

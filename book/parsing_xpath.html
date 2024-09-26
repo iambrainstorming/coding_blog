@@ -197,8 +197,8 @@
 <span class="boring">}</span></code></pre></pre>
 <p>In Cargo.toml</p>
 <pre><code>[dependencies]
-sxd-xpath=&quot;0.4.2&quot;
-sxd-document=&quot;0.3.2&quot;
+sxd-xpath="0.4.2"
+sxd-document="0.3.2"
 </code></pre>
 <pre><pre class="playground"><code class="language-rust">use std::fs;
 use sxd_document::parser;
@@ -220,21 +220,21 @@ fn remove_first_two_lines(input: &amp;str) -&gt; String {
 }
 
 fn get_list() {
-    let file = fs::read_to_string(&quot;src/ids.xml&quot;).unwrap();
+    let file = fs::read_to_string("src/ids.xml").unwrap();
     let data = remove_first_two_lines(&amp;file);
-    let package = parser::parse(&amp;data).expect(&quot;failed to parse XML&quot;);
+    let package = parser::parse(&amp;data).expect("failed to parse XML");
     let document = package.as_document();
 
-    let value = evaluate_xpath(&amp;document, &quot;//Id&quot;);
+    let value = evaluate_xpath(&amp;document, "//Id");
 
     match value {
         Ok(Value::Nodeset(nodeset)) =&gt; {
             for node in nodeset.iter() {
-                println!(&quot;{}&quot;, node.string_value());
+                println!("{}", node.string_value());
             }
         }
         _ =&gt; {
-            println!(&quot;XPath expression didn't return a nodeset&quot;);
+            println!("XPath expression didn't return a nodeset");
         }
     }
 }
@@ -245,8 +245,8 @@ fn main() {
 <p>ids.xml</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE eSearchResult PUBLIC &quot;-//NLM//DTD esearch 20060628//EN&quot; &quot;https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd&quot;&gt;
+</span>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd"&gt;
 &lt;div&gt;
 &lt;Id&gt;37793170&lt;/Id&gt;
 &lt;Id&gt;37793014&lt;/Id&gt;

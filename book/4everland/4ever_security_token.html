@@ -210,19 +210,19 @@ const stsClient = new STSClient({
 });
 ​
 const params = {
-    RoleSessionName: &quot;only-put-object&quot;,
+    RoleSessionName: "only-put-object",
     DurationSeconds: 3600,
     Policy: `{
-    &quot;Version&quot;: &quot;2012-10-17&quot;,
-    &quot;Statement&quot;: [
+    "Version": "2012-10-17",
+    "Statement": [
         {
-            &quot;Effect&quot;: &quot;Allow&quot;,
-            &quot;Action&quot;: [
-                &quot;s3:PutObject&quot;,
-                &quot;s3:AbortMultipartUpload&quot;
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:AbortMultipartUpload"
             ],
-            &quot;Resource&quot;: [
-                &quot;arn:aws:s3:::your-bucket-name/your-directory/*&quot;
+            "Resource": [
+                "arn:aws:s3:::your-bucket-name/your-directory/*"
             ]
         }
     ]
@@ -241,12 +241,12 @@ stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
 <pre><code class="language-javascript">stsClient.send(new AssumeRoleCommand(params)).then(function (data) {
     // Extract the session token from the temporary credentials
     const sessionToken = data.Credentials.SessionToken;
-    console.log(&quot;Session Token:&quot;, sessionToken);
+    console.log("Session Token:", sessionToken);
 });
 </code></pre>
 <h2 id="sts-in-one-function"><a class="header" href="#sts-in-one-function">STS in one function</a></h2>
 <p>To create an export function that takes in <code>accessKeyId</code> and <code>secretAccessKey</code> as arguments and returns the credentials, you can modify the code like this:</p>
-<pre><code class="language-javascript">const { STSClient, AssumeRoleCommand } = require(&quot;@aws-sdk/client-sts&quot;);
+<pre><code class="language-javascript">const { STSClient, AssumeRoleCommand } = require("@aws-sdk/client-sts");
 
 async function getSTSCredentials(accessKeyId, secretAccessKey) {
     const stsClient = new STSClient({
@@ -259,19 +259,19 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
     });
 
     const params = {
-        RoleSessionName: &quot;only-put-object&quot;,
+        RoleSessionName: "only-put-object",
         DurationSeconds: 3600,
         Policy: `{
-            &quot;Version&quot;: &quot;2012-10-17&quot;,
-            &quot;Statement&quot;: [
+            "Version": "2012-10-17",
+            "Statement": [
                 {
-                    &quot;Effect&quot;: &quot;Allow&quot;,
-                    &quot;Action&quot;: [
-                        &quot;s3:PutObject&quot;,
-                        &quot;s3:AbortMultipartUpload&quot;
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:PutObject",
+                        "s3:AbortMultipartUpload"
                     ],
-                    &quot;Resource&quot;: [
-                        &quot;arn:aws:s3:::your-bucket-name/your-directory/*&quot;
+                    "Resource": [
+                        "arn:aws:s3:::your-bucket-name/your-directory/*"
                     ]
                 }
             ]
@@ -282,7 +282,7 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
         const data = await stsClient.send(new AssumeRoleCommand(params));
         return data.Credentials;
     } catch (error) {
-        console.error(&quot;Error fetching STS credentials:&quot;, error);
+        console.error("Error fetching STS credentials:", error);
         throw error;
     }
 }
@@ -296,14 +296,14 @@ getSTSCredentials(accessKeyId, secretAccessKey)
         console.log(credentials);
     })
     .catch(error =&gt; {
-        console.error(&quot;Error:&quot;, error);
+        console.error("Error:", error);
     });
 </code></pre>
 <p>This code defines an <code>async</code> function <code>getSTSCredentials</code> that takes <code>accessKeyId</code> and <code>secretAccessKey</code> as arguments, creates an STS client, sends an <code>AssumeRoleCommand</code>, and returns the resulting credentials. The example usage section demonstrates how to call this function with your access key and secret key.</p>
 <h2 id="compiled-code-tested"><a class="header" href="#compiled-code-tested">Compiled code (tested)</a></h2>
 <p>app.js</p>
 <pre><code class="language-javascript">import dotenv from 'dotenv';
-import {STSClient, AssumeRoleCommand } from &quot;@aws-sdk/client-sts&quot;;
+import {STSClient, AssumeRoleCommand } from "@aws-sdk/client-sts";
 
 
 dotenv.config();
@@ -324,19 +324,19 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
     });
 
     const params = {
-        RoleSessionName: &quot;only-put-object&quot;,
+        RoleSessionName: "only-put-object",
         DurationSeconds: 7889400, // 3 months
         Policy: `{
-            &quot;Version&quot;: &quot;2012-10-17&quot;,
-            &quot;Statement&quot;: [
+            "Version": "2012-10-17",
+            "Statement": [
                 {
-                    &quot;Effect&quot;: &quot;Allow&quot;,
-                    &quot;Action&quot;: [
-                        &quot;s3:PutObject&quot;,
-                        &quot;s3:AbortMultipartUpload&quot;
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:PutObject",
+                        "s3:AbortMultipartUpload"
                     ],
-                    &quot;Resource&quot;: [
-                        &quot;arn:aws:s3:::shivarthu-upload/website_tests/*&quot; 
+                    "Resource": [
+                        "arn:aws:s3:::shivarthu-upload/website_tests/*" 
                     ]
                 }
             ]
@@ -347,7 +347,7 @@ async function getSTSCredentials(accessKeyId, secretAccessKey) {
         const data = await stsClient.send(new AssumeRoleCommand(params));
         return data.Credentials;
     } catch (error) {
-        console.error(&quot;Error fetching STS credentials:&quot;, error);
+        console.error("Error fetching STS credentials:", error);
         throw error;
     }
 }
@@ -361,7 +361,7 @@ getSTSCredentials(accessKeyId, secretAccessKey)
         console.log(credentials);
     })
     .catch(error =&gt; {
-        console.error(&quot;Error:&quot;, error);
+        console.error("Error:", error);
     });
 
 </code></pre>
