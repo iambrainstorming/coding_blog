@@ -9,6 +9,7 @@
 
 # Leptos
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
+- [Pagination with Leptos](./leptos/pagination.md)
   
 # Libp2p
 - [Building Blocks of libp2p](./libp2p/tutoral.md)
