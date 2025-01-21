@@ -59,3 +59,9 @@
 
 - [Awesome GIS](./gis/awesome-gis.md)
 
+# Python
+
+- [uv](./python/uv.md)
+
+# Ubuntu
+- [Disk Error](./ubuntu/diskfix.md)
