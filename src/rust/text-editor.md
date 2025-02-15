@@ -47,6 +47,7 @@ Zellij Tutorial
 ```bash
 zellij -l strider
 ```
+[Zellij Filepicker](https://zellij.dev/tutorials/filepicker/)
 
 ### Rust based terminal
 
