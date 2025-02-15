@@ -49,6 +49,12 @@ Type p to paste the yanked selection after the cursor.
 
 Type P to paste the yanked text before the cursor.
 
+## Cut and paste
+
+Type d to delete and yank the selection
+
+Type p to paste teh yanked selection after the cursor.
+
 ## Searching a file
 
 Type / to search forward in file, Enter to confirm search.
@@ -111,6 +117,9 @@ Type ~ to switch the case of all selected letters.
 Type \` to set all selected letters to lowercase.
 
 Press Alt-\` to set all selected letters to uppercase.
+
+## Renaming file
+You can write the file in the current buffer with a new name `:w new_name` and then call `:sh rm old_name`
 
 ## Goto line number
 

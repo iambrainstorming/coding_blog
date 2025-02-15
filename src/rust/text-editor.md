@@ -34,6 +34,24 @@ wrap-indicator = ""  # set wrap-indicator to "" to hide it
 While Helix has a learning curve initially, some users argue that once mastered, it can be extremely efficient for text editing and manipulation. In command mode, activated by pressing the colon key (:), you can explore the tutorial (:tutor) to gain experience with Helix commands within a few days or a week.
 
 
+### Use Zellij terminal workspace
+
+<https://zellij.dev/>
+
+Zellij Tutorial
+
+<https://zellij.dev/tutorials/basic-functionality/>
+
+#### Zellij strider
+
+```bash
+zellij -l strider
+```
+
+### Rust based terminal
+
+<https://github.com/alacritty/alacritty>
+
 ### Use yazi for terminal file manager: 
  
 [Yazi](https://github.com/sxyazi/yazi)
@@ -119,14 +137,3 @@ It will open file picker on Ctrl+y in zellij
 
 Space + Capital H for toggle inlay hints
 
-### Use Zellij terminal workspace
-
-<https://zellij.dev/>
-
-Zellij Tutorial
-
-<https://zellij.dev/tutorials/basic-functionality/>
-
-### Rust based terminal
-
-<https://github.com/alacritty/alacritty>
