@@ -161,6 +161,14 @@ v, Ctrl-v,	Vertical right split,	vsplit
 
 s, Ctrl-s,	Horizontal bottom split,	hsplit
 
+## Copy Error
+
+`yank-diagnostic` in command mode
+
+## Diagnostic picker
+
+`space-D` does show all diaganostics
+
 
 
 
