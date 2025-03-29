@@ -67,6 +67,7 @@
 # Ubuntu
 - [Disk Error](./ubuntu/diskfix.md)
 - [Image Handling](./linux/image-commnads.md)
+- [Disk Space](./linux/disk_space.md)
 
 # AI
 - [Ollama](./ai/ollama.md)

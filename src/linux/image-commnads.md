@@ -35,3 +35,8 @@ sudo apt-get install poppler-utils
 pdftocairo -png file.pdf  image_file.png
 ```
 
+# Crop video
+It crops from 01:00:00.0 than 2 minutes.
+```bash
+ffmpeg -ss 01:00:00.0 -i video.mp4 -t 00:02:00 -c copy cropped_video.mp4
+```
