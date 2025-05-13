@@ -10,7 +10,7 @@
 # Leptos
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
 - [Pagination with Leptos](./leptos/pagination.md)
-  
+
 # Libp2p
 - [Building Blocks of libp2p](./libp2p/tutoral.md)
 
@@ -26,7 +26,7 @@
   - [Upload files safely](./4everland/upload_files_safely.md)
   - [Custom Policy](./4everland/custom_policy.md)
   - [Rust sts](./4everland/rust_sts.md)
-  
+
 # Linux
 
 - [Offline Centric Apps](./linux/Offline_centric_apps.md)
@@ -37,6 +37,7 @@
 - [Helix editor commands](./rust/helix-commands.md)
 - [Zellij](./rust/zellij.md)
 - [Redox OS](./rust/redox-os.md)
+- [Executable](./linux/executable.md)
 
 # IPFS
 - [Hard time with IPFS](./rust/ipfs.md)
@@ -71,3 +72,4 @@
 
 # AI
 - [Ollama](./ai/ollama.md)
+- [TTS](./linux/tts.md)
