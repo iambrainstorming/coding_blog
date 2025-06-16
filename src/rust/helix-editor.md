@@ -4,6 +4,10 @@
 
 <https://helix-editor.com/>
 
+## Tutorial
+
+<https://www.youtube.com/playlist?list=PL4AR7tbGuBH5AzV0tPpTfYgGIF5vk3HN2>
+
 Modal editor
 
 A post-modern text editor.
