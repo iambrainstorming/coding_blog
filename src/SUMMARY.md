@@ -6,6 +6,7 @@
 - [Parsing with XPath in Rust](./parsing_xpath.md)
 - [One wallet for all your signing needs](./rust/one_wallet_app.md)
 - [Rust Workspace](./rust/rust_workspace.md)
+- [ How to call javascript in rust using boa-engine and esbuild?](./js-in-rust/js-in-rust.md)
 
 # Leptos
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
