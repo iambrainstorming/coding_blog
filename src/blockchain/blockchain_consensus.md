@@ -30,8 +30,8 @@ Based on current public knowledge and documented cases, there appear to be no co
 ### Proof of Work (PoW) — Real Attack Examples
 
 Many well-documented 51% attacks with double-spending have occurred on PoW blockchains, including:
-- Bitcoin Gold (BTG) — attacked in May 2018 (~$18 million lost) and again in 2020
-- Ethereum Classic (ETC) — attacked in January 2019 (~$1.1 M lost) and again in August 2020 (~$5.6 M + $1.68 M lost)
+- Bitcoin Gold (BTG) — attacked in May 2018 ($18 million lost) and again in 2020
+- Ethereum Classic (ETC) — attacked in January 2019 ($1.1 M lost) and again in August 2020 ( $5.6 M + $1.68 M lost)
 - Bitcoin SV (BSV) — attacked in 2021, with significant block reorganizations impacting ~570,000 transactions
 
 and many more...
