@@ -15,6 +15,9 @@
 # Libp2p
 - [Building Blocks of libp2p](./libp2p/tutoral.md)
 
+# Blockchain
+- [Blockchain economics and Consensus](./blockchain/blockchain_consensus.md)
+
 # Shivarthu
 - [Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma](./shivarthu/tyranny_of_the_majority.md)
 - [Simple Majority vs Super Majority](./shivarthu/simple_majority_and_super_majority.md)
