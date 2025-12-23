@@ -191,12 +191,6 @@ Expected: ~500 USDC
 2. Still need to click through each one
 3. Look at the "Program" field for each
 
-### Best Practice:
-**Use Solscan or Explorer BEFORE signing:**
-1. Copy the transaction data
-2. Paste into Solscan's transaction decoder
-3. Review ALL instructions there
-4. Then decide whether to sign
 
 ## Red Flags to Watch For
 
