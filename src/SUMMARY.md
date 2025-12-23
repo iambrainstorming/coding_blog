@@ -8,6 +8,9 @@
 - [Rust Workspace](./rust/rust_workspace.md)
 - [ How to call javascript in rust using boa-engine and esbuild?](./js-in-rust/js-in-rust.md)
 
+# Security
+- [Signature Phishing Attack](./security/blockchain-signature-phishing-attack.md)
+
 # Leptos
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
 - [Pagination with Leptos](./leptos/pagination.md)
@@ -15,8 +18,6 @@
 # Libp2p
 - [Building Blocks of libp2p](./libp2p/tutoral.md)
 
-# Blockchain
-- [Blockchain economics and Consensus](./blockchain/blockchain_consensus.md)
 
 # Shivarthu
 - [Tyranny of the Majority, Minority, Representatives, Shareholders and Democratic trilemma](./shivarthu/tyranny_of_the_majority.md)
