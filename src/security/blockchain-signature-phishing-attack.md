@@ -221,3 +221,7 @@ Phantom and other wallets have been improving:
 5. **When in doubt, reject** the transaction
 
 **The bottom line:** Solana wallets CAN show multiple instructions, but they often don't make them prominent enough, and most users don't look. This is why Solana phishing is so effective.
+
+
+
+> Never use a high-balance wallet to interact with new websites. Always create a fresh wallet and fund it only with what’s needed for the transaction.

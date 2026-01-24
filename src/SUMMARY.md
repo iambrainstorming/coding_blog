@@ -10,6 +10,7 @@
 
 # Security
 - [Signature Phishing Attack](./security/blockchain-signature-phishing-attack.md)
+- [Key store or External Wallet](./security/keystore-or-external-wallet.md)
 
 # Leptos
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
