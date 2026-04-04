@@ -16,8 +16,9 @@
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
 - [Pagination with Leptos](./leptos/pagination.md)
 
-# Libp2p
+# P2P
 - [Building Blocks of libp2p](./libp2p/tutoral.md)
+- [Freenet](./freenet/freenet.md)
 
 
 # Shivarthu
