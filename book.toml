@@ -1,9 +1,19 @@
 [book]
+title = "Iambrainstorming Coding Blog"
 authors = ["Amiya Behera"]
 language = "en"
-multilingual = false
-src = "src"
-title = "Iambrainstorming Blog"
+
+
+[preprocessor.og-meta]
+# Required: name of the binary (must be on PATH)
+command = "mdbook-og-meta"
+
+# Optional but recommended – builds og:url for every page
+base_url = "https://iambrainstorming.github.io/coding_blog"
+
+# Fallbacks used when a chapter has no front matter
+default_image       = "https://iambrainstorming.github.io/coding_blog/images/og_image.png"
+default_description = "Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful."
 
 [output.html]
 mathjax-support = true

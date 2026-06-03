@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Zellij - Iambrainstorming Coding Blog</title>
+        <title>Single Source Format for All Publishing - Iambrainstorming Coding Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -180,43 +180,376 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <meta property="og:type" content="website" />
-<meta property="og:title" content="Zellij" />
+<meta property="og:title" content="Single Source Format for All Publishing" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
-<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/rust/zellij.html" />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/education-material-generation/yaml.html" />
 <meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Zellij" />
+<meta name="twitter:title" content="Single Source Format for All Publishing" />
 <meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
-<h2 id="zellij-commands"><a class="header" href="#zellij-commands">Zellij Commands</a></h2>
-<h3 id="delete-all-sessions"><a class="header" href="#delete-all-sessions">Delete all sessions</a></h3>
-<p>You can delete them either through the session-manager (<code>Ctrl o</code> + <code>w</code>) or with <code>zellij delete-all-sessions</code>.</p>
-<h3 id="kill-all-sessions"><a class="header" href="#kill-all-sessions">Kill all sessions</a></h3>
-<p>zellij kill-all-sessions</p>
-<h3 id="attach-session-name"><a class="header" href="#attach-session-name">attach [session-name]</a></h3>
-<p>short: a</p>
-<p>Zellij will attempt to attach to an already running session, with the name [session-name]. If given no [session-name] and there is only one running session, it will attach to that session.</p>
-<p>The attach subcommand will also accept the optional options subcommand.</p>
-<h3 id="list-sessions"><a class="header" href="#list-sessions">list-sessions</a></h3>
-<p>short: ls</p>
-<p>Will list all the names of currently running sessions.</p>
-<h3 id="kill-sessions-target-session"><a class="header" href="#kill-sessions-target-session">kill-sessions [target-session]</a></h3>
-<p>short: k</p>
-<p>Will kill the session with the name of [target-session], if it is currently running.</p>
-<h3 id="kill-all-sessions-1"><a class="header" href="#kill-all-sessions-1">kill-all-sessions</a></h3>
-<p>short: ka</p>
-<p>Will prompt the user to kill all running sessions.</p>
+<h1 id="single-source-format-for-all-publishing"><a class="header" href="#single-source-format-for-all-publishing">Single Source Format for All Publishing</a></h1>
+<p>Date: 03-06-2026</p>
+<p>A single source format can drive:</p>
+<ul>
+<li>Printed books (PDF, EPUB)</li>
+<li>HTML books with quizzes</li>
+<li>TTS audiobook generation</li>
+<li>Video generation with images, animations, and narration</li>
+<li>Mobile apps and web apps</li>
+</ul>
+<p>Recommendation: YAML metadata</p>
+<p>A practical architecture would look like this:</p>
+<pre><code class="language-text">book.yaml
+    ↓
+serde_yaml
+    ↓
+Rust structs
+    ↓
+Grade validation
+    ↓
+XML inline parser
+    ↓
+Document AST
+    ↓
+HTML Generator
+Typst Generator
+TTS Generator
+</code></pre>
+<hr>
+<h1 id="1-yaml"><a class="header" href="#1-yaml">1. YAML</a></h1>
+<pre><code class="language-yaml">title: Biology
+grade: 11
+language: en
+
+chapters:
+  - id: cell
+    title: Cell
+
+    sections:
+      - title: Introduction
+
+        content:
+          - type: paragraph
+            text: |
+              Cells are the &lt;b&gt;basic unit of life&lt;/b&gt;.
+
+              The &lt;i&gt;cell membrane&lt;/i&gt; protects the cell.
+
+              &lt;color value="red"&gt;DNA&lt;/color&gt; stores genetic information.
+
+          - type: image
+            src: images/cell.png
+            alt: Animal Cell
+
+          - type: quiz
+            question: What is the basic unit of life?
+
+            options:
+              - Cell
+              - Tissue
+              - Organ
+
+            answer: 0
+</code></pre>
+<hr>
+<h1 id="2-rust-structures"><a class="header" href="#2-rust-structures">2. Rust Structures</a></h1>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use serde::Deserialize;
+use garde::Validate;
+
+#[derive(Debug, Deserialize, Validate)]
+pub struct Book {
+    #[garde(length(min = 1))]
+    pub title: String,
+
+    #[garde(range(min = 1, max = 12))]
+    pub grade: u8,
+
+    pub language: String,
+
+    pub chapters: Vec&lt;Chapter&gt;,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Chapter {
+    pub id: String,
+    pub title: String,
+    pub sections: Vec&lt;Section&gt;,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Section {
+    pub title: String,
+    pub content: Vec&lt;Content&gt;,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(tag = "type")]
+pub enum Content {
+    #[serde(rename = "paragraph")]
+    Paragraph {
+        text: String,
+    },
+
+    #[serde(rename = "image")]
+    Image {
+        src: String,
+        alt: String,
+    },
+
+    #[serde(rename = "quiz")]
+    Quiz {
+        question: String,
+        options: Vec&lt;String&gt;,
+        answer: usize,
+    },
+}
+<span class="boring">}</span></code></pre>
+<hr>
+<h1 id="3-grade-validation"><a class="header" href="#3-grade-validation">3. Grade Validation</a></h1>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use garde::Validate;
+
+let yaml = std::fs::read_to_string("book.yaml")?;
+
+let book: Book = serde_yaml::from_str(&amp;yaml)?;
+
+book.validate()?;
+<span class="boring">}</span></code></pre>
+<p>Fails:</p>
+<pre><code class="language-yaml">grade: 15
+</code></pre>
+<p>Error:</p>
+<pre><code class="language-text">grade must be between 1 and 12
+</code></pre>
+<hr>
+<h1 id="4-parse-inline-xml"><a class="header" href="#4-parse-inline-xml">4. Parse Inline XML</a></h1>
+<p>Wrap text inside a root tag:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let wrapped = format!("&lt;root&gt;{}&lt;/root&gt;", text);
+<span class="boring">}</span></code></pre>
+<p>Parse with:</p>
+<pre><code class="language-toml">roxmltree = "0.20"
+</code></pre>
+<p>Example:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use roxmltree::Document;
+
+let doc = Document::parse(&amp;wrapped)?;
+<span class="boring">}</span></code></pre>
+<hr>
+<h1 id="5-internal-ast"><a class="header" href="#5-internal-ast">5. Internal AST</a></h1>
+<p>Convert XML to:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub enum Inline {
+    Text(String),
+
+    Bold(Vec&lt;Inline&gt;),
+
+    Italic(Vec&lt;Inline&gt;),
+
+    Color {
+        color: String,
+        children: Vec&lt;Inline&gt;,
+    },
+}
+<span class="boring">}</span></code></pre>
+<p>Example:</p>
+<pre><code class="language-xml">Cells are the &lt;b&gt;basic unit of life&lt;/b&gt;.
+</code></pre>
+<p>becomes:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>[
+    Text("Cells are the "),
+    Bold([
+        Text("basic unit of life")
+    ]),
+    Text(".")
+]
+<span class="boring">}</span></code></pre>
+<hr>
+<h1 id="6-html-generator"><a class="header" href="#6-html-generator">6. HTML Generator</a></h1>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn html_inline(node: &amp;Inline) -&gt; String {
+    match node {
+        Inline::Text(t) =&gt; t.clone(),
+
+        Inline::Bold(children) =&gt; {
+            format!(
+                "&lt;strong&gt;{}&lt;/strong&gt;",
+                children.iter()
+                    .map(html_inline)
+                    .collect::&lt;String&gt;()
+            )
+        }
+
+        Inline::Italic(children) =&gt; {
+            format!(
+                "&lt;em&gt;{}&lt;/em&gt;",
+                children.iter()
+                    .map(html_inline)
+                    .collect::&lt;String&gt;()
+            )
+        }
+
+        Inline::Color {
+            color,
+            children
+        } =&gt; {
+            format!(
+                "&lt;span style=\"color:{}\"&gt;{}&lt;/span&gt;",
+                color,
+                children.iter()
+                    .map(html_inline)
+                    .collect::&lt;String&gt;()
+            )
+        }
+    }
+}
+<span class="boring">}</span></code></pre>
+<p>Output:</p>
+<pre><code class="language-html">&lt;p&gt;
+Cells are the
+&lt;strong&gt;basic unit of life&lt;/strong&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;em&gt;cell membrane&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;span style="color:red"&gt;
+DNA
+&lt;/span&gt;
+&lt;/p&gt;
+</code></pre>
+<hr>
+<h1 id="7-typst-generator"><a class="header" href="#7-typst-generator">7. Typst Generator</a></h1>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn typst_inline(node: &amp;Inline) -&gt; String {
+    match node {
+        Inline::Text(t) =&gt; t.clone(),
+
+        Inline::Bold(children) =&gt; {
+            format!(
+                "#strong[{}]",
+                children.iter()
+                    .map(typst_inline)
+                    .collect::&lt;String&gt;()
+            )
+        }
+
+        Inline::Italic(children) =&gt; {
+            format!(
+                "#emph[{}]",
+                children.iter()
+                    .map(typst_inline)
+                    .collect::&lt;String&gt;()
+            )
+        }
+
+        Inline::Color {
+            color,
+            children
+        } =&gt; {
+            format!(
+                "#text(fill: {})[{}]",
+                color,
+                children.iter()
+                    .map(typst_inline)
+                    .collect::&lt;String&gt;()
+            )
+        }
+    }
+}
+<span class="boring">}</span></code></pre>
+<p>Output:</p>
+<pre><code class="language-typst">Cells are the
+#strong[basic unit of life].
+
+The
+#emph[cell membrane]
+protects the cell.
+
+#text(fill: red)[DNA]
+stores genetic information.
+</code></pre>
+<hr>
+<h1 id="8-quiz-html"><a class="header" href="#8-quiz-html">8. Quiz HTML</a></h1>
+<pre><code class="language-html">&lt;div class="quiz"&gt;
+  &lt;h4&gt;
+    What is the basic unit of life?
+  &lt;/h4&gt;
+
+  &lt;input type="radio"&gt; Cell
+  &lt;input type="radio"&gt; Tissue
+  &lt;input type="radio"&gt; Organ
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h1 id="9-tts"><a class="header" href="#9-tts">9. TTS</a></h1>
+<p>Ignore formatting tags entirely:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn extract_text(nodes: &amp;[Inline]) -&gt; String
+<span class="boring">}</span></code></pre>
+<p>Output:</p>
+<pre><code class="language-text">Cells are the basic unit of life.
+
+The cell membrane protects the cell.
+
+DNA stores genetic information.
+</code></pre>
+<p>Feed directly into a TTS engine.</p>
+<hr>
+<h1 id="10-video-generation"><a class="header" href="#10-video-generation">10. Video Generation</a></h1>
+<p>Each content block becomes a scene:</p>
+<pre><code class="language-yaml">- paragraph
+- image
+- quiz
+</code></pre>
+<p>↓</p>
+<pre><code class="language-text">Scene 1:
+Narration:
+Cells are the basic unit of life.
+
+Scene 2:
+Show:
+images/cell.png
+
+Scene 3:
+Quiz Screen
+</code></pre>
+<p>This gives you a single YAML source that can generate:</p>
+<ul>
+<li>HTML books</li>
+<li>Typst/PDF textbooks</li>
+<li>EPUB</li>
+<li>TTS audiobooks</li>
+<li>Educational videos</li>
+<li>Interactive quizzes</li>
+</ul>
+<p>while keeping authoring simple with XML-like inline formatting only where needed.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../rust/helix-commands.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../js-in-rust/js-in-rust.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../rust/redox-os.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../security/blockchain-signature-phishing-attack.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -226,11 +559,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../rust/helix-commands.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../js-in-rust/js-in-rust.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../rust/redox-os.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../security/blockchain-signature-phishing-attack.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

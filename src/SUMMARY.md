@@ -7,6 +7,7 @@
 - [One wallet for all your signing needs](./rust/one_wallet_app.md)
 - [Rust Workspace](./rust/rust_workspace.md)
 - [ How to call javascript in rust using boa-engine and esbuild?](./js-in-rust/js-in-rust.md)
+- [Single Source Format for All Publishing](./education-material-generation/yaml.md)
 
 # Security
 - [Signature Phishing Attack](./security/blockchain-signature-phishing-attack.md)
