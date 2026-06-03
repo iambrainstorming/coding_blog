@@ -696,7 +696,7 @@ Typst Generator
 TTS Generator
 </code></pre>
 <hr>
-<h1 id="1-yaml"><a class="header" href="#1-yaml">1. YAML</a></h1>
+<h2 id="1-yaml"><a class="header" href="#1-yaml">1. YAML</a></h2>
 <pre><code class="language-yaml">title: Biology
 grade: 11
 language: en
@@ -732,7 +732,7 @@ chapters:
             answer: 0
 </code></pre>
 <hr>
-<h1 id="2-rust-structures"><a class="header" href="#2-rust-structures">2. Rust Structures</a></h1>
+<h2 id="2-rust-structures"><a class="header" href="#2-rust-structures">2. Rust Structures</a></h2>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use serde::Deserialize;
@@ -787,7 +787,7 @@ pub enum Content {
 }
 <span class="boring">}</span></code></pre>
 <hr>
-<h1 id="3-grade-validation"><a class="header" href="#3-grade-validation">3. Grade Validation</a></h1>
+<h2 id="3-grade-validation"><a class="header" href="#3-grade-validation">3. Grade Validation</a></h2>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use garde::Validate;
@@ -805,7 +805,7 @@ book.validate()?;
 <pre><code class="language-text">grade must be between 1 and 12
 </code></pre>
 <hr>
-<h1 id="4-parse-inline-xml"><a class="header" href="#4-parse-inline-xml">4. Parse Inline XML</a></h1>
+<h2 id="4-parse-inline-xml"><a class="header" href="#4-parse-inline-xml">4. Parse Inline XML</a></h2>
 <p>Wrap text inside a root tag:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -822,7 +822,7 @@ book.validate()?;
 let doc = Document::parse(&amp;wrapped)?;
 <span class="boring">}</span></code></pre>
 <hr>
-<h1 id="5-internal-ast"><a class="header" href="#5-internal-ast">5. Internal AST</a></h1>
+<h2 id="5-internal-ast"><a class="header" href="#5-internal-ast">5. Internal AST</a></h2>
 <p>Convert XML to:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -854,7 +854,7 @@ let doc = Document::parse(&amp;wrapped)?;
 ]
 <span class="boring">}</span></code></pre>
 <hr>
-<h1 id="6-html-generator"><a class="header" href="#6-html-generator">6. HTML Generator</a></h1>
+<h2 id="6-html-generator"><a class="header" href="#6-html-generator">6. HTML Generator</a></h2>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn html_inline(node: &amp;Inline) -&gt; String {
@@ -911,7 +911,7 @@ DNA
 &lt;/p&gt;
 </code></pre>
 <hr>
-<h1 id="7-typst-generator"><a class="header" href="#7-typst-generator">7. Typst Generator</a></h1>
+<h2 id="7-typst-generator"><a class="header" href="#7-typst-generator">7. Typst Generator</a></h2>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn typst_inline(node: &amp;Inline) -&gt; String {
@@ -963,7 +963,7 @@ protects the cell.
 stores genetic information.
 </code></pre>
 <hr>
-<h1 id="8-quiz-html"><a class="header" href="#8-quiz-html">8. Quiz HTML</a></h1>
+<h2 id="8-quiz-html"><a class="header" href="#8-quiz-html">8. Quiz HTML</a></h2>
 <pre><code class="language-html">&lt;div class="quiz"&gt;
   &lt;h4&gt;
     What is the basic unit of life?
@@ -975,7 +975,7 @@ stores genetic information.
 &lt;/div&gt;
 </code></pre>
 <hr>
-<h1 id="9-tts"><a class="header" href="#9-tts">9. TTS</a></h1>
+<h2 id="9-tts"><a class="header" href="#9-tts">9. TTS</a></h2>
 <p>Ignore formatting tags entirely:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {

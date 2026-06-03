@@ -35,7 +35,7 @@ TTS Generator
 
 ---
 
-# 1. YAML
+## 1. YAML
 
 ```yaml
 title: Biology
@@ -75,7 +75,7 @@ chapters:
 
 ---
 
-# 2. Rust Structures
+## 2. Rust Structures
 
 ```rust
 use serde::Deserialize;
@@ -132,7 +132,7 @@ pub enum Content {
 
 ---
 
-# 3. Grade Validation
+## 3. Grade Validation
 
 ```rust
 use garde::Validate;
@@ -158,7 +158,7 @@ grade must be between 1 and 12
 
 ---
 
-# 4. Parse Inline XML
+## 4. Parse Inline XML
 
 Wrap text inside a root tag:
 
@@ -182,7 +182,7 @@ let doc = Document::parse(&wrapped)?;
 
 ---
 
-# 5. Internal AST
+## 5. Internal AST
 
 Convert XML to:
 
@@ -221,7 +221,7 @@ becomes:
 
 ---
 
-# 6. HTML Generator
+## 6. HTML Generator
 
 ```rust
 fn html_inline(node: &Inline) -> String {
@@ -283,7 +283,7 @@ DNA
 
 ---
 
-# 7. Typst Generator
+## 7. Typst Generator
 
 ```rust
 fn typst_inline(node: &Inline) -> String {
@@ -340,7 +340,7 @@ stores genetic information.
 
 ---
 
-# 8. Quiz HTML
+## 8. Quiz HTML
 
 ```html
 <div class="quiz">
@@ -356,7 +356,7 @@ stores genetic information.
 
 ---
 
-# 9. TTS
+## 9. TTS
 
 Ignore formatting tags entirely:
 
