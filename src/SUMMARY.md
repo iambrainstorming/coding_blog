@@ -81,3 +81,6 @@
 # AI
 - [Ollama](./ai/ollama.md)
 - [TTS](./linux/tts.md)
+
+# Nostr Tutorial
+- [Introduction](./nostr/nostr_tutorial/introduction.md)

@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-90966a92.js";
+            window.path_to_searchindex_js = "searchindex-7129d7fb.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-34f67887.js"></script>
+        <script src="toc-8cc13e10.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3740,6 +3740,213 @@ sudo systemctl restart ollama
   &lt;/voice&gt;
 &lt;/speak&gt;
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
+<meta property="og:title" content="Introduction" />
+<meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/nostr/nostr_tutorial/introduction.html" />
+<meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Introduction" />
+<meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<h1 id="nostr-tutorial"><a class="header" href="#nostr-tutorial">Nostr Tutorial</a></h1>
+<p>Date: 07-06-2026</p>
+<pre><code class="language-bash">mkdir nostr-db-demo
+cargo new relay-server
+cargo new nostr-client
+</code></pre>
+<h2 id="relay-server"><a class="header" href="#relay-server">Relay Server</a></h2>
+<p>main.rs</p>
+<pre class="playground"><code class="language-rust">use nostr_relay_builder::prelude::*;
+use rusqlite::{Connection, params};
+use std::net::SocketAddr;
+use std::sync::{Arc, Mutex};
+
+// 1. Define a custom state holder for our database connection
+#[derive(Debug, Clone)]
+struct DbStorage {
+    conn: Arc&lt;Mutex&lt;Connection&gt;&gt;,
+}
+
+// 2. Implement WritePolicy to intercept and save events to libsql-rusqlite
+impl WritePolicy for DbStorage {
+    fn admit_event&lt;'a&gt;(
+        &amp;'a self,
+        event: &amp;'a Event,
+        _addr: &amp;'a SocketAddr,
+    ) -&gt; BoxedFuture&lt;'a, WritePolicyResult&gt; {
+        let conn = self.conn.clone();
+        let event = event.clone(); // Clone to own the event inside the async block
+
+        Box::pin(async move {
+            // Serialize tags to JSON. Using to_vec() to convert Tags to Vec&lt;Tag&gt;
+            let tags_json = serde_json::to_string(&amp;event.tags.to_vec()).unwrap_or_default();
+
+            // Lock the database connection
+            let db_conn = conn.lock().unwrap();
+
+            // Insert the event into the database
+            match db_conn.execute(
+                "INSERT OR REPLACE INTO nostr_events (event_id, pubkey, kind, content, created_at, tags)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+                params![
+                    event.id.to_hex(),
+                    event.pubkey.to_hex(),
+                    u16::from(event.kind) as i64,
+                    event.content,
+                    event.created_at.as_secs() as i64, // Fixed: use as_secs() instead of deprecated as_u64()
+                    tags_json
+                ],
+            ) {
+                Ok(_) =&gt; {
+                    println!("💾 Saved event {} to database", event.id.to_hex());
+                    WritePolicyResult::Accept
+                }
+                Err(e) =&gt; {
+                    eprintln!("❌ Database error saving event: {}", e);
+                    // Fixed: Use WritePolicyResult::reject with prefix and message
+                    WritePolicyResult::reject(MachineReadablePrefix::Error, "Database error")
+                }
+            }
+        })
+    }
+}
+
+#[tokio::main]
+async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    tracing_subscriber::fmt::init();
+    println!("🚀 Starting Nostr Relay with libsql-rusqlite storage...");
+
+    // 1. Initialize the database
+    let conn = Connection::open("nostr_relay.db")?;
+    conn.execute_batch(
+        "CREATE TABLE IF NOT EXISTS nostr_events (
+            event_id TEXT PRIMARY KEY,
+            pubkey TEXT NOT NULL,
+            kind INTEGER NOT NULL,
+            content TEXT,
+            created_at INTEGER NOT NULL,
+            tags TEXT
+        );",
+    )?;
+    println!("✅ Database initialized at ./nostr_relay.db");
+
+    // 2. Build the relay
+    let relay = LocalRelay::builder()
+        .write_policy(DbStorage {
+            conn: Arc::new(Mutex::new(conn)),
+        })
+        .build();
+
+    println!("🔌 Relay is starting...");
+
+    // 3. Start the relay in the background (this returns immediately!)
+    relay.run().await?;
+
+    // 4. Get and print the URL
+    let url = relay.url().await;
+    println!("✅ Relay is live at: {}", url);
+    println!("Press Ctrl+C to stop...");
+
+    // 5. Keep the program alive until the user presses Ctrl+C
+    tokio::signal::ctrl_c().await?;
+
+    println!("\n🛑 Shutting down...");
+
+    // 6. Force exit immediately to prevent Tokio from hanging on background WebSocket tasks
+    std::process::exit(0);
+}
+</code></pre>
+<p>cargo.toml</p>
+<pre><code class="language-toml">[package]
+name = "relay-server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+nostr-relay-builder = { git = "https://github.com/rust-nostr/nostr" }
+nostr-sdk = { git = "https://github.com/rust-nostr/nostr" }
+libsql-rusqlite = "0.33.0" # Drop-in rusqlite replacement with libsql features
+tokio = { version = "1", features = ["full"] }
+tracing-subscriber = "0.3"
+serde_json = "1"
+</code></pre>
+<h2 id="nostr-client"><a class="header" href="#nostr-client">Nostr client</a></h2>
+<pre class="playground"><code class="language-rust">use nostr_sdk::prelude::*;
+use std::env;
+
+#[tokio::main]
+async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    // 1. Get the relay URL from command line arguments
+    let args: Vec&lt;String&gt; = env::args().collect();
+    let relay_url = if args.len() &gt; 1 {
+        args[1].clone()
+    } else {
+        "ws://127.0.0.1:7070".to_string()
+    };
+
+    println!("🔑 Generating new Nostr identity...");
+    let keys = Keys::generate();
+    println!("Public Key: {}", keys.public_key().to_hex());
+
+    // 2. Initialize the Nostr client using the builder pattern
+    // Client::new() now takes 0 arguments. We must attach a SignerAuthenticator.
+    let authenticator = SignerAuthenticator::new(keys.clone());
+    let client = Client::builder().authenticator(authenticator).build();
+
+    // 3. Add and connect to the relay
+    println!("🔌 Connecting to relay: {}", relay_url);
+    client.add_relay(&amp;relay_url).await?;
+
+    // connect() returns a builder that implements IntoFuture, so we can .await it
+    client.connect().await;
+
+    // Give the WebSocket a moment to fully establish the connection
+    tokio::time::sleep(std::time::Duration::from_secs(1)).await;
+
+    // 4. Create a Text Note (Kind 1)
+    println!("📝 Creating a text note...");
+    let content = format!(
+        "Hello Nostr! This is a test post from my Rust client. Timestamp: {}",
+        Timestamp::now().as_secs()
+    );
+
+    // 5. Build and sign the event with our keys
+    // send_event_builder was removed. We must finalize the EventBuilder into an Event.
+    let event = EventBuilder::text_note(content).finalize(&amp;keys)?;
+
+    // 6. Publish the event to the relay
+    println!("📡 Publishing event to relay...");
+    let output = client.send_event(&amp;event).await?;
+
+    println!("✅ Event published successfully!");
+    println!("🆔 Event ID: {}", output.id().to_hex());
+
+    // Wait a moment to ensure the relay processes the event
+    tokio::time::sleep(std::time::Duration::from_secs(2)).await;
+
+    // 7. Disconnect cleanly
+    // disconnect() returns (), so we do NOT use the '?' operator here.
+    println!("👋 Disconnecting...");
+    client.disconnect().await;
+
+    Ok(())
+}</code></pre>
+<p>Cargo.toml</p>
+<pre><code class="language-toml">[package]
+name = "nostr-client"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Use the latest master branch to match your server
+nostr-sdk = { git = "https://github.com/rust-nostr/nostr" }
+tokio = { version = "1", features = ["full"] }
+</code></pre>
+<p>cargo run ws://127.0.0.1:port</p>
+<p>e.g.
+cargo run ws://127.0.0.1:64991</p>
 
                     </main>
 
