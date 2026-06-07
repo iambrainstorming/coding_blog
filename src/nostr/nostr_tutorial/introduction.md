@@ -124,8 +124,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-nostr-relay-builder = { git = "https://github.com/rust-nostr/nostr" }
-nostr-sdk = { git = "https://github.com/rust-nostr/nostr" }
+nostr-sdk = { git = "https://github.com/rust-nostr/nostr", rev = "02a5926" }
+nostr-relay-builder = { git = "https://github.com/rust-nostr/nostr", rev = "02a5926" }
 libsql-rusqlite = "0.33.0" # Drop-in rusqlite replacement with libsql features
 tokio = { version = "1", features = ["full"] }
 tracing-subscriber = "0.3"
@@ -207,7 +207,7 @@ edition = "2024"
 
 [dependencies]
 # Use the latest master branch to match your server
-nostr-sdk = { git = "https://github.com/rust-nostr/nostr" }
+nostr-sdk = { git = "https://github.com/rust-nostr/nostr", rev = "02a5926" }
 tokio = { version = "1", features = ["full"] }
 ```
 
