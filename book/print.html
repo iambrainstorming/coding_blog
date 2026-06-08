@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-1869a644.js";
+            window.path_to_searchindex_js = "searchindex-956c1001.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-34324c9b.js"></script>
@@ -4317,6 +4317,13 @@ async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 </ul>
 </li>
 </ol>
+<h3 id="sqlite-file-collision"><a class="header" href="#sqlite-file-collision">SQLite File Collision</a></h3>
+<p>If you are trying to open the exact same file (<code>nostr_relay.db</code>) using two completely different database engines:</p>
+<ol>
+<li><code>NostrSqlite::open("nostr_relay.db")</code> (The internal Nostr DB engine)</li>
+<li><code>Connection::open("nostr_relay.db")</code> (Your custom <code>rusqlite</code> engine)</li>
+</ol>
+<p>SQLite does not handle concurrent writes from two separate connection pools to the same file. If a client publishes a recipe at the exact same time the <code>LocalRelay</code> tries to save a raw event, your app will crash with a <code>SQLITE_BUSY</code> / <code>database is locked</code> panic.</p>
 
                     </main>
 

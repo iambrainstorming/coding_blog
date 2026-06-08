@@ -372,3 +372,10 @@ It seems wasteful, but in Nostr application development, this "Dual Database" pa
 2.  **The Custom `recipes` Table (Indexed Storage):**
     *   **Purpose:** It allows for **fast SQL indexing**.
     *   **Query Advantage:** You can run `SELECT * FROM recipes WHERE recipe_name LIKE '%Fried Rice%'` instantly. You can do complex SQL filtering (like searching by ingredient or cooking time). You can't do that efficiently with the raw Nostr database.
+
+### SQLite File Collision
+If you are trying to open the exact same file (`nostr_relay.db`) using two completely different database engines:
+1. `NostrSqlite::open("nostr_relay.db")` (The internal Nostr DB engine)
+2. `Connection::open("nostr_relay.db")` (Your custom `rusqlite` engine)
+
+SQLite does not handle concurrent writes from two separate connection pools to the same file. If a client publishes a recipe at the exact same time the `LocalRelay` tries to save a raw event, your app will crash with a `SQLITE_BUSY` / `database is locked` panic.
