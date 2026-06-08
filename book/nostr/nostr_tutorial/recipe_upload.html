@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-d5a3384b.js";
+            window.path_to_searchindex_js = "../../searchindex-1869a644.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-34324c9b.js"></script>
@@ -513,6 +513,42 @@ async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 
     Ok(())
 }</code></pre>
+<h2 id="dual-database-creates-duplicate-storage"><a class="header" href="#dual-database-creates-duplicate-storage">Dual Database Creates Duplicate Storage</a></h2>
+<p><strong>Yes, using the dual database architecture creates duplicate storage.</strong></p>
+<p>Here is exactly what is being duplicated:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Data Field</th><th style="text-align: left">Stored in Internal Nostr DB?</th><th style="text-align: left">Stored in Custom <code>recipes</code> Table?</th><th style="text-align: left">Duplicate?</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><code>event_id</code></td><td style="text-align: left">✅ Yes</td><td style="text-align: left">✅ Yes</td><td style="text-align: left"><strong>Yes</strong></td></tr>
+<tr><td style="text-align: left"><code>pubkey</code></td><td style="text-align: left">✅ Yes</td><td style="text-align: left">✅ Yes</td><td style="text-align: left"><strong>Yes</strong></td></tr>
+<tr><td style="text-align: left"><code>kind</code></td><td style="text-align: left">✅ Yes</td><td style="text-align: left">❌ No (Hardcoded as 31000)</td><td style="text-align: left">No</td></tr>
+<tr><td style="text-align: left"><code>created_at</code></td><td style="text-align: left">✅ Yes</td><td style="text-align: left">✅ Yes</td><td style="text-align: left"><strong>Yes</strong></td></tr>
+<tr><td style="text-align: left"><code>content</code> (YAML)</td><td style="text-align: left">✅ Yes</td><td style="text-align: left">✅ Yes</td><td style="text-align: left"><strong>Yes</strong></td></tr>
+<tr><td style="text-align: left"><code>tags</code></td><td style="text-align: left">✅ Yes</td><td style="text-align: left">❌ No (Only <code>d</code> tag extracted)</td><td style="text-align: left">No</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="why-do-developers-accept-this-duplication"><a class="header" href="#why-do-developers-accept-this-duplication">Why do developers accept this duplication?</a></h3>
+<p>It seems wasteful, but in Nostr application development, this “Dual Database” pattern is often used intentionally to solve a specific problem: <strong>Query Performance vs. Protocol Compliance.</strong></p>
+<ol>
+<li>
+<p><strong>The Internal Nostr DB (Raw Storage):</strong></p>
+<ul>
+<li><strong>Purpose:</strong> It handles the complex Nostr logic automatically (NIP-33 replaceable events, NIP-09 deletions, signature verification).</li>
+<li><strong>Query Limitation:</strong> It is very hard to search inside this database. If you want to find “all recipes that use ‘Rice’”, the database has to load every single YAML string into memory and parse it one by one. This is slow.</li>
+</ul>
+</li>
+<li>
+<p><strong>The Custom <code>recipes</code> Table (Indexed Storage):</strong></p>
+<ul>
+<li><strong>Purpose:</strong> It allows for <strong>fast SQL indexing</strong>.</li>
+<li><strong>Query Advantage:</strong> You can run <code>SELECT * FROM recipes WHERE recipe_name LIKE '%Fried Rice%'</code> instantly. You can do complex SQL filtering (like searching by ingredient or cooking time). You can’t do that efficiently with the raw Nostr database.</li>
+</ul>
+</li>
+</ol>
 
                     </main>
 

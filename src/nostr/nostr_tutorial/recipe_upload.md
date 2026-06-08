@@ -345,3 +345,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 ```
+
+## Dual Database Creates Duplicate Storage
+
+**Yes, using the dual database architecture creates duplicate storage.**
+
+Here is exactly what is being duplicated:
+
+| Data Field | Stored in Internal Nostr DB? | Stored in Custom `recipes` Table? | Duplicate? |
+| :--- | :--- | :--- | :--- |
+| `event_id` | ✅ Yes | ✅ Yes | **Yes** |
+| `pubkey` | ✅ Yes | ✅ Yes | **Yes** |
+| `kind` | ✅ Yes | ❌ No (Hardcoded as 31000) | No |
+| `created_at` | ✅ Yes | ✅ Yes | **Yes** |
+| `content` (YAML) | ✅ Yes | ✅ Yes | **Yes** |
+| `tags` | ✅ Yes | ❌ No (Only `d` tag extracted) | No |
+
+### Why do developers accept this duplication?
+
+It seems wasteful, but in Nostr application development, this "Dual Database" pattern is often used intentionally to solve a specific problem: **Query Performance vs. Protocol Compliance.**
+
+1.  **The Internal Nostr DB (Raw Storage):**
+    *   **Purpose:** It handles the complex Nostr logic automatically (NIP-33 replaceable events, NIP-09 deletions, signature verification).
+    *   **Query Limitation:** It is very hard to search inside this database. If you want to find "all recipes that use 'Rice'", the database has to load every single YAML string into memory and parse it one by one. This is slow.
+
+2.  **The Custom `recipes` Table (Indexed Storage):**
+    *   **Purpose:** It allows for **fast SQL indexing**.
+    *   **Query Advantage:** You can run `SELECT * FROM recipes WHERE recipe_name LIKE '%Fried Rice%'` instantly. You can do complex SQL filtering (like searching by ingredient or cooking time). You can't do that efficiently with the raw Nostr database.
