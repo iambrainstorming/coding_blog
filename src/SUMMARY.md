@@ -84,3 +84,4 @@
 
 # Nostr Tutorial
 - [Introduction](./nostr/nostr_tutorial/introduction.md)
+- [Recipe Upload Example](./nostr/nostr_tutorial/recipe_upload.md)
