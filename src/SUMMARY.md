@@ -82,6 +82,8 @@
 - [Ollama](./ai/ollama.md)
 - [TTS](./linux/tts.md)
 
+# Nostr
+- [Rethinking Data Ownership in Nostr](./nostr/nostr-vs-pds.md)
 # Nostr Tutorial
 - [Introduction](./nostr/nostr_tutorial/introduction.md)
 - [Recipe Upload Example](./nostr/nostr_tutorial/recipe_upload.md)

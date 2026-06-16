@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-956c1001.js";
+            window.path_to_searchindex_js = "searchindex-6e8da6b3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-34324c9b.js"></script>
+        <script src="toc-b8101dee.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3739,6 +3739,180 @@ sudo systemctl restart ollama
     &lt;s&gt;between sentences.&lt;/s&gt;
   &lt;/voice&gt;
 &lt;/speak&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
+<meta property="og:title" content="Rethinking Data Ownership in Nostr" />
+<meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/nostr/nostr-vs-pds.html" />
+<meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Rethinking Data Ownership in Nostr" />
+<meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<h1 id="rethinking-data-ownership-in-nostr"><a class="header" href="#rethinking-data-ownership-in-nostr">Rethinking Data Ownership in Nostr</a></h1>
+<p>Bringing Personal Data Servers to Nostr</p>
+<p>Nostr has a problem: relays store and control the data. In contrast, in Bluesky’s AT Protocol, PDSs (Personal Data Servers) store and control the data. PDSs are personal storage servers that give users full control over their data.</p>
+<p>Something similar could also be implemented in Nostr, such as personal relays that store only a user’s own content, while other relays simply carry the addresses and copies of those personal relays.</p>
+<h3 id="advantages"><a class="header" href="#advantages">Advantages</a></h3>
+<ol>
+<li>
+<p><strong>Greater user control</strong></p>
+<ul>
+<li>Users control where their content is stored.</li>
+<li>A relay operator cannot arbitrarily delete or censor your content because your primary copy lives on your own relay.</li>
+</ul>
+</li>
+<li>
+<p><strong>Reduced storage burden on public relays</strong></p>
+<ul>
+<li>Public relays would not need to store everyone’s posts indefinitely.</li>
+<li>They could focus on discovery, indexing, spam filtering, and routing.</li>
+</ul>
+</li>
+<li>
+<p><strong>Better data portability</strong></p>
+<ul>
+<li>Similar to Bluesky’s PDS model, users can move between providers without losing their identity or content.</li>
+<li>This aligns with the idea of self-sovereign data ownership.</li>
+</ul>
+</li>
+<li>
+<p><strong>Potentially lower censorship risk</strong></p>
+<ul>
+<li>If a public relay bans you, other relays can still point to your personal relay.</li>
+</ul>
+</li>
+</ol>
+<h3 id="challenges-1"><a class="header" href="#challenges-1">Challenges</a></h3>
+<ol>
+<li>
+<p><strong>Availability</strong></p>
+<ul>
+<li>If your personal relay goes offline, your content becomes unavailable.</li>
+<li>Bluesky addresses this partly through hosting providers and account migration.</li>
+<li>In Nostr, public relays could still cache or mirror data from personal relays, providing redundancy and ensuring content remains accessible even when a personal relay is offline.</li>
+</ul>
+</li>
+<li>
+<p><strong>Performance</strong></p>
+<ul>
+<li>Clients would need to fetch data from many personal relays.</li>
+<li>Loading feeds could become slower unless there are caching or indexing relays.</li>
+</ul>
+</li>
+<li>
+<p><strong>Discovery</strong></p>
+<ul>
+<li>How do users discover the location of your personal relay?</li>
+<li>Nostr would need a standard mechanism for publishing relay addresses.</li>
+</ul>
+</li>
+<li>
+<p><strong>Spam</strong></p>
+<ul>
+<li>Malicious actors could create thousands of personal relays.</li>
+<li>Discovery relays would still need moderation and reputation systems.</li>
+</ul>
+</li>
+</ol>
+<h2 id="iroh-address-instead-of-server-relay-address"><a class="header" href="#iroh-address-instead-of-server-relay-address">Iroh Address instead of server relay address</a></h2>
+<p>If, instead of storing a personal relay address, Nostr stored an Iroh address, data would become far more portable. The address would remain the same even if a user switched servers or hosting providers, eliminating the need to update followers about a new relay location. It would also provide better synchronization across devices and replicas, making user-owned data more resilient and easier to manage.</p>
+<p>With an Iroh-based design, the user’s profile would point to a <strong>content address or namespace</strong> rather than a specific server address. The data could then be hosted anywhere while retaining the same identifier.</p>
+<h3 id="advantages-1"><a class="header" href="#advantages-1">Advantages</a></h3>
+<ol>
+<li>
+<p><strong>Portability</strong></p>
+<ul>
+<li>If you move from one server to another, the Iroh namespace remains the same.</li>
+<li>Followers do not need to update relay lists every time you migrate.</li>
+</ul>
+</li>
+<li>
+<p><strong>Multi-device synchronization</strong></p>
+<ul>
+<li>Iroh is designed around synchronization between peers.</li>
+<li>Your laptop, phone, VPS, and home server can all replicate the same data.</li>
+</ul>
+</li>
+<li>
+<p><strong>Reduced dependence on relay operators</strong></p>
+<ul>
+<li>Relays become discovery and indexing layers rather than primary storage providers.</li>
+</ul>
+</li>
+<li>
+<p><strong>Content persistence</strong></p>
+<ul>
+<li>Multiple peers can host the same data.</li>
+<li>Losing a single server does not necessarily mean losing content.</li>
+</ul>
+</li>
+<li>
+<p><strong>Better fit for self-sovereignty</strong></p>
+<ul>
+<li>Users own their namespace and cryptographic keys rather than relying on a particular relay.</li>
+</ul>
+</li>
+</ol>
+<h3 id="challenges-1-1"><a class="header" href="#challenges-1-1">Challenges</a></h3>
+<ol>
+<li>
+<p><strong>Data discovery</strong></p>
+<ul>
+<li>
+<p>Clients still need a way to discover where replicas of an Iroh namespace exist.</p>
+</li>
+<li>
+<p>Nostr relays could store mappings:</p>
+<pre><code>pubkey -&gt; iroh namespace
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Feed generation</strong></p>
+<ul>
+<li>Social feeds require querying millions of posts.</li>
+<li>Pulling data directly from thousands of Iroh peers would be inefficient.</li>
+<li>Indexing relays would still likely cache and index content.</li>
+</ul>
+</li>
+<li>
+<p><strong>Availability</strong></p>
+<ul>
+<li>If nobody is hosting the namespace, the data disappears.</li>
+<li>You may still need “pinning” or replication services.</li>
+</ul>
+</li>
+<li>
+<p><strong>Moderation</strong></p>
+<ul>
+<li>Discovery and indexing layers would still decide what content to surface.</li>
+</ul>
+</li>
+</ol>
+<h3 id="one-possible-architecture"><a class="header" href="#one-possible-architecture">One Possible Architecture</a></h3>
+<pre><code class="language-text">User Key
+    |
+    v
+Nostr Profile
+    |
+    +--&gt; Iroh Namespace ID
+                |
+                +--&gt; Phone
+                +--&gt; Laptop
+                +--&gt; VPS
+                +--&gt; Community Mirror
+</code></pre>
+<p>Meanwhile:</p>
+<pre><code class="language-text">Iroh Storage Layer
+        ^
+        |
+Indexing Relays
+        ^
+        |
+Nostr Clients
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
 <meta property="og:title" content="Introduction" />
