@@ -136,3 +136,37 @@ Indexing Relays
         |
 Nostr Clients
 ```
+
+## Expose a local WebSocket service via the Iroh network using a ticket-based address
+
+WebSocket-based application (like a Nostr relay or client) accessible via an Iroh address similar to [dumbpipe](https://github.com/n0-computer/dumbpipe) or directly using code. 
+
+
+### Approach 1: The "Dumbpipe" TCP Tunnel (Easiest)
+WebSockets are essentially HTTP upgrades running over standard TCP connections. `dumbpipe` has built-in features to forward raw TCP traffic over Iroh’s QUIC network. This allows you to keep your existing Nostr app exactly as it is while giving it an Iroh address.
+
+**1. On the Server (Hosting the Nostr Relay):**
+Assume your Nostr relay is running locally on port `8080`. Run the following command to generate an Iroh ticket (address):
+```bash
+dumbpipe listen-tcp --host localhost:8080
+```
+*This will output a long string (the Iroh ticket). This ticket is your "address."*
+
+**2. On the Client (Connecting to the Relay):**
+Run the following command on the machine where you want to access the relay. Replace `<ticket>` with the string from the server:
+```bash
+dumbpipe connect-tcp --addr 0.0.0.0:8081 <ticket>
+```
+*This creates a local "bridge" on port `8081` that tunnels all traffic through Iroh to the remote relay.*
+
+**3. Usage:**
+Point your Nostr client to `ws://localhost:8081`. The WebSocket handshake and all subsequent frames will be transparently forwarded over the encrypted Iroh connection to your relay.
+
+---
+
+### Approach 2: Native Iroh Nostr Relay (Rust Implementation)
+If you want to build a "true" P2P Nostr app without the overhead of a TCP tunnel wrapper, you can run the Nostr protocol directly over Iroh.
+
+### Advantages
+1.  **No Server Costs for Relays:** You can run a Nostr relay on your laptop or a cheap home server. Iroh handles the **NAT traversal and hole-punching**, meaning users can connect to it directly without you needing a public IP or a domain name.
+2.  **End-to-End Encryption:** All traffic is encrypted via QUIC/TLS by default, which is a strong selling point for a security-focused startup.
