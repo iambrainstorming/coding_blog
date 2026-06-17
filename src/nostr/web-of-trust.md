@@ -5,6 +5,8 @@ Date: 17-06-2026
 
 [Nostr Web of Trust](https://github.com/nostr-wot/nostr-wot)
 
+[What Is Web of Trust?](https://nostr-wot.com/blog/what-is-web-of-trust)
+
 Nostr has not natively implemented a Web of Trust (WoT) at the protocol level, as the protocol itself is an open system where anyone can publish and no one can be banned. Instead, WoT is provided by **third-party open-source infrastructure**, such as the **Nostr WoT** browser extension and oracle API, which allows users to build a local social graph based on their follow relationships.
 
 Key developments in this user-controlled trust layer include:
