@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-f6c9b441.js";
+            window.path_to_searchindex_js = "searchindex-3b4f5025.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-b8101dee.js"></script>
+        <script src="toc-99908c91.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3938,6 +3938,137 @@ Point your Nostr client to <code>ws://localhost:8081</code>. The WebSocket hands
 <li><strong>No Server Costs for Relays:</strong> You can run a Nostr relay on your laptop or a cheap home server. Iroh handles the <strong>NAT traversal and hole-punching</strong>, meaning users can connect to it directly without you needing a public IP or a domain name.</li>
 <li><strong>End-to-End Encryption:</strong> All traffic is encrypted via QUIC/TLS by default, which is a strong selling point for a security-focused startup.</li>
 </ol>
+<div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
+<meta property="og:title" content="Web of Trust" />
+<meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/nostr/web-of-trust.html" />
+<meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Web of Trust" />
+<meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<h1 id="web-of-trust"><a class="header" href="#web-of-trust">Web of Trust</a></h1>
+<p>Date: 17-06-2026</p>
+<p><a href="https://github.com/nostr-wot/nostr-wot">Nostr Web of Trust</a></p>
+<p>Nostr has not natively implemented a Web of Trust (WoT) at the protocol level, as the protocol itself is an open system where anyone can publish and no one can be banned. Instead, WoT is provided by <strong>third-party open-source infrastructure</strong>, such as the <strong>Nostr WoT</strong> browser extension and oracle API, which allows users to build a local social graph based on their follow relationships.</p>
+<p>Key developments in this user-controlled trust layer include:</p>
+<ul>
+<li>
+<p><strong>Conceptual Origin</strong>: The concept derives from <strong>PGP’s Web of Trust (1991)</strong>, adapted for Nostr’s follow graph rather than cryptographic key signing.</p>
+</li>
+<li>
+<p><strong>Infrastructure Launch</strong>: The <strong>Nostr WoT</strong> project, which offers a browser extension for client-side queries and an oracle API for server-side lookups, was publicly announced and detailed in articles published in <strong>February 2026</strong>.</p>
+</li>
+<li>
+<p><strong>Current State</strong>: As of <strong>June 2026</strong>, this remains a decentralized, user-owned layer that Nostr apps can query to filter spam and prioritize content, rather than a built-in protocol feature.</p>
+</li>
+<li>
+<p>Your pubkey = center</p>
+</li>
+<li>
+<p>People you follow = 1 hop</p>
+</li>
+<li>
+<p>People they follow = 2 hops</p>
+</li>
+<li>
+<p>People beyond 3 hops = likely noise</p>
+</li>
+</ul>
+<p>is actually very close to how many practical Web-of-Trust systems work in Nostr and other decentralized networks. The idea is that trust decays with social distance.</p>
+<h2 id="why-it-works"><a class="header" href="#why-it-works">Why it works</a></h2>
+<p>Humans naturally trust through social connections:</p>
+<ul>
+<li>I trust Alice.</li>
+<li>Alice trusts Bob.</li>
+<li>Therefore Bob gets some trust from me.</li>
+<li>But not as much as Alice.</li>
+</ul>
+<p>This is called <strong>trust propagation</strong> or <strong>trust transitivity</strong>. Researchers have studied it extensively and found that propagated trust can outperform purely global reputation systems in predicting trustworthy users. ([AAAI Publications][2])</p>
+<p>In Nostr, Web of Trust is mainly used for:</p>
+<ul>
+<li>Spam filtering</li>
+<li>Content ranking</li>
+<li>Discovering new people</li>
+<li>Reducing bot influence</li>
+</ul>
+<p>rather than establishing absolute truth. ([OpenSats][3])</p>
+<h2 id="why-13-hops-is-often-enough"><a class="header" href="#why-13-hops-is-often-enough">Why 1–3 hops is often enough</a></h2>
+<p>Most trust signal comes from nearby nodes.</p>
+<h3 id="1-hop"><a class="header" href="#1-hop">1 hop</a></h3>
+<p>People you explicitly follow.</p>
+<p>Highest confidence.</p>
+<h3 id="2-hops"><a class="header" href="#2-hops">2 hops</a></h3>
+<p>Friends of friends.</p>
+<p>Often still useful because they share social context.</p>
+<h3 id="3-hops"><a class="header" href="#3-hops">3 hops</a></h3>
+<p>Weak signal but can help discovery.</p>
+<h3 id="4-hops"><a class="header" href="#4-hops">4+ hops</a></h3>
+<p>Signal-to-noise ratio drops rapidly.</p>
+<p>At this point you are reaching people with little meaningful connection to your network. Nostr WoT implementations often treat 3+ hops as increasingly untrusted. ([Nostr WoT][4])</p>
+<p>This resembles the “three degrees of influence” idea observed in social network research: influence and trust tend to decay quickly with distance.</p>
+<h2 id="where-web-of-trust-fails"><a class="header" href="#where-web-of-trust-fails">Where Web of Trust fails</a></h2>
+<h3 id="1-echo-chambers"><a class="header" href="#1-echo-chambers">1. Echo chambers</a></h3>
+<p>If your network follows people with similar beliefs, trust propagation reinforces that bubble.</p>
+<p>Example:</p>
+<ul>
+<li>Bitcoiners follow Bitcoiners.</li>
+<li>Rust developers follow Rust developers.</li>
+<li>Political groups follow their own side.</li>
+</ul>
+<p>The system becomes good at finding insiders but bad at discovering outsiders.</p>
+<h3 id="2-sybil-attacks"><a class="header" href="#2-sybil-attacks">2. Sybil attacks</a></h3>
+<p>An attacker can create:</p>
+<ul>
+<li>10,000 fake accounts</li>
+</ul>
+<p>but they still need trusted users to follow them.</p>
+<p>This is why WoT is stronger than follower counts alone. Reputation is harder to fake than account creation. ([OpenSats][3])</p>
+<h3 id="3-trust--competence"><a class="header" href="#3-trust--competence">3. Trust ≠ competence</a></h3>
+<p>Suppose:</p>
+<ul>
+<li>You trust a famous developer.</li>
+<li>They follow a friend.</li>
+<li>That friend starts posting medical advice.</li>
+</ul>
+<p>The trust may propagate even though expertise does not.</p>
+<p>This is a classic weakness of trust systems.</p>
+<h3 id="4-community-capture"><a class="header" href="#4-community-capture">4. Community capture</a></h3>
+<p>Research on PGP’s Web of Trust found strong community structures and hubs. Trust tends to cluster into communities rather than becoming globally reliable.</p>
+<h2 id="what-research-suggests-works-best"><a class="header" href="#what-research-suggests-works-best">What research suggests works best</a></h2>
+<p>Pure hop-count is usually not enough.</p>
+<p>Better systems combine:</p>
+<ol>
+<li>Distance (1 hop &gt; 2 hops &gt; 3 hops)</li>
+<li>Number of independent paths</li>
+<li>Strength of relationships</li>
+<li>Reputation of intermediaries</li>
+<li>Time/history of interactions</li>
+</ol>
+<p>For example:</p>
+<ul>
+<li>
+<p>One path to Bob:</p>
+<ul>
+<li>You → Alice → Bob</li>
+</ul>
+</li>
+</ul>
+<p>is weaker than</p>
+<ul>
+<li>
+<p>Five independent paths:</p>
+<ul>
+<li>You → Alice → Bob</li>
+<li>You → Carol → Bob</li>
+<li>You → Dave → Bob</li>
+<li>You → Eve → Bob</li>
+<li>You → Frank → Bob</li>
+</ul>
+</li>
+</ul>
+<p>Multiple independent paths are a strong signal. Modern Nostr WoT systems already incorporate path counts and graph structure rather than simple hop limits.</p>
 <div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
 <meta property="og:title" content="Introduction" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
