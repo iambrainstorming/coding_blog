@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-85d2bd00.js";
+            window.path_to_searchindex_js = "../searchindex-35e44c1b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-99908c91.js"></script>
+        <script src="../toc-fe3a0939.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -227,7 +227,7 @@
 <li>Therefore Bob gets some trust from me.</li>
 <li>But not as much as Alice.</li>
 </ul>
-<p>This is called <strong>trust propagation</strong> or <strong>trust transitivity</strong>. Researchers have studied it extensively and found that propagated trust can outperform purely global reputation systems in predicting trustworthy users. ([AAAI Publications][2])</p>
+<p>This is called <strong>trust propagation</strong> or <strong>trust transitivity</strong>. Researchers have studied it extensively and found that propagated trust can outperform purely global reputation systems in predicting trustworthy users.</p>
 <p>In Nostr, Web of Trust is mainly used for:</p>
 <ul>
 <li>Spam filtering</li>
@@ -235,7 +235,7 @@
 <li>Discovering new people</li>
 <li>Reducing bot influence</li>
 </ul>
-<p>rather than establishing absolute truth. ([OpenSats][3])</p>
+<p>rather than establishing absolute truth.</p>
 <h2 id="why-13-hops-is-often-enough"><a class="header" href="#why-13-hops-is-often-enough">Why 1–3 hops is often enough</a></h2>
 <p>Most trust signal comes from nearby nodes.</p>
 <h3 id="1-hop"><a class="header" href="#1-hop">1 hop</a></h3>
@@ -248,7 +248,7 @@
 <p>Weak signal but can help discovery.</p>
 <h3 id="4-hops"><a class="header" href="#4-hops">4+ hops</a></h3>
 <p>Signal-to-noise ratio drops rapidly.</p>
-<p>At this point you are reaching people with little meaningful connection to your network. Nostr WoT implementations often treat 3+ hops as increasingly untrusted. ([Nostr WoT][4])</p>
+<p>At this point you are reaching people with little meaningful connection to your network. Nostr WoT implementations often treat 3+ hops as increasingly untrusted.</p>
 <p>This resembles the “three degrees of influence” idea observed in social network research: influence and trust tend to decay quickly with distance.</p>
 <h2 id="where-web-of-trust-fails"><a class="header" href="#where-web-of-trust-fails">Where Web of Trust fails</a></h2>
 <h3 id="1-echo-chambers"><a class="header" href="#1-echo-chambers">1. Echo chambers</a></h3>
@@ -266,7 +266,7 @@
 <li>10,000 fake accounts</li>
 </ul>
 <p>but they still need trusted users to follow them.</p>
-<p>This is why WoT is stronger than follower counts alone. Reputation is harder to fake than account creation. ([OpenSats][3])</p>
+<p>This is why WoT is stronger than follower counts alone. Reputation is harder to fake than account creation.</p>
 <h3 id="3-trust--competence"><a class="header" href="#3-trust--competence">3. Trust ≠ competence</a></h3>
 <p>Suppose:</p>
 <ul>

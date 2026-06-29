@@ -27,6 +27,9 @@
 - [Simple Majority vs Super Majority](./shivarthu/simple_majority_and_super_majority.md)
 - [Rationality based Price Discovery Exchange](./shivarthu/consensus_price_discovery.md)
 
+# Theory
+- [Off-chain goverance is easier to innovate](./blockchain/offchain-vs-onchain-goverance.md)
+
 # IPFS
 
 - [4everland](./4everland/4everland_api.md)

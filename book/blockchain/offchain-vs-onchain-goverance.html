@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Offline Centric Apps - Iambrainstorming Coding Blog</title>
+        <title>Off-chain goverance is easier to innovate - Iambrainstorming Coding Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -180,100 +180,104 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <meta property="og:type" content="website" />
-<meta property="og:title" content="Offline Centric Apps" />
+<meta property="og:title" content="Off-chain goverance is easier to innovate" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
-<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/linux/Offline_centric_apps.html" />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/blockchain/offchain-vs-onchain-goverance.html" />
 <meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Offline Centric Apps" />
+<meta name="twitter:title" content="Off-chain goverance is easier to innovate" />
 <meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
-<h1 id="enhancing-privacy-and-security-in-offline-app-design-with-webassembly"><a class="header" href="#enhancing-privacy-and-security-in-offline-app-design-with-webassembly">Enhancing Privacy and Security in Offline App Design with WebAssembly</a></h1>
-<p>Introduction:</p>
-<p>In the realm of application development, a shift towards designing offline apps by default is imperative for enhanced privacy and security. One key consideration involves the separation of folders for online connections and those accessed by the application for computation, ensuring data privacy without compromising functionality.</p>
-<p>Specification:</p>
-<p><strong>Isolating Online Connection and App-Read Folders:</strong></p>
-<ul>
-<li>How can we segregate folders for online connections and those read by the app for computation to prevent data transmission to the server?</li>
-</ul>
-<p><strong>Ensuring Data Privacy:</strong></p>
-<ul>
-<li>How can we determine which software reads data without transmitting it to the server?</li>
-</ul>
-<p><strong>Interaction with Server in the Absence of Data Read:</strong></p>
-<ul>
-<li>If the software is restricted from reading data, how will it interact with the server?</li>
-</ul>
-<h2 id="two-app-paradigm-online-app-and-offline-app-with-intents-based-communication"><a class="header" href="#two-app-paradigm-online-app-and-offline-app-with-intents-based-communication">Two App Paradigm: <code>Online App</code> and <code>Offline App</code> with <a href="../rust/one_wallet_app.html">intents</a> based communication.</a></h2>
-<p>The <code>Online App</code> has access only to an <code>Online Folder</code>, whereas the <code>Offline App</code> has access to both an <code>Offline Folder</code> and an <code>Online Folder</code>.</p>
-<p>“In this framework, we introduce two distinct applications: the <code>Online App</code>, a publicly audited high-security app with internet access, serving as the gatekeeper for all <code>Offline Apps</code> compatible with it, and the <code>Offline App</code>, designed for user interaction without direct internet access. The <code>Offline App</code> operates in a sandboxed environment, utilizing technologies like <a href="./firejail.html">firejail</a> for added security.</p>
-<p><strong>Communication Framework:</strong></p>
-<ul>
-<li>The <code>Online App</code> provides an API endpoint with three fields for the <code>Offline App</code>: a data description, the data itself, and the function name of the WebAssembly (wasm) code. Custom wasm code is one time uploaded to <code>Online App</code> by <code>Offline App</code>. Custom wasm logic facilitates remote server communication, enhancing interoperability.</li>
-</ul>
-<p><strong>User Traceability:</strong></p>
-<ul>
-<li>Data exchanged between the <code>Offline App</code> and <code>Online App</code> can be traced by users, offering transparency and the ability to maintain logs.</li>
-</ul>
-<p><strong>Differentiation from Browsers:</strong></p>
-<ul>
-<li>Unlike browsers, where file reads are potentially transmitted to servers due to constant internet connectivity, the <code>Offline App</code> allow intermittent internet access, promoting the development of offline-centric applications.</li>
-</ul>
-<p><strong>Promoting Offline App Development:</strong></p>
-<ul>
-<li>By eliminating the necessity for constant internet connection, developers are encouraged to create offline apps, enhancing user privacy. For instance, a code editor like VSCode only requires internet access for initial downloads. But currently, apps are free to connect to the internet all the time, you never know what is going on in the background. You can’t use <a href="./firejail.html">Firejail</a> because it completely disables the internet for the app. Open source helps, but as software has become highly complicated, security analysis of open source software is left to only a few developers.</li>
-</ul>
-<p><strong>Permission-Based Connection:</strong></p>
-<ul>
-<li>Implementing permission-based connections and providing a user interface for monitoring data flow ensures better control and transparency.</li>
-</ul>
-<p><strong>Enhancing User Experience:</strong></p>
-<ul>
-<li>To mitigate the need of constant monitoring, introduce regex-based file ignore functionality, similar to .gitignore, allowing users to specify files that are exempt from server access in the <code>Online Folder</code>.</li>
-</ul>
-<p><strong>Addressing Security Concerns:</strong></p>
-<ul>
-<li>What if the data that goes to the <code>Online App</code> is encrypted or obscured, so that you can’t trace what data is being sent? Encrypting or obscuring data sent to the <code>Online App</code> can be mitigated by only transmitting unobscured data or files. The <code>Online App</code> can verify the integrity of received data by comparing it to the original files in its designated folder.</li>
-</ul>
-<p>Conclusion:</p>
-<p>A privacy-centric approach to app development, emphasizing offline functionality and transparent communication, not only enhances security but also empowers users to have greater control over their data. By implementing features such as permission-based connections, user traceability, and file ignore options, we can strike a balance between functionality and safeguarding user privacy.</p>
-<p>A similar experiment to design crypto wallet using intents here: <a href="../rust/one_wallet_app.html">One Wallet App</a></p>
-<h3 id="sandboxed-core-functionality"><a class="header" href="#sandboxed-core-functionality">Sandboxed core functionality</a></h3>
-<p><img src="./image/sandbox_core_functionality.png" alt="Sandboxed core functionality"></p>
-<p style="text-align:center;">
-  <cite><a href="./libp2p.html">Full Stack rust-libp2p apps</a></cite>
-</p>
-
-<h3 id="challenges"><a class="header" href="#challenges">Challenges</a></h3>
-<p>Designing two separate apps can be a bit complicated. It would be easier for both app developers and users if all three modules (as shown in the image) were integrated into a single app. However, consolidating them into a single app might make it challenging for users to trust the app even if it’s open source and when it lacks sufficient code reviewers.</p>
-<p>Here is another model: all WebAssembly modules are assembled in a single package, whereas a generic module well audited by developer community is used for sandboxing the files and folders. Any app developer can utilize this module, and sandboxing of files and folders can be easily validated by users or developers without requiring much skill.</p>
-<p><img src="./image/sandboxing_files_folder.png" alt="Sandboxing files and folders"></p>
-<p>A command-line tool can also be built that takes the source code (e.g., Tauri source code) and provides security results, such as whether the app is properly internet sandboxed. It makes it easy to check the security.</p>
-<h2 id="security-enhancement-of-an-operating-system-eg-linux-os"><a class="header" href="#security-enhancement-of-an-operating-system-eg-linux-os">Security enhancement of an operating system (e.g. Linux OS)</a></h2>
-<p>With technology like <a href="./appimage.html">AppImage</a>, there is no need to change the operating system. This further increases the security of the OS. One can also check if something has changed or tampered in the system files crucial for security by obtaining the hash of the OS folder, as it will have the same hash at all times. In the case of an OS update, the changed hash can be publicly declared.</p>
-<p>If you just want to check if something in the folder changed:</p>
-<pre><code class="language-bash">ls -alR --full-time /folder/of/stuff | sha1sum
-</code></pre>
-<p>But how can we trust the compromised linux operating system software that generates the checksum? We don’t have to. For example, Ubuntu software provides a checksum for publicly audited software. One can install the Ubuntu on a pendrive and verify the checksum of the folder containing the Linux OS installed on the computer’s hard disk.</p>
-<h2 id="wasm-interface-types"><a class="header" href="#wasm-interface-types">Wasm interface types</a></h2>
-<p><a href="https://github.com/bytecodealliance/wit-bindgen">Wit Bindgen</a> uses Guest language bindings generator for WIT and the Component Model. With it different modules (or apps) can talk with each other. Its also used for the <a href="https://github.com/tauri-apps/tauri-bindgen">Tauri Inter-process communication (IPC) bridge</a></p>
-<h2 id="anonymity-protocols-in-rust"><a class="header" href="#anonymity-protocols-in-rust">Anonymity Protocols in rust</a></h2>
-<p>One can use anonymous protocols like Tor by default with tauri apps or AppImage to protect users.</p>
+<h1 id="off-chain-goverance-is-easier-to-innovate"><a class="header" href="#off-chain-goverance-is-easier-to-innovate">Off-chain goverance is easier to innovate</a></h1>
 <blockquote>
-<p>Defend yourself against tracking and surveillance. Circumvent censorship.</p>
+<p><strong>Off-chain voting systems prioritize adaptability. On-chain voting systems prioritize immutability and trust minimization.</strong></p>
 </blockquote>
-<p><a href="https://tpo.pages.torproject.net/core/arti/">Arti</a> is a project to implement the Tor anonymity protocols in the Rust programming language.</p>
+<p>Here are the main reasons.</p>
+<h3 id="1-smart-contracts-are-difficult-to-change"><a class="header" href="#1-smart-contracts-are-difficult-to-change">1. Smart contracts are difficult to change</a></h3>
+<p>Once a smart contract is deployed, its logic is usually permanent (unless it was designed with upgradeability from the start, which introduces additional trust and complexity).</p>
+<p>If you discover a flaw in your voting algorithm:</p>
+<ul>
+<li><strong>Off-chain:</strong> Update the software and deploy a new version.</li>
+<li><strong>On-chain:</strong> Deploy a new contract, migrate data, and have users and applications switch to it.</li>
+</ul>
+<hr>
+<h3 id="2-research-moves-faster-than-blockchains"><a class="header" href="#2-research-moves-faster-than-blockchains">2. Research moves faster than blockchains</a></h3>
+<p>Governance is still an active research area. New ideas emerge regularly:</p>
+<ul>
+<li>Approval voting</li>
+<li>Score voting</li>
+<li>Conviction voting</li>
+<li>Liquid democracy</li>
+<li>Reputation systems</li>
+<li>Delegation mechanisms</li>
+</ul>
+<p>With an off-chain system, you can experiment, gather feedback, and iterate quickly.</p>
+<p>With an on-chain system, every major design change can require a migration.</p>
+<hr>
+<h3 id="3-applications-become-tightly-coupled-to-contracts"><a class="header" href="#3-applications-become-tightly-coupled-to-contracts">3. Applications become tightly coupled to contracts</a></h3>
+<p>Suppose your frontend, mobile app, indexers, wallets, analytics, and APIs all interact with one governance contract.</p>
+<p>If you replace that contract:</p>
+<ul>
+<li>every application must update its contract address,</li>
+<li>APIs and indexers may need changes,</li>
+<li>users may need to approve new permissions or migrate state.</li>
+</ul>
+<p>The larger the ecosystem becomes, the more expensive such migrations become.</p>
+<hr>
+<h3 id="4-state-migration-is-hard"><a class="header" href="#4-state-migration-is-hard">4. State migration is hard</a></h3>
+<p>An off-chain database can be migrated using standard database migration tools.</p>
+<p>A blockchain contract stores persistent state that often cannot be modified in place.</p>
+<p>Changing storage layouts or data structures frequently requires:</p>
+<ul>
+<li>exporting data,</li>
+<li>writing migration scripts,</li>
+<li>deploying new contracts,</li>
+<li>verifying correctness.</li>
+</ul>
+<hr>
+<h3 id="5-complex-algorithms-are-easier-off-chain"><a class="header" href="#5-complex-algorithms-are-easier-off-chain">5. Complex algorithms are easier off-chain</a></h3>
+<p>Many governance mechanisms require:</p>
+<ul>
+<li>graph algorithms,</li>
+<li>recommendation systems,</li>
+<li>reputation calculations,</li>
+<li>machine learning,</li>
+<li>simulations,</li>
+<li>statistical models.</li>
+</ul>
+<p>These are much easier to implement in general-purpose languages like Rust than inside gas-constrained smart contracts.</p>
+<hr>
+<h3 id="6-lower-cost"><a class="header" href="#6-lower-cost">6. Lower cost</a></h3>
+<p>Every on-chain vote consumes blockchain resources and usually incurs transaction fees.</p>
+<p>Off-chain systems can process thousands of operations with minimal cost.</p>
+<p>This makes experimentation much more practical.</p>
+<hr>
+<h3 id="7-easier-debugging"><a class="header" href="#7-easier-debugging">7. Easier debugging</a></h3>
+<p>If a bug is found:</p>
+<ul>
+<li><strong>Off-chain:</strong> Fix it and redeploy.</li>
+<li><strong>On-chain:</strong> The bug may remain forever unless users migrate to a replacement contract.</li>
+</ul>
+<hr>
+<h3 id="8-better-interoperability"><a class="header" href="#8-better-interoperability">8. Better interoperability</a></h3>
+<p>An off-chain governance service can support multiple blockchains simultaneously.</p>
+<p>An on-chain governance contract is generally tied to a single blockchain and must often be rewritten to support another ecosystem.</p>
+<hr>
+<h2 id="the-main-trade-off"><a class="header" href="#the-main-trade-off">The main trade-off</a></h2>
+<p>The biggest advantage of on-chain governance is that <strong>everyone can independently verify the rules and the outcome without trusting a central operator</strong>. This is invaluable for high-value assets like treasuries.</p>
+<p>The biggest advantage of off-chain governance is <strong>rapid evolution</strong>. You can continuously improve voting algorithms, identity systems, reputation models, and user experience without forcing disruptive migrations.</p>
+<p>For <a href="https://iambrainstorming.github.io/chapters/education/why-some-schools-perform.html">governance systems like the School Management Committee platform</a>, an off-chain architecture built on signed events (for example, using Nostr) with cryptographically verifiable vote tallying can provide transparency while remaining much easier to evolve. Once the governance model has matured and proven itself, parts of it—such as treasury execution or final audit records—can be anchored on-chain if stronger immutability is needed. This hybrid approach often provides the best balance between flexibility and trust.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../4everland/rust_sts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../shivarthu/consensus_price_discovery.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../linux/firejail.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../4everland/4everland_api.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -283,11 +287,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../4everland/rust_sts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../shivarthu/consensus_price_discovery.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../linux/firejail.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../4everland/4everland_api.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

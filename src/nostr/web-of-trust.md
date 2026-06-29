@@ -30,7 +30,7 @@ Humans naturally trust through social connections:
 * Therefore Bob gets some trust from me.
 * But not as much as Alice.
 
-This is called **trust propagation** or **trust transitivity**. Researchers have studied it extensively and found that propagated trust can outperform purely global reputation systems in predicting trustworthy users. ([AAAI Publications][2])
+This is called **trust propagation** or **trust transitivity**. Researchers have studied it extensively and found that propagated trust can outperform purely global reputation systems in predicting trustworthy users. 
 
 In Nostr, Web of Trust is mainly used for:
 
@@ -39,7 +39,7 @@ In Nostr, Web of Trust is mainly used for:
 * Discovering new people
 * Reducing bot influence
 
-rather than establishing absolute truth. ([OpenSats][3])
+rather than establishing absolute truth.
 
 ## Why 1–3 hops is often enough
 
@@ -65,7 +65,7 @@ Weak signal but can help discovery.
 
 Signal-to-noise ratio drops rapidly.
 
-At this point you are reaching people with little meaningful connection to your network. Nostr WoT implementations often treat 3+ hops as increasingly untrusted. ([Nostr WoT][4])
+At this point you are reaching people with little meaningful connection to your network. Nostr WoT implementations often treat 3+ hops as increasingly untrusted. 
 
 This resembles the "three degrees of influence" idea observed in social network research: influence and trust tend to decay quickly with distance.
 
@@ -91,7 +91,7 @@ An attacker can create:
 
 but they still need trusted users to follow them.
 
-This is why WoT is stronger than follower counts alone. Reputation is harder to fake than account creation. ([OpenSats][3])
+This is why WoT is stronger than follower counts alone. Reputation is harder to fake than account creation. 
 
 ### 3. Trust ≠ competence
 
