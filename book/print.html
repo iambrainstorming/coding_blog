@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b6717d92.js";
+            window.path_to_searchindex_js = "searchindex-7b139778.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-6acfe481.js"></script>
+        <script src="toc-f3d82ac5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -661,14 +661,14 @@ use boa_parser::Source;
 <meta property="og:title" content="Single Source Format for All Publishing" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
-<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/education-material-generation/yaml.html" />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/education-material-generation/one-format.html" />
 <meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Single Source Format for All Publishing" />
 <meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
 <h1 id="single-source-format-for-all-publishing"><a class="header" href="#single-source-format-for-all-publishing">Single Source Format for All Publishing</a></h1>
-<p>Date: 03-06-2026</p>
+<p><strong>Date:</strong> 03-06-2026</p>
 <p>A single source format can drive:</p>
 <ul>
 <li>Printed books (PDF, EPUB)</li>
@@ -677,11 +677,11 @@ use boa_parser::Source;
 <li>Video generation with images, animations, and narration</li>
 <li>Mobile apps and web apps</li>
 </ul>
-<p>Recommendation: YAML metadata</p>
+<p><strong>Recommendation: TOML metadata</strong></p>
 <p>A practical architecture would look like this:</p>
-<pre><code class="language-text">book.yaml
+<pre><code class="language-text">book.toml
     ↓
-serde_yaml
+toml
     ↓
 Rust structs
     ↓
@@ -696,40 +696,38 @@ Typst Generator
 TTS Generator
 </code></pre>
 <hr>
-<h2 id="1-yaml"><a class="header" href="#1-yaml">1. YAML</a></h2>
-<pre><code class="language-yaml">title: Biology
-grade: 11
-language: en
+<h2 id="1-toml"><a class="header" href="#1-toml">1. TOML</a></h2>
+<pre><code class="language-toml">title = "Biology"
+grade = 11
+language = "en"
 
-chapters:
-  - id: cell
-    title: Cell
+[[chapters]]
+id = "cell"
+title = "Cell"
 
-    sections:
-      - title: Introduction
+[[chapters.sections]]
+title = "Introduction"
 
-        content:
-          - type: paragraph
-            text: |
-              Cells are the &lt;b&gt;basic unit of life&lt;/b&gt;.
+[[chapters.sections.content]]
+type = "paragraph"
+text = """
+Cells are the &lt;b&gt;basic unit of life&lt;/b&gt;.
 
-              The &lt;i&gt;cell membrane&lt;/i&gt; protects the cell.
+The &lt;i&gt;cell membrane&lt;/i&gt; protects the cell.
 
-              &lt;color value="red"&gt;DNA&lt;/color&gt; stores genetic information.
+&lt;color value="red"&gt;DNA&lt;/color&gt; stores genetic information.
+"""
 
-          - type: image
-            src: images/cell.png
-            alt: Animal Cell
+[[chapters.sections.content]]
+type = "image"
+src = "images/cell.png"
+alt = "Animal Cell"
 
-          - type: quiz
-            question: What is the basic unit of life?
-
-            options:
-              - Cell
-              - Tissue
-              - Organ
-
-            answer: 0
+[[chapters.sections.content]]
+type = "quiz"
+question = "What is the basic unit of life?"
+options = ["Cell", "Tissue", "Organ"]
+answer = 0
 </code></pre>
 <hr>
 <h2 id="2-rust-structures"><a class="header" href="#2-rust-structures">2. Rust Structures</a></h2>
@@ -792,14 +790,14 @@ pub enum Content {
 </span><span class="boring">fn main() {
 </span>use garde::Validate;
 
-let yaml = std::fs::read_to_string("book.yaml")?;
+let toml = std::fs::read_to_string("book.toml")?;
 
-let book: Book = serde_yaml::from_str(&amp;yaml)?;
+let book: Book = toml::from_str(&amp;toml)?;
 
 book.validate()?;
 <span class="boring">}</span></code></pre>
 <p>Fails:</p>
-<pre><code class="language-yaml">grade: 15
+<pre><code class="language-toml">grade = 15
 </code></pre>
 <p>Error:</p>
 <pre><code class="language-text">grade must be between 1 and 12
@@ -990,11 +988,11 @@ DNA stores genetic information.
 </code></pre>
 <p>Feed directly into a TTS engine.</p>
 <hr>
-<h1 id="10-video-generation"><a class="header" href="#10-video-generation">10. Video Generation</a></h1>
+<h2 id="10-video-generation"><a class="header" href="#10-video-generation">10. Video Generation</a></h2>
 <p>Each content block becomes a scene:</p>
-<pre><code class="language-yaml">- paragraph
-- image
-- quiz
+<pre><code class="language-toml">type = "paragraph"
+type = "image"
+type = "quiz"
 </code></pre>
 <p>↓</p>
 <pre><code class="language-text">Scene 1:
@@ -1008,7 +1006,7 @@ images/cell.png
 Scene 3:
 Quiz Screen
 </code></pre>
-<p>This gives you a single YAML source that can generate:</p>
+<p>This gives you a single <strong>TOML</strong> source that can generate:</p>
 <ul>
 <li>HTML books</li>
 <li>Typst/PDF textbooks</li>

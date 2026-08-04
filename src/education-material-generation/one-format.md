@@ -1,24 +1,23 @@
 # Single Source Format for All Publishing
 
-Date: 03-06-2026 
+**Date:** 03-06-2026
 
 A single source format can drive:
 
-- Printed books (PDF, EPUB)
-- HTML books with quizzes
-- TTS audiobook generation
-- Video generation with images, animations, and narration
-- Mobile apps and web apps
+* Printed books (PDF, EPUB)
+* HTML books with quizzes
+* TTS audiobook generation
+* Video generation with images, animations, and narration
+* Mobile apps and web apps
 
-Recommendation: YAML metadata
-
+**Recommendation: TOML metadata**
 
 A practical architecture would look like this:
 
 ```text
-book.yaml
+book.toml
     ↓
-serde_yaml
+toml
     ↓
 Rust structs
     ↓
@@ -35,42 +34,40 @@ TTS Generator
 
 ---
 
-## 1. YAML
+## 1. TOML
 
-```yaml
-title: Biology
-grade: 11
-language: en
+```toml
+title = "Biology"
+grade = 11
+language = "en"
 
-chapters:
-  - id: cell
-    title: Cell
+[[chapters]]
+id = "cell"
+title = "Cell"
 
-    sections:
-      - title: Introduction
+[[chapters.sections]]
+title = "Introduction"
 
-        content:
-          - type: paragraph
-            text: |
-              Cells are the <b>basic unit of life</b>.
+[[chapters.sections.content]]
+type = "paragraph"
+text = """
+Cells are the <b>basic unit of life</b>.
 
-              The <i>cell membrane</i> protects the cell.
+The <i>cell membrane</i> protects the cell.
 
-              <color value="red">DNA</color> stores genetic information.
+<color value="red">DNA</color> stores genetic information.
+"""
 
-          - type: image
-            src: images/cell.png
-            alt: Animal Cell
+[[chapters.sections.content]]
+type = "image"
+src = "images/cell.png"
+alt = "Animal Cell"
 
-          - type: quiz
-            question: What is the basic unit of life?
-
-            options:
-              - Cell
-              - Tissue
-              - Organ
-
-            answer: 0
+[[chapters.sections.content]]
+type = "quiz"
+question = "What is the basic unit of life?"
+options = ["Cell", "Tissue", "Organ"]
+answer = 0
 ```
 
 ---
@@ -137,17 +134,17 @@ pub enum Content {
 ```rust
 use garde::Validate;
 
-let yaml = std::fs::read_to_string("book.yaml")?;
+let toml = std::fs::read_to_string("book.toml")?;
 
-let book: Book = serde_yaml::from_str(&yaml)?;
+let book: Book = toml::from_str(&toml)?;
 
 book.validate()?;
 ```
 
 Fails:
 
-```yaml
-grade: 15
+```toml
+grade = 15
 ```
 
 Error:
@@ -378,14 +375,14 @@ Feed directly into a TTS engine.
 
 ---
 
-# 10. Video Generation
+## 10. Video Generation
 
 Each content block becomes a scene:
 
-```yaml
-- paragraph
-- image
-- quiz
+```toml
+type = "paragraph"
+type = "image"
+type = "quiz"
 ```
 
 ↓
@@ -403,7 +400,7 @@ Scene 3:
 Quiz Screen
 ```
 
-This gives you a single YAML source that can generate:
+This gives you a single **TOML** source that can generate:
 
 * HTML books
 * Typst/PDF textbooks
