@@ -32,38 +32,43 @@ Create `Containerfile`:
 
 ```dockerfile
 FROM ubuntu:24.04
-
 ENV DEBIAN_FRONTEND=noninteractive
-
 RUN apt-get update && apt-get install -y \
     curl \
     git \
     build-essential \
+    clang \
+    llvm \
     pkg-config \
     libssl-dev \
     ca-certificates \
     unzip \
     wget \
-    sudo
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Ubuntu 24.04 ships a built-in "ubuntu" user at UID/GID 1000 already.
+# Just use it directly instead of creating/renaming a user.
+RUN echo "ubuntu ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ubuntu \
+    && chmod 0440 /etc/sudoers.d/ubuntu
+
+USER ubuntu
+WORKDIR /home/ubuntu
 
 # Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
     | sh -s -- -y
-
-ENV PATH="/root/.cargo/bin:${PATH}"
-
-RUN rustup default stable
-
-# WebAssembly target
-RUN rustup target add wasm32-unknown-unknown
+ENV PATH="/home/ubuntu/.cargo/bin:${PATH}"
+RUN rustup default stable \
+    && rustup target add wasm32-unknown-unknown
+RUN cargo install cargo-binstall
+RUN cargo binstall dioxus-cli --force
 
 # OpenCode
 RUN curl -fsSL https://opencode.ai/install | bash
-
-ENV PATH="/root/.opencode/bin:${PATH}"
+ENV PATH="/home/ubuntu/.opencode/bin:${PATH}"
 
 WORKDIR /workspace
-
 CMD ["bash"]
 ```
 
@@ -82,12 +87,12 @@ This gives you:
 * OpenCode
 ---
 
-# Run it against one project
+## Run it against one project
 
 Suppose your project is:
 
 ```text
-~/Documents/workspace/smartpushti-nostr
+~/Documents/workspace/symbiosky-nostr
 ```
 
 Run:
@@ -95,24 +100,48 @@ Run:
 ```bash
 podman run --rm -it \
     --name opencode-smartpushti \
-    --network=host \
-    -v "$HOME/Documents/workspace/smartpushti-nostr:/workspace:rw" \
+    --userns=keep-id \
+    -p 8080:8080 \
+    -v "$HOME/Documents/workspace/symbiosky-nostr:/workspace:rw" \
     opencode-sandbox
 ```
 
 
-## Install on container
+## Keep container
 
 ```bash
-root@amiya:/workspace#
+podman run -it \
+    --name opencode-smartpushti \
+    --userns=keep-id \
+      -p 8080:8080 \
+    -v "$HOME/Documents/workspace/symbiosky-nostr:/workspace:rw" \
+    opencode-sandbox
 ```
 
 ```bash
-cargo install cargo-binstall
-
-cargo binstall dioxus-cli --force
+cd packages/web
+dx serve --addr 0.0.0.0 --port 8080
 ```
 
+```bash
+podman start -ai opencode-smartpushti
+```
+
+
+
+```bash
+ubuntu@e889c99b0b72:/workspace$
+```
+
+
+## Run opencode
+
+```bash
+opencode
+```
+## To exit from session
+
+Type `exit` or `Ctrl+D`
 
 ## Don't expose your SSH keys
 
@@ -136,46 +165,5 @@ The container therefore won't have:
 ```
 
 unless you explicitly mount them.
-
----
-
-## Add a non-root user
-
-For an even better setup, I would **not run the agent as root**.
-
-Add this to the Containerfile:
-
-```dockerfile
-RUN useradd -m -u 1000 developer
-
-RUN chown -R developer:developer /workspace
-
-USER developer
-
-WORKDIR /workspace
-
-ENV PATH="/home/developer/.cargo/bin:/home/developer/.foundry/bin:/home/developer/.opencode/bin:${PATH}"
-
-CMD ["bash"]
-```
-
-But there is a practical issue: the host project's files need to have a compatible UID/GID.
-
-Podman makes this easier with:
-
-```bash
---userns=keep-id
-```
-
-So your final command can be:
-
-```bash
-podman run --rm -it \
-    --userns=keep-id \
-    -v "$HOME/projects/smartpushti:/workspace:rw" \
-    opencode-sandbox
-```
-
-This is a much nicer setup for a development environment.
 
 ---

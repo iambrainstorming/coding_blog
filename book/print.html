@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-5312969d.js";
+            window.path_to_searchindex_js = "searchindex-d7d67aac.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-80e9daae.js"></script>
@@ -3575,38 +3575,43 @@ cd ~/opencode-sandbox
 </code></pre>
 <p>Create <code>Containerfile</code>:</p>
 <pre><code class="language-dockerfile">FROM ubuntu:24.04
-
 ENV DEBIAN_FRONTEND=noninteractive
-
 RUN apt-get update &amp;&amp; apt-get install -y \
     curl \
     git \
     build-essential \
+    clang \
+    llvm \
     pkg-config \
     libssl-dev \
     ca-certificates \
     unzip \
     wget \
-    sudo
+    sudo \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Ubuntu 24.04 ships a built-in "ubuntu" user at UID/GID 1000 already.
+# Just use it directly instead of creating/renaming a user.
+RUN echo "ubuntu ALL=(ALL) NOPASSWD:ALL" &gt; /etc/sudoers.d/ubuntu \
+    &amp;&amp; chmod 0440 /etc/sudoers.d/ubuntu
+
+USER ubuntu
+WORKDIR /home/ubuntu
 
 # Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
     | sh -s -- -y
-
-ENV PATH="/root/.cargo/bin:${PATH}"
-
-RUN rustup default stable
-
-# WebAssembly target
-RUN rustup target add wasm32-unknown-unknown
+ENV PATH="/home/ubuntu/.cargo/bin:${PATH}"
+RUN rustup default stable \
+    &amp;&amp; rustup target add wasm32-unknown-unknown
+RUN cargo install cargo-binstall
+RUN cargo binstall dioxus-cli --force
 
 # OpenCode
 RUN curl -fsSL https://opencode.ai/install | bash
-
-ENV PATH="/root/.opencode/bin:${PATH}"
+ENV PATH="/home/ubuntu/.opencode/bin:${PATH}"
 
 WORKDIR /workspace
-
 CMD ["bash"]
 </code></pre>
 <p>Build it:</p>
@@ -3621,24 +3626,38 @@ CMD ["bash"]
 <li>OpenCode</li>
 </ul>
 <hr>
-<h1 id="run-it-against-one-project"><a class="header" href="#run-it-against-one-project">Run it against one project</a></h1>
+<h2 id="run-it-against-one-project"><a class="header" href="#run-it-against-one-project">Run it against one project</a></h2>
 <p>Suppose your project is:</p>
-<pre><code class="language-text">~/Documents/workspace/smartpushti-nostr
+<pre><code class="language-text">~/Documents/workspace/symbiosky-nostr
 </code></pre>
 <p>Run:</p>
 <pre><code class="language-bash">podman run --rm -it \
     --name opencode-smartpushti \
-    --network=host \
-    -v "$HOME/Documents/workspace/smartpushti-nostr:/workspace:rw" \
+    --userns=keep-id \
+    -p 8080:8080 \
+    -v "$HOME/Documents/workspace/symbiosky-nostr:/workspace:rw" \
     opencode-sandbox
 </code></pre>
-<h2 id="install-on-container"><a class="header" href="#install-on-container">Install on container</a></h2>
-<pre><code class="language-bash">root@amiya:/workspace#
+<h2 id="keep-container"><a class="header" href="#keep-container">Keep container</a></h2>
+<pre><code class="language-bash">podman run -it \
+    --name opencode-smartpushti \
+    --userns=keep-id \
+      -p 8080:8080 \
+    -v "$HOME/Documents/workspace/symbiosky-nostr:/workspace:rw" \
+    opencode-sandbox
 </code></pre>
-<pre><code class="language-bash">cargo install cargo-binstall
-
-cargo binstall dioxus-cli --force
+<pre><code class="language-bash">cd packages/web
+dx serve --addr 0.0.0.0 --port 8080
 </code></pre>
+<pre><code class="language-bash">podman start -ai opencode-smartpushti
+</code></pre>
+<pre><code class="language-bash">ubuntu@e889c99b0b72:/workspace$
+</code></pre>
+<h2 id="run-opencode"><a class="header" href="#run-opencode">Run opencode</a></h2>
+<pre><code class="language-bash">opencode
+</code></pre>
+<h2 id="to-exit-from-session"><a class="header" href="#to-exit-from-session">To exit from session</a></h2>
+<p>Type <code>exit</code> or <code>Ctrl+D</code></p>
 <h2 id="dont-expose-your-ssh-keys"><a class="header" href="#dont-expose-your-ssh-keys">Don’t expose your SSH keys</a></h2>
 <p>This is particularly important for an AI coding agent.</p>
 <p><strong>Do not do this:</strong></p>
@@ -3652,33 +3671,6 @@ cargo binstall dioxus-cli --force
 ~/.config
 </code></pre>
 <p>unless you explicitly mount them.</p>
-<hr>
-<h2 id="add-a-non-root-user"><a class="header" href="#add-a-non-root-user">Add a non-root user</a></h2>
-<p>For an even better setup, I would <strong>not run the agent as root</strong>.</p>
-<p>Add this to the Containerfile:</p>
-<pre><code class="language-dockerfile">RUN useradd -m -u 1000 developer
-
-RUN chown -R developer:developer /workspace
-
-USER developer
-
-WORKDIR /workspace
-
-ENV PATH="/home/developer/.cargo/bin:/home/developer/.foundry/bin:/home/developer/.opencode/bin:${PATH}"
-
-CMD ["bash"]
-</code></pre>
-<p>But there is a practical issue: the host project’s files need to have a compatible UID/GID.</p>
-<p>Podman makes this easier with:</p>
-<pre><code class="language-bash">--userns=keep-id
-</code></pre>
-<p>So your final command can be:</p>
-<pre><code class="language-bash">podman run --rm -it \
-    --userns=keep-id \
-    -v "$HOME/projects/smartpushti:/workspace:rw" \
-    opencode-sandbox
-</code></pre>
-<p>This is a much nicer setup for a development environment.</p>
 <hr><div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
 <meta property="og:title" content="Line numbers" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
