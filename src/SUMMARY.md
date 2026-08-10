@@ -53,9 +53,10 @@
 # IPFS
 - [Hard time with IPFS](./rust/ipfs.md)
 
-# Hosting server
+# Podman and Sandboxing
 - [Podman Tutorial](./hosting/podman.md)
 - [Podman Build](./hosting/container_file.md)
+- [Sandbox Open Code AI agent for dioxus app](./sandbox/sandbox-ai-agent.md)
 
 # Shortcuts
 - [Line numbers](./linux/line_numbers.md)

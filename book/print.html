@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-7b139778.js";
+            window.path_to_searchindex_js = "searchindex-5312969d.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-f3d82ac5.js"></script>
+        <script src="toc-80e9daae.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3548,6 +3548,138 @@ CMD ["/usr/bin/node-template"]
 <li><code>CMD ["/usr/bin/node-template"]</code>: This line sets the command that will be run when the container starts. In this case, it will run the <code>node-template</code> binary.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
+<meta property="og:title" content="Sandbox Open Code AI agent for dioxus app" />
+<meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/sandbox/sandbox-ai-agent.html" />
+<meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sandbox Open Code AI agent for dioxus app" />
+<meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<h1 id="sandbox-open-code-ai-agent-for-dioxus-app"><a class="header" href="#sandbox-open-code-ai-agent-for-dioxus-app">Sandbox Open Code AI agent for dioxus app</a></h1>
+<h2 id="install-podman"><a class="header" href="#install-podman">Install Podman</a></h2>
+<p>On Ubuntu:</p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install podman
+</code></pre>
+<p>Check:</p>
+<pre><code class="language-bash">podman --version
+</code></pre>
+<p>You don’t need Docker Desktop.</p>
+<hr>
+<h2 id="create-an-opencode-container-image"><a class="header" href="#create-an-opencode-container-image">Create an OpenCode container image</a></h2>
+<p>Create a directory:</p>
+<pre><code class="language-bash">mkdir -p ~/opencode-sandbox
+cd ~/opencode-sandbox
+</code></pre>
+<p>Create <code>Containerfile</code>:</p>
+<pre><code class="language-dockerfile">FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update &amp;&amp; apt-get install -y \
+    curl \
+    git \
+    build-essential \
+    pkg-config \
+    libssl-dev \
+    ca-certificates \
+    unzip \
+    wget \
+    sudo
+
+# Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y
+
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+RUN rustup default stable
+
+# WebAssembly target
+RUN rustup target add wasm32-unknown-unknown
+
+# OpenCode
+RUN curl -fsSL https://opencode.ai/install | bash
+
+ENV PATH="/root/.opencode/bin:${PATH}"
+
+WORKDIR /workspace
+
+CMD ["bash"]
+</code></pre>
+<p>Build it:</p>
+<pre><code class="language-bash">podman build -t opencode-sandbox .
+</code></pre>
+<p>This gives you:</p>
+<ul>
+<li>Ubuntu</li>
+<li>Git</li>
+<li>Rust</li>
+<li>Cargo</li>
+<li>OpenCode</li>
+</ul>
+<hr>
+<h1 id="run-it-against-one-project"><a class="header" href="#run-it-against-one-project">Run it against one project</a></h1>
+<p>Suppose your project is:</p>
+<pre><code class="language-text">~/Documents/workspace/smartpushti-nostr
+</code></pre>
+<p>Run:</p>
+<pre><code class="language-bash">podman run --rm -it \
+    --name opencode-smartpushti \
+    --network=host \
+    -v "$HOME/Documents/workspace/smartpushti-nostr:/workspace:rw" \
+    opencode-sandbox
+</code></pre>
+<h2 id="install-on-container"><a class="header" href="#install-on-container">Install on container</a></h2>
+<pre><code class="language-bash">root@amiya:/workspace#
+</code></pre>
+<pre><code class="language-bash">cargo install cargo-binstall
+
+cargo binstall dioxus-cli --force
+</code></pre>
+<h2 id="dont-expose-your-ssh-keys"><a class="header" href="#dont-expose-your-ssh-keys">Don’t expose your SSH keys</a></h2>
+<p>This is particularly important for an AI coding agent.</p>
+<p><strong>Do not do this:</strong></p>
+<pre><code class="language-bash">-v ~/.ssh:/root/.ssh
+</code></pre>
+<p>The whole point of this setup is that OpenCode shouldn’t have access to your host credentials.</p>
+<p>The container therefore won’t have:</p>
+<pre><code class="language-text">~/.ssh
+~/.gnupg
+~/.aws
+~/.config
+</code></pre>
+<p>unless you explicitly mount them.</p>
+<hr>
+<h2 id="add-a-non-root-user"><a class="header" href="#add-a-non-root-user">Add a non-root user</a></h2>
+<p>For an even better setup, I would <strong>not run the agent as root</strong>.</p>
+<p>Add this to the Containerfile:</p>
+<pre><code class="language-dockerfile">RUN useradd -m -u 1000 developer
+
+RUN chown -R developer:developer /workspace
+
+USER developer
+
+WORKDIR /workspace
+
+ENV PATH="/home/developer/.cargo/bin:/home/developer/.foundry/bin:/home/developer/.opencode/bin:${PATH}"
+
+CMD ["bash"]
+</code></pre>
+<p>But there is a practical issue: the host project’s files need to have a compatible UID/GID.</p>
+<p>Podman makes this easier with:</p>
+<pre><code class="language-bash">--userns=keep-id
+</code></pre>
+<p>So your final command can be:</p>
+<pre><code class="language-bash">podman run --rm -it \
+    --userns=keep-id \
+    -v "$HOME/projects/smartpushti:/workspace:rw" \
+    opencode-sandbox
+</code></pre>
+<p>This is a much nicer setup for a development environment.</p>
+<hr><div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
 <meta property="og:title" content="Line numbers" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />

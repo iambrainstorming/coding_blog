@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Executable - Iambrainstorming Coding Blog</title>
+        <title>Sandbox Open Code AI agent for dioxus app - Iambrainstorming Coding Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -180,28 +180,147 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <meta property="og:type" content="website" />
-<meta property="og:title" content="Executable" />
+<meta property="og:title" content="Sandbox Open Code AI agent for dioxus app" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
-<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/linux/executable.html" />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/sandbox/sandbox-ai-agent.html" />
 <meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Executable" />
+<meta name="twitter:title" content="Sandbox Open Code AI agent for dioxus app" />
 <meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
 <meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
-<h1 id="bin-folder"><a class="header" href="#bin-folder">Bin Folder</a></h1>
-<pre><code class="language-bash">$HOME/.local/bin
+<h1 id="sandbox-open-code-ai-agent-for-dioxus-app"><a class="header" href="#sandbox-open-code-ai-agent-for-dioxus-app">Sandbox Open Code AI agent for dioxus app</a></h1>
+<h2 id="install-podman"><a class="header" href="#install-podman">Install Podman</a></h2>
+<p>On Ubuntu:</p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install podman
 </code></pre>
+<p>Check:</p>
+<pre><code class="language-bash">podman --version
+</code></pre>
+<p>You don’t need Docker Desktop.</p>
+<hr>
+<h2 id="create-an-opencode-container-image"><a class="header" href="#create-an-opencode-container-image">Create an OpenCode container image</a></h2>
+<p>Create a directory:</p>
+<pre><code class="language-bash">mkdir -p ~/opencode-sandbox
+cd ~/opencode-sandbox
+</code></pre>
+<p>Create <code>Containerfile</code>:</p>
+<pre><code class="language-dockerfile">FROM ubuntu:24.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update &amp;&amp; apt-get install -y \
+    curl \
+    git \
+    build-essential \
+    pkg-config \
+    libssl-dev \
+    ca-certificates \
+    unzip \
+    wget \
+    sudo
+
+# Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y
+
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+RUN rustup default stable
+
+# WebAssembly target
+RUN rustup target add wasm32-unknown-unknown
+
+# OpenCode
+RUN curl -fsSL https://opencode.ai/install | bash
+
+ENV PATH="/root/.opencode/bin:${PATH}"
+
+WORKDIR /workspace
+
+CMD ["bash"]
+</code></pre>
+<p>Build it:</p>
+<pre><code class="language-bash">podman build -t opencode-sandbox .
+</code></pre>
+<p>This gives you:</p>
+<ul>
+<li>Ubuntu</li>
+<li>Git</li>
+<li>Rust</li>
+<li>Cargo</li>
+<li>OpenCode</li>
+</ul>
+<hr>
+<h1 id="run-it-against-one-project"><a class="header" href="#run-it-against-one-project">Run it against one project</a></h1>
+<p>Suppose your project is:</p>
+<pre><code class="language-text">~/Documents/workspace/smartpushti-nostr
+</code></pre>
+<p>Run:</p>
+<pre><code class="language-bash">podman run --rm -it \
+    --name opencode-smartpushti \
+    --network=host \
+    -v "$HOME/Documents/workspace/smartpushti-nostr:/workspace:rw" \
+    opencode-sandbox
+</code></pre>
+<h2 id="install-on-container"><a class="header" href="#install-on-container">Install on container</a></h2>
+<pre><code class="language-bash">root@amiya:/workspace#
+</code></pre>
+<pre><code class="language-bash">cargo install cargo-binstall
+
+cargo binstall dioxus-cli --force
+</code></pre>
+<h2 id="dont-expose-your-ssh-keys"><a class="header" href="#dont-expose-your-ssh-keys">Don’t expose your SSH keys</a></h2>
+<p>This is particularly important for an AI coding agent.</p>
+<p><strong>Do not do this:</strong></p>
+<pre><code class="language-bash">-v ~/.ssh:/root/.ssh
+</code></pre>
+<p>The whole point of this setup is that OpenCode shouldn’t have access to your host credentials.</p>
+<p>The container therefore won’t have:</p>
+<pre><code class="language-text">~/.ssh
+~/.gnupg
+~/.aws
+~/.config
+</code></pre>
+<p>unless you explicitly mount them.</p>
+<hr>
+<h2 id="add-a-non-root-user"><a class="header" href="#add-a-non-root-user">Add a non-root user</a></h2>
+<p>For an even better setup, I would <strong>not run the agent as root</strong>.</p>
+<p>Add this to the Containerfile:</p>
+<pre><code class="language-dockerfile">RUN useradd -m -u 1000 developer
+
+RUN chown -R developer:developer /workspace
+
+USER developer
+
+WORKDIR /workspace
+
+ENV PATH="/home/developer/.cargo/bin:/home/developer/.foundry/bin:/home/developer/.opencode/bin:${PATH}"
+
+CMD ["bash"]
+</code></pre>
+<p>But there is a practical issue: the host project’s files need to have a compatible UID/GID.</p>
+<p>Podman makes this easier with:</p>
+<pre><code class="language-bash">--userns=keep-id
+</code></pre>
+<p>So your final command can be:</p>
+<pre><code class="language-bash">podman run --rm -it \
+    --userns=keep-id \
+    -v "$HOME/projects/smartpushti:/workspace:rw" \
+    opencode-sandbox
+</code></pre>
+<p>This is a much nicer setup for a development environment.</p>
+<hr>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../rust/redox-os.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../hosting/container_file.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../rust/ipfs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../linux/line_numbers.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -211,11 +330,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../rust/redox-os.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../hosting/container_file.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../rust/ipfs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../linux/line_numbers.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
