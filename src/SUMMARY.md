@@ -9,6 +9,9 @@
 - [ How to call javascript in rust using boa-engine and esbuild?](./js-in-rust/js-in-rust.md)
 - [Single Source Format for All Publishing](./education-material-generation/one-format.md)
 
+# Algorithm
+- [Anonymous Voting with Cairo (Merkle Tree + Nullifier)](./blockchain/anonymous-voting-with-cairo.md)
+
 # Security
 - [Signature Phishing Attack](./security/blockchain-signature-phishing-attack.md)
 - [Key store or External Wallet](./security/keystore-or-external-wallet.md)

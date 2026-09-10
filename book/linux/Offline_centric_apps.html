@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-d7d67aac.js";
+            window.path_to_searchindex_js = "../searchindex-4c54806a.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-80e9daae.js"></script>
+        <script src="../toc-84857646.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -240,7 +240,7 @@
 <p>A privacy-centric approach to app development, emphasizing offline functionality and transparent communication, not only enhances security but also empowers users to have greater control over their data. By implementing features such as permission-based connections, user traceability, and file ignore options, we can strike a balance between functionality and safeguarding user privacy.</p>
 <p>A similar experiment to design crypto wallet using intents here: <a href="../rust/one_wallet_app.html">One Wallet App</a></p>
 <h3 id="sandboxed-core-functionality"><a class="header" href="#sandboxed-core-functionality">Sandboxed core functionality</a></h3>
-<p><img src="./image/sandbox_core_functionality.png" alt="Sandboxed core functionality"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./image/sandbox_core_functionality.png" alt="Sandboxed core functionality"><span class="img-wrapper"><img src="./image/sandbox_core_functionality.png" alt="Sandboxed core functionality"></span></label></p>
 <p style="text-align:center;">
   <cite><a href="./libp2p.html">Full Stack rust-libp2p apps</a></cite>
 </p>
@@ -248,7 +248,7 @@
 <h3 id="challenges"><a class="header" href="#challenges">Challenges</a></h3>
 <p>Designing two separate apps can be a bit complicated. It would be easier for both app developers and users if all three modules (as shown in the image) were integrated into a single app. However, consolidating them into a single app might make it challenging for users to trust the app even if it’s open source and when it lacks sufficient code reviewers.</p>
 <p>Here is another model: all WebAssembly modules are assembled in a single package, whereas a generic module well audited by developer community is used for sandboxing the files and folders. Any app developer can utilize this module, and sandboxing of files and folders can be easily validated by users or developers without requiring much skill.</p>
-<p><img src="./image/sandboxing_files_folder.png" alt="Sandboxing files and folders"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./image/sandboxing_files_folder.png" alt="Sandboxing files and folders"><span class="img-wrapper"><img src="./image/sandboxing_files_folder.png" alt="Sandboxing files and folders"></span></label></p>
 <p>A command-line tool can also be built that takes the source code (e.g., Tauri source code) and provides security results, such as whether the app is properly internet sandboxed. It makes it easy to check the security.</p>
 <h2 id="security-enhancement-of-an-operating-system-eg-linux-os"><a class="header" href="#security-enhancement-of-an-operating-system-eg-linux-os">Security enhancement of an operating system (e.g. Linux OS)</a></h2>
 <p>With technology like <a href="./appimage.html">AppImage</a>, there is no need to change the operating system. This further increases the security of the OS. One can also check if something has changed or tampered in the system files crucial for security by obtaining the hash of the OS folder, as it will have the same hash at all times. In the case of an OS update, the changed hash can be publicly declared.</p>
