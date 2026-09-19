@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-8fa24f98.js";
+            window.path_to_searchindex_js = "../searchindex-0352728f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-244b3e4f.js"></script>
@@ -214,8 +214,53 @@
 <li><strong>Decentralized Sequencing</strong>: Both architectures are currently working on decentralizing their sequencers. The economic models for decentralized sequencing (e.g., bidding for proving rights, shared sequencing) may introduce new tokenomic requirements for <em>both</em> ZK and Optimistic rollups.</li>
 </ul>
 <hr>
-<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<h3 id="zero-inflation-is-theoretically-sound"><a class="header" href="#zero-inflation-is-theoretically-sound">Zero Inflation is Theoretically Sound</a></h3>
 <p>Zero inflation in ZK Rollups is <strong>theoretically sound</strong>. ZK rollups have a structural advantage because they replace ongoing economic incentives with cryptographic guarantees, removing the fundamental <em>need</em> for inflation to maintain security. Optimistic rollups, by design, cannot easily decouple their security from ongoing economic incentives, making a true “zero inflation” model much harder to sustain without compromising decentralization or safety.</p>
+<h2 id="how-zero-inflation-security-unlocks-capital-for-real-world-utility"><a class="header" href="#how-zero-inflation-security-unlocks-capital-for-real-world-utility">How Zero-Inflation Security Unlocks Capital for Real-World Utility</a></h2>
+<h3 id="1-capital-can-fund-real-world-utility-eg-supply-chains"><a class="header" href="#1-capital-can-fund-real-world-utility-eg-supply-chains">1. Capital Can Fund Real-World Utility (e.g., Supply Chains)</a></h3>
+<p>In traditional or optimistic models, a large portion of the treasury must be reserved to continuously incentivize network watchers. In a ZK model, those funds are freed up.</p>
+<ul>
+<li><strong>Supply Chain &amp; IoT Integration:</strong> Capital can be deployed to build oracle networks, hardware integrations, and data-verification layers that connect physical supply chains to the blockchain.</li>
+<li><strong>Real-World Assets (RWAs):</strong> Instead of printing tokens to pay validators, treasuries can fund the technological infrastructure needed to tokenize real estate, commodities, or logistics data.</li>
+<li><strong>Value Creation over Value Extraction:</strong> Money flows into building products that generate real revenue, rather than being extracted by mercenary capital seeking yield.</li>
+</ul>
+<h3 id="2-provers-are-paid-as-compute-services-not-security-subsidies"><a class="header" href="#2-provers-are-paid-as-compute-services-not-security-subsidies">2. Provers Are Paid as “Compute Services,” Not “Security Subsidies”</a></h3>
+<p>It is important to note that provers <em>do</em> get paid, but the economic model is fundamentally different and healthier:</p>
+<ul>
+<li><strong>The Old Model (Validators/Watchers):</strong> Paid via token inflation simply to <em>monitor</em> the network and hope no one else cheats. This is a continuous, draining subsidy.</li>
+<li><strong>The ZK Model (Provers):</strong> Paid via <strong>transaction fees</strong> to perform a specific computational task (generating a proof). This is akin to paying an AWS server for compute power. It is a sustainable, fee-based business expense, not a dilutive inflationary reward. Once the proof is generated and verified by Layer 1, the security is permanent and requires no further payment.</li>
+</ul>
+<h3 id="3-sustainable-non-dilutive-tokenomics"><a class="header" href="#3-sustainable-non-dilutive-tokenomics">3. Sustainable, Non-Dilutive Tokenomics</a></h3>
+<p>When a chain does not need to inflate its token supply to maintain security, its tokenomics become inherently more attractive to long-term investors and institutions.</p>
+<ul>
+<li><strong>No “Death Spiral” Risk:</strong> In inflationary models, if token price drops, validator rewards lose value, security drops, and the price drops further. ZK chains avoid this because security is math-based, not price-based.</li>
+<li><strong>Value Accrual:</strong> With a fixed or deflationary supply, any increase in network usage (and thus fee revenue) directly accrues value to token holders or the protocol treasury, rather than being diluted by new token emissions.</li>
+</ul>
+<h3 id="4-redirecting-treasury-funds-to-developer-growth"><a class="header" href="#4-redirecting-treasury-funds-to-developer-growth">4. Redirecting Treasury Funds to Developer Growth</a></h3>
+<p>Instead of using treasury tokens to bribe liquidity providers or pay security watchers, ZK ecosystems can allocate those resources to:</p>
+<ul>
+<li><strong>Developer Grants and Hackathons:</strong> Funding the creation of actual applications, better developer tooling, and improved user interfaces.</li>
+<li><strong>User Acquisition:</strong> Subsidizing gas fees for new users or funding marketing initiatives that bring real users to the platform, creating a genuine network effect.</li>
+</ul>
+<h3 id="5-lower-end-user-costs"><a class="header" href="#5-lower-end-user-costs">5. Lower End-User Costs</a></h3>
+<p>In an optimistic rollup or traditional L1, the transaction fee must cover two things: the cost of execution <em>and</em> the premium needed to incentivize the security watchers.
+In a ZK rollup, the user only pays for the execution and the prover’s compute cost. Because there is no “security inflation tax” baked into the fee, the baseline cost of transactions can be driven down to fractions of a cent as proving hardware becomes more efficient.</p>
+<hr>
+<h3 id="summary-the-paradigm-shift"><a class="header" href="#summary-the-paradigm-shift">Summary: The Paradigm Shift</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left"><strong>Traditional / Optimistic Model</strong></th><th style="text-align: left"><strong>ZK Proof Model</strong></th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>Security Source:</strong> Economic incentives (bribes).</td><td style="text-align: left"><strong>Security Source:</strong> Mathematics (cryptographic proofs).</td></tr>
+<tr><td style="text-align: left"><strong>Capital Drain:</strong> Continuous token inflation to pay watchers/validators.</td><td style="text-align: left"><strong>Capital Efficiency:</strong> Provers paid one-time fees for compute (like a SaaS model).</td></tr>
+<tr><td style="text-align: left"><strong>Resource Allocation:</strong> Treasury bleeds value to maintain baseline security.</td><td style="text-align: left"><strong>Resource Allocation:</strong> Treasury funds real-world use cases, supply chains, and developer growth.</td></tr>
+<tr><td style="text-align: left"><strong>Tokenomics:</strong> Inflationary, prone to dilution and mercenary capital.</td><td style="text-align: left"><strong>Tokenomics:</strong> Zero-inflation potential, deflationary pressure, attracts long-term capital.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusion:</strong> By decoupling security from inflation, ZK technology transforms a blockchain from a “rent-seeking” machine into a <strong>value-creating</strong> infrastructure. It allows ecosystems to spend their money on what actually matters: building real-world applications, optimizing supply chains, and delivering tangible value to users.</p>
 
                     </main>
 
