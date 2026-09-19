@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-633c8fb6.js";
+            window.path_to_searchindex_js = "../searchindex-89523890.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-244b3e4f.js"></script>
@@ -269,6 +269,50 @@ In a ZK rollup, the user only pays for the execution and the prover’s compute 
 <p>Both Starknet and StarkEx provide scalability and L1 security by using STARK-based validity proofs, and both are designed to support general computation, allowing any use case to be scaled.</p>
 <h3 id="how-will-starkex-evolve-in-a-starknet-world"><a class="header" href="#how-will-starkex-evolve-in-a-starknet-world">How will StarkEx evolve in a Starknet world?</a></h3>
 <p>StarkEx is a scaling engine built with Cairo and SHARP. While Starknet is a general purpose, permissionless, and decentralized ZK-Rollup. As StarkNet development progresses, StarkEx deployments will be able to port to Starknet. This will offer them the benefit of a fully-decentralized network, as well as composability with other applications.</p>
+<h2 id="scaling-starkex-vs-starknet"><a class="header" href="#scaling-starkex-vs-starknet">Scaling: StarkEx vs Starknet</a></h2>
+<p><strong>StarkEx scales horizontally at Layer 2</strong>, while <strong>Starknet scales vertically at Layer 2 and horizontally at Layer 3</strong>.</p>
+<hr>
+<h3 id="1-starkex-horizontal-scaling-at-layer-2-siloed-appchains"><a class="header" href="#1-starkex-horizontal-scaling-at-layer-2-siloed-appchains">1. StarkEx: Horizontal Scaling at Layer 2 (Siloed Appchains)</a></h3>
+<p>StarkEx is currently a <strong>permissioned, application-specific</strong> scaling engine. Rather than being a general-purpose blockchain, it is custom-built to meet the exact needs of a single application (e.g., dYdX v3, Immutable X, Sorare, rhino.fi). <em>Note: As the technology matures, StarkEx is evolving and may eventually offer the capability to build permissionless L2 environments.</em></p>
+<ul>
+<li><strong>How it scales horizontally</strong>: If an application outgrows the capacity of its current StarkEx instance, it cannot simply “add more power” to the same shared state. Instead, the application must deploy a <strong>brand new, separate StarkEx instance</strong> (a new L2 appchain).</li>
+<li><strong>The Trade-off &amp; Mitigation</strong>: This approach creates siloed environments where liquidity, users, and state are fragmented across different StarkEx instances. <em>However, this fragmentation can be effectively mitigated by decentralized multichain bridges and intent-based exchanges, which can seamlessly connect these disparate L2s.</em></li>
+</ul>
+<h3 id="2-starknet-vertical-scaling-at-layer-2-monolithic-shared-state"><a class="header" href="#2-starknet-vertical-scaling-at-layer-2-monolithic-shared-state">2. Starknet: Vertical Scaling at Layer 2 (Monolithic Shared State)</a></h3>
+<p>Starknet is a <strong>permissionless, general-purpose</strong> Validity Rollup. Its primary goal is to act as a single, unified, high-throughput settlement layer (a “monolithic” L2) where all applications share the same state and liquidity.</p>
+<ul>
+<li><strong>How it scales vertically</strong>: Instead of splitting into multiple chains, Starknet increases the capacity of the <em>single</em> chain through advanced cryptography and engineering:
+<ol>
+<li><strong>Recursive STARKs</strong>: This is the holy grail of vertical scaling. Instead of submitting thousands of individual proofs to Ethereum, Starknet can “roll up” multiple STARK proofs into a single, tiny recursive proof. This drastically reduces L1 verification costs and allows the L2 to process exponentially more transactions without hitting L1 bottlenecks.</li>
+<li><strong>Parallel Execution</strong>: Introduced in the v0.13.2 “Bolt” upgrade, Starknet can now process independent transactions simultaneously rather than sequentially, massively boosting raw TPS (Transactions Per Second) on the same chain.</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-starknet-horizontal-scaling-at-layer-3-appchains"><a class="header" href="#3-starknet-horizontal-scaling-at-layer-3-appchains">3. Starknet: Horizontal Scaling at Layer 3 (Appchains)</a></h3>
+<p>While Starknet handles vertical scaling at Layer 2, it plans to achieve horizontal scaling through <strong>Layer 3</strong>.</p>
+<ul>
+<li><strong>How it scales horizontally</strong>: If a specific application (like a high-frequency trading platform or a massive multiplayer game) needs dedicated throughput that even a vertically scaled L2 cannot provide, it can launch as a <strong>Layer 3 Appchain</strong> <em>on top of</em> Starknet.</li>
+<li><strong>The Advantage</strong>: This L3 appchain settles its proofs to Starknet (L2), which then settles to Ethereum (L1). The app gets its own dedicated, horizontally scaled environment.</li>
+<li><strong>Key disadvantages of Layer 3s</strong> in the StarkNet ecosystem include compromised security and increased complexity.
+Unlike Layer 2s which settle directly to Ethereum, Layer 3s inherit security from the Layer 2, creating a dependency chain that can introduce vulnerabilities if the underlying Layer 2 or its sequencers are compromised.</li>
+<li><strong>Higher Withdrawal Friction</strong>: Exiting an optimistic Layer 3 can require waiting through both the Layer 3’s dispute window and the Layer 2’s delay, significantly slowing down withdrawals compared to native Layer 2 exits.</li>
+<li><strong>Limited Scalability Gains</strong>: Critics argue that stacking rollups provides minimal additional scalability because data compression cannot be effectively repeated, and the cost savings are often negligible compared to Layer 2s after EIP-4844.</li>
+<li><strong>Centralization Risks</strong>: Many Layer 3s rely on centralized sequencers controlled by the app team, which can halt the chain if they go offline or act maliciously</li>
+</ul>
+<hr>
+<h3 id="summary-comparison"><a class="header" href="#summary-comparison">Summary Comparison</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Feature</th><th style="text-align: left">StarkEx (L2 Engine)</th><th style="text-align: left">Starknet (L2 Network + L3 Ecosystem)</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>Architecture</strong></td><td style="text-align: left">Currently permissioned, app-specific (evolving toward permissionless).</td><td style="text-align: left">Permissionless, general-purpose.</td></tr>
+<tr><td style="text-align: left"><strong>Primary L2 Scaling</strong></td><td style="text-align: left"><strong>Horizontal</strong>: Spin up new, separate L2 instances for new apps or more capacity.</td><td style="text-align: left"><strong>Vertical</strong>: Recursive STARKs and Parallel Execution to increase the capacity of the <em>single</em> shared chain.</td></tr>
+<tr><td style="text-align: left"><strong>Horizontal Scaling</strong></td><td style="text-align: left">Happens at L2 (fragmented liquidity/state).</td><td style="text-align: left">Happens at <strong>L3</strong> (Appchains settle to Starknet, preserving unified L2 liquidity).</td></tr>
+</tbody>
+</table>
+</div>
 
                     </main>
 
