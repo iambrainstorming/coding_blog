@@ -16,8 +16,8 @@
         <link rel="icon" href="favicon-de23e50b.svg">
         <link rel="shortcut icon" href="favicon-8114d1fc.png">
         <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-0392ca55.css">
-        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
         <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-4c54806a.js";
+            window.path_to_searchindex_js = "searchindex-8fa24f98.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-84857646.js"></script>
+        <script src="toc-244b3e4f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1867,6 +1867,43 @@ Expected: ~500 USDC
 <p>External wallets maximize security but kill UX for high-frequency apps. Keystore wallets enable great UX but require users to trust the application.</p>
 <p>For social media and high-interaction dApps, the keystore approach with dedicated, limited-fund accounts offers the right balance: excellent UX for everyday activities while keeping serious holdings secure in external wallets.</p>
 <p>The key is <strong>proper user education</strong> about the trust model and <strong>dedicated account segregation</strong> to limit risk exposure.</p>
+<div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
+<meta property="og:title" content="ZK Rollups vs Optimistic Rollups: Which Can Achieve Zero Inflation?" />
+<meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta property="og:url" content="https://iambrainstorming.github.io/coding_blog/blockchain/zero-inflation-chains.html" />
+<meta property="og:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ZK Rollups vs Optimistic Rollups: Which Can Achieve Zero Inflation?" />
+<meta name="twitter:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
+<meta name="twitter:image" content="https://iambrainstorming.github.io/coding_blog/images/og_image.png" />
+<h1 id="zk-rollups-vs-optimistic-rollups-which-can-achieve-zero-inflation"><a class="header" href="#zk-rollups-vs-optimistic-rollups-which-can-achieve-zero-inflation">ZK Rollups vs Optimistic Rollups: Which Can Achieve Zero Inflation?</a></h1>
+<hr>
+<h3 id="1-why-optimistic-rollups-optimism-arbitrum-struggle-with-zero-inflation"><a class="header" href="#1-why-optimistic-rollups-optimism-arbitrum-struggle-with-zero-inflation">1. Why Optimistic Rollups (Optimism, Arbitrum) Struggle with Zero Inflation</a></h3>
+<p>Optimistic rollups rely on a <strong>game-theoretic security model</strong> based on fraud proofs.</p>
+<ul>
+<li><strong>The “Watcher” Problem</strong>: For fraud proofs to work, there must be independent, economically incentivized “watchers” or challengers who monitor the sequencer, lock up capital (bonds), and expend computational resources to dispute invalid state roots.</li>
+<li><strong>Incentive Misalignment</strong>: If transaction fees are low, the network may not generate enough organic revenue to compensate these watchers for their capital opportunity cost and computational work.</li>
+<li><strong>The Inflation Necessity</strong>: To ensure security and prevent centralization (where only the sequencer can afford to monitor itself), optimistic rollups often rely on an inflationary native token (like OP or ARB) to subsidize these security incentives, fund ecosystem growth, and reward governance participation until fee revenue is organically sufficient.</li>
+</ul>
+<h3 id="2-why-zk-rollups-starknet-can-theoretically-achieve-zero-inflation"><a class="header" href="#2-why-zk-rollups-starknet-can-theoretically-achieve-zero-inflation">2. Why ZK Rollups (Starknet) Can Theoretically Achieve Zero Inflation</a></h3>
+<p>ZK rollups rely on a <strong>cryptographic security model</strong> based on validity proofs (zero-knowledge proofs).</p>
+<ul>
+<li><strong>Deterministic Verification</strong>: The Layer 1 smart contract deterministically verifies the cryptographic proof. There is no “watcher” game, no dispute period, and no need for redundant monitoring by multiple economic actors.</li>
+<li><strong>Math Over Economics</strong>: The math simply rejects invalid proofs. An attacker cannot submit a fraudulent state transition because the L1 contract will not accept it without a valid proof.</li>
+<li><strong>Fee-Based Sustainability</strong>: The prover’s cost is purely computational. They can be paid directly from the transaction fees collected by the sequencer as a service fee. Therefore, a ZK rollup can theoretically reach a steady state where transaction fees exactly cover prover costs and sequencer operations, allowing for “zero inflation” without compromising security.</li>
+</ul>
+<hr>
+<h3 id="3-practical-nuances-the-but"><a class="header" href="#3-practical-nuances-the-but">3. Practical Nuances (The “But…”)</a></h3>
+<p>While the <em>structural</em> argument is sound, real-world tokenomics tell a slightly different story:</p>
+<ul>
+<li><strong>Starknet Currently Has Inflation</strong>: In practice, Starknet (STRK) <em>does</em> currently utilize token emissions (inflation) to incentivize staking, governance participation, and ecosystem growth. The “zero inflation” capability is a theoretical ceiling, not necessarily the current operational reality.</li>
+<li><strong>Ecosystem Bootstrapping</strong>: Both Optimism and Arbitrum use token inflation heavily for ecosystem incentives (grants, developer rewards, liquidity mining) to bootstrap network effects, not strictly for security. Starknet and other ZK rollups do the same to compete for market share.</li>
+<li><strong>Decentralized Sequencing</strong>: Both architectures are currently working on decentralizing their sequencers. The economic models for decentralized sequencing (e.g., bidding for proving rights, shared sequencing) may introduce new tokenomic requirements for <em>both</em> ZK and Optimistic rollups.</li>
+</ul>
+<hr>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<p>Zero inflation in ZK Rollups is <strong>theoretically sound</strong>. ZK rollups have a structural advantage because they replace ongoing economic incentives with cryptographic guarantees, removing the fundamental <em>need</em> for inflation to maintain security. Optimistic rollups, by design, cannot easily decouple their security from ongoing economic incentives, making a true “zero inflation” model much harder to sustain without compromising decentralization or safety.</p>
 <div style="break-before: page; page-break-before: always;"></div><meta property="og:type" content="website" />
 <meta property="og:title" content="Error handling in leptos" />
 <meta property="og:description" content="Brainstorming coding ideas, exploring possibilities, and connecting thoughts into something meaningful." />
@@ -5494,7 +5531,7 @@ nula-relay = { version = "0.1", default-features = false }
 
         <script src="clipboard-1626706a.min.js"></script>
         <script src="highlight-abc7f01d.js"></script>
-        <script src="book-c22b7243.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 
@@ -5505,16 +5542,6 @@ nula-relay = { version = "0.1", default-features = false }
             });
         });
         </script>
-
-
-          <script type="text/javascript">
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-            }
-        </script>
-
-        <script type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
     </div>

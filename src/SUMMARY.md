@@ -16,6 +16,9 @@
 - [Signature Phishing Attack](./security/blockchain-signature-phishing-attack.md)
 - [Key store or External Wallet](./security/keystore-or-external-wallet.md)
 
+# Blockchain
+- [ZK Rollups vs Optimistic Rollups: Which Can Achieve Zero Inflation?](./blockchain/zero-inflation-chains.md)
+
 # Leptos
 - [Error handling in leptos](./leptos/leptos_error_handling.md)
 - [Pagination with Leptos](./leptos/pagination.md)
