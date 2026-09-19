@@ -68,3 +68,18 @@ While the *structural* argument is sound, real-world tokenomics tell a slightly 
  | **Tokenomics:** Inflationary, prone to dilution and mercenary capital. | **Tokenomics:** Zero-inflation potential, deflationary pressure, attracts long-term capital. |
  
  **Conclusion:** By decoupling security from inflation, ZK technology transforms a blockchain from a "rent-seeking" machine into a **value-creating** infrastructure. It allows ecosystems to spend their money on what actually matters: building real-world applications, optimizing supply chains, and delivering tangible value to users.
+
+## Starkex
+
+https://starkware.co/starkex/
+### What is the difference between Starknet and StarkEx?
+
+StarkNet is a permissionless decentralized ZK-Rollup that supports independent deployment of smart contracts. Any developer can write and deploy their smart contract permissionlessly. Starknet also supports composability.
+ 
+StarkEx is a permissioned tailor-made scaling engine, designed by StarkWare to fit the specific needs of apps.
+ 
+Both Starknet and StarkEx provide scalability and L1 security by using STARK-based validity proofs, and both are designed to support general computation, allowing any use case to be scaled.
+
+### How will StarkEx evolve in a Starknet world?
+
+StarkEx is a scaling engine built with Cairo and SHARP. While Starknet is a general purpose, permissionless, and decentralized ZK-Rollup. As StarkNet development progresses, StarkEx deployments will be able to port to Starknet. This will offer them the benefit of a fully-decentralized network, as well as composability with other applications.
