@@ -12,6 +12,7 @@
 # Algorithm
 - [Anonymous Voting with Cairo (Merkle Tree + Nullifier)](./blockchain/anonymous-voting-with-cairo.md)
 - [Chain Agnostic Attestations](./blockchain/chain-agnostic-attestation.md)
+- [A Blockchain-Based Tamper-Resistant Open Voting System for Local Elections](./blockchain/proof_of_authority_voting.md)
 
 # Security
 - [Signature Phishing Attack](./security/blockchain-signature-phishing-attack.md)
