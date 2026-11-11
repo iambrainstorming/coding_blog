@@ -1,5 +1,6 @@
 # A Blockchain-Based Tamper-Resistant Open Voting System for Local Elections
 
+The discussion is mostly AI-generated. We need to conduct a precise analysis, which will take time.
 
 ## How do I build a Proof of Authority blockchain where I can distribute authority to 100 people?
 
