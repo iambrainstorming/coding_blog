@@ -71,7 +71,43 @@ The discussion is mostly AI-generated. We need to conduct a precise analysis, wh
 - Have the app handle the chain spec, bootnode addresses, and key setup, plus a simple UI showing sync status, block height, and the vote.
 - Distribute it as a sideloaded APK to your 100 people. That avoids Play Store review, which may not like an embedded blockchain node.
 
+## Compile to android
 
+[PolkadotSDK Solochain](https://github.com/paritytech/polkadot-sdk/tree/master/templates/solochain)
+
+```bash
+git clone https://github.com/paritytech/polkadot-sdk-solochain-template.git solochain-template
+
+cd solochain-template
+```
+
+solchain-template/rust-toolchain.toml
+
+```toml
+[toolchain]
+channel = "1.88.0"
+components = [
+	"cargo",
+	"clippy",
+	"rust-analyzer",
+	"rust-src",
+	"rust-std",
+	"rustc",
+	"rustc-dev",
+	"rustfmt",
+]
+targets = ["wasm32-unknown-unknown", "aarch64-linux-android"]
+profile = "minimal"
+```
+```bash
+cargo build --release
+```
+### Android release
+
+```bash
+cargo install cargo-ndk
+cargo ndk -t arm64-v8a --platform 26 build --release -p solochain-template-node
+```
 ## Few Nodes Getting Offline
 
 > What if a few authority nodes go offline for a few hours? Can it still process transactions, right?

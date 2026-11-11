@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-70337c3f.js";
+            window.path_to_searchindex_js = "searchindex-d7565279.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-bebc7837.js"></script>
@@ -1898,6 +1898,34 @@ mod UserWallet {
 <li>Have the app handle the chain spec, bootnode addresses, and key setup, plus a simple UI showing sync status, block height, and the vote.</li>
 <li>Distribute it as a sideloaded APK to your 100 people. That avoids Play Store review, which may not like an embedded blockchain node.</li>
 </ul>
+<h2 id="compile-to-android"><a class="header" href="#compile-to-android">Compile to android</a></h2>
+<p><a href="https://github.com/paritytech/polkadot-sdk/tree/master/templates/solochain">PolkadotSDK Solochain</a></p>
+<pre><code class="language-bash">git clone https://github.com/paritytech/polkadot-sdk-solochain-template.git solochain-template
+
+cd solochain-template
+</code></pre>
+<p>solchain-template/rust-toolchain.toml</p>
+<pre><code class="language-toml">[toolchain]
+channel = "1.88.0"
+components = [
+	"cargo",
+	"clippy",
+	"rust-analyzer",
+	"rust-src",
+	"rust-std",
+	"rustc",
+	"rustc-dev",
+	"rustfmt",
+]
+targets = ["wasm32-unknown-unknown", "aarch64-linux-android"]
+profile = "minimal"
+</code></pre>
+<pre><code class="language-bash">cargo build --release
+</code></pre>
+<h3 id="android-release"><a class="header" href="#android-release">Android release</a></h3>
+<pre><code class="language-bash">cargo install cargo-ndk
+cargo ndk -t arm64-v8a --platform 26 build --release -p solochain-template-node
+</code></pre>
 <h2 id="few-nodes-getting-offline"><a class="header" href="#few-nodes-getting-offline">Few Nodes Getting Offline</a></h2>
 <blockquote>
 <p>What if a few authority nodes go offline for a few hours? Can it still process transactions, right?</p>
