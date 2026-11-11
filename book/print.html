@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-d7565279.js";
+            window.path_to_searchindex_js = "searchindex-fbe9ecec.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-bebc7837.js"></script>
@@ -1904,7 +1904,7 @@ mod UserWallet {
 
 cd solochain-template
 </code></pre>
-<p>solchain-template/rust-toolchain.toml</p>
+<p>solochain-template/rust-toolchain.toml</p>
 <pre><code class="language-toml">[toolchain]
 channel = "1.88.0"
 components = [
@@ -1926,6 +1926,7 @@ profile = "minimal"
 <pre><code class="language-bash">cargo install cargo-ndk
 cargo ndk -t arm64-v8a --platform 26 build --release -p solochain-template-node
 </code></pre>
+<p>These two libc functions (used by the if_addrs and network_interface crates for libp2p/mDNS) only exist in Android API level 24 and higher. cargo-ndk defaults to API 21, so the linker can’t find them. So use API level 26.</p>
 <h2 id="few-nodes-getting-offline"><a class="header" href="#few-nodes-getting-offline">Few Nodes Getting Offline</a></h2>
 <blockquote>
 <p>What if a few authority nodes go offline for a few hours? Can it still process transactions, right?</p>
@@ -2020,7 +2021,7 @@ cargo ndk -t arm64-v8a --platform 26 build --release -p solochain-template-node
 </ul>
 <h2 id="poa-blockchain-benefit-over-nostr"><a class="header" href="#poa-blockchain-benefit-over-nostr">PoA Blockchain Benefit over Nostr</a></h2>
 <blockquote>
-<p>What the benefit of proof of authority chain over nostr?</p>
+<p>What the <a href="https://iambrainstorming.github.io/chapters/democracy/direct-democracy/direct-participatory-democracy.html">benefit of proof of authority chain over nostr</a>?</p>
 </blockquote>
 <p><strong>Q1. How do we know a vote was cast before the deadline?</strong>
 On Nostr, each relay stamps events with its own clock, and voters control their own <code>created_at</code>, so relays can disagree about votes near the deadline. That is why the document needs a week-long sync window. On a PoA chain, a vote is valid if it lands in a block before the closing block, and once that block is finalized the answer is permanent. Nobody has to reconcile clocks.</p>

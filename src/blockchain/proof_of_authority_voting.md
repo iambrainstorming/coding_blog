@@ -81,7 +81,7 @@ git clone https://github.com/paritytech/polkadot-sdk-solochain-template.git solo
 cd solochain-template
 ```
 
-solchain-template/rust-toolchain.toml
+solochain-template/rust-toolchain.toml
 
 ```toml
 [toolchain]
@@ -108,6 +108,10 @@ cargo build --release
 cargo install cargo-ndk
 cargo ndk -t arm64-v8a --platform 26 build --release -p solochain-template-node
 ```
+
+These two libc functions (used by the if_addrs and network_interface crates for libp2p/mDNS) only exist in Android API level 24 and higher. cargo-ndk defaults to API 21, so the linker can’t find them. So use API level 26. 
+
+
 ## Few Nodes Getting Offline
 
 > What if a few authority nodes go offline for a few hours? Can it still process transactions, right?
@@ -192,7 +196,7 @@ cargo ndk -t arm64-v8a --platform 26 build --release -p solochain-template-node
 
 ## PoA Blockchain Benefit over Nostr
 
-> What the benefit of proof of authority chain over nostr?
+> What the [benefit of proof of authority chain over nostr](https://iambrainstorming.github.io/chapters/democracy/direct-democracy/direct-participatory-democracy.html)?
 
 
 **Q1. How do we know a vote was cast before the deadline?**
