@@ -102,6 +102,45 @@ profile = "minimal"
 ```bash
 cargo build --release
 ```
+
+### Wastime Patch
+
+The template pulls everything from crates.io (`sc-executor = "0.42.0"`), so wasmtime only arrives as a transitive dependency of `sc-executor`. To change it, you override that transitive crate with `[patch.crates-io]`. You don't need to clone the whole polkadot-sdk repo.
+
+**1. Find the exact version in your lockfile**
+
+```bash
+grep -A1 'name = "sc-executor-wasmtime"' Cargo.lock
+```
+
+**2. Copy that exact crate source into your project**
+
+```bash
+mkdir -p patches
+cp -r ~/.cargo/registry/src/*/sc-executor-wasmtime-<VERSION> patches/sc-executor-wasmtime
+```
+
+If it isn't there yet, run `cargo fetch` first. Using the copy from your own registry guarantees the version matches what the template expects.
+
+**3. Edit `patches/sc-executor-wasmtime/src/runtime.rs`**
+
+Search for `Pooling` or `PoolingAllocationConfig`. That's where `max_memory_size` and the pool reservation are set. Make the code never take the pooling branch, so the config always uses the default on-demand strategy:
+
+```rust
+// force on-demand allocation
+config.allocation_strategy(wasmtime::InstanceAllocationStrategy::OnDemand);
+```
+
+Remove or bypass the block that builds the pooling config. The exact lines vary by version, so I can't give you a precise diff without seeing the file. Paste the surrounding block if you want me to rewrite it.
+
+**4. Add the patch to the root `Cargo.toml`**
+
+```toml
+[patch.crates-io]
+sc-executor-wasmtime = { path = "patches/sc-executor-wasmtime" }
+```
+
+
 ### Android release
 
 ```bash
@@ -111,6 +150,9 @@ cargo ndk -t arm64-v8a --platform 26 build --release -p solochain-template-node
 
 These two libc functions (used by the if_addrs and network_interface crates for libp2p/mDNS) only exist in Android API level 24 and higher. cargo-ndk defaults to API 21, so the linker can’t find them. So use API level 26. 
 
+## Android App
+
+[Android app for running node](https://github.com/silicology1/polkadot-sdk-solochain-dioxus)
 
 ## Few Nodes Getting Offline
 
